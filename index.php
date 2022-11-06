@@ -10,15 +10,15 @@
 	<div id="title">
 		eWallett
 	</div>
-	<div id="meni">		
-		<a href="dodawanie.php">+</a>
+	
+	<div id="pole">
+		</br></br>Wpisz stan początkowy swojego portfela: </br></br>
+		<form action="index2.php" method="post">
+			<input type="number" name="stan"> </br></br>
+			<input type="submit" value="Zaczynamy">
+		</form>
+		</br><br>
 	</div>
-	<div id="dashboard">
-		<div class="kafelek">1</div>
-		<div class="kafelek">2</div>
-		<div style="clear:both"></div>
-	</div>
-	<div id="footer">Wszelkie prawa zastrzeżone</div>
 </div>
 </body>
 

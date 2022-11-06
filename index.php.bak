@@ -13,7 +13,7 @@
 	
 	<div id="pole">
 		</br></br>Wpisz stan początkowy swojego portfela: </br></br>
-		<form method="post">
+		<form action="index2.html" method="post">
 			<input type="number" name="stan"> </br></br>
 			<input type="submit" value="Zaczynamy">
 		</form>

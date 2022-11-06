@@ -33,6 +33,11 @@
 	text-align: center;
 }
 
+#stan
+{
+
+}
+
 #footer
 {
 	text-align:center;
@@ -40,6 +45,10 @@
 
 #formularz
 {
-	margin-left: auto;
-	margin-right: auto;
+	text-align: center;
+}
+
+#pole
+{
+	text-align: center;
 }

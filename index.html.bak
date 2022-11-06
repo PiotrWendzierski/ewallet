@@ -3,10 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<title>eWallet - twój elektroniczny portfel</title>
-	<link
+	<link rel="stylesheet"  href="style.css" type="text/css" / >
 </head>
 <body>
-	<h1>eWallett</h1>
+<div id="container">
+	<div id="title">
+		eWallett
+	</div>
+	<div id="meni">		
+		+
+	</div>
+	<div id="dashboard">
+		<div class="kafelek">1</div>
+		<div class="kafelek">2</div>
+		<div style="clear:both"></div>
+	</div>
+	<div id="footer">Wszelkie prawa zastrzeżone</div>
+</div>
 </body>
 
 </html>

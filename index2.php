@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -17,11 +20,20 @@
 		<div class="kafelek">
 		<?php
 			echo "Obecny stan portfela"."</br></br>";
-			$stan = $_POST['stan'];
-			echo $stan." zł";
+			if(!isset($_SESSION['stan']))
+		  {
+				$stan = $_POST['stan'];
+				$_SESSION['stan'] = $stan;
+				echo $stan." zł";
+			}
+			else 
+		  {				
+				$stan = $_SESSION['stan'];
+				echo $stan." zł";
+			}
 		?>
 		</div>
-		<div class="kafelek">2</div>
+		<div class="kafelek">Historia wydatków</div>
 		<div style="clear:both"></div>
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone</div>

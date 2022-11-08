@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -14,14 +17,23 @@
 		<a href="dodawanie.php">+</a>
 	</div>
 	<div id="dashboard">
-		<div class="kafelek1">
+		<div class="kafelek">
 		<?php
 			echo "Obecny stan portfela"."</br></br>";
-			$stan = $_POST['stan'];
-			echo $stan." zł";
+			$_SESSION['stan'] = $_POST['stan'];
+			if(!isset($_SESSION['stan']))
+		  {
+				$stan = $_POST['stan'];
+				echo $stan." zł";
+			}
+			else 
+		  {				
+				$stan = $_SESSION['stan'];
+				echo $stan." zł";
+			}
 		?>
 		</div>
-		<div class="kafelek2">2</div>
+		<div class="kafelek">Historia wydatków</div>
 		<div style="clear:both"></div>
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone</div>

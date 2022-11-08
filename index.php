@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	$_SESSION['ilosc_transakcji'] = 0;
+?>
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>

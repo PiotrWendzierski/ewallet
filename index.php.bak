@@ -1,3 +1,8 @@
+<?php
+	session_start();
+	$_SESSION['ilosc_transakcji'] = 0;
+	echo $_SESSION['ilosc_transakcji'];
+?>
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -13,7 +18,7 @@
 	
 	<div id="pole">
 		</br></br>Wpisz stan początkowy swojego portfela: </br></br>
-		<form action="index2.html" method="post">
+		<form action="index2.php" method="post">
 			<input type="number" name="stan"> </br></br>
 			<input type="submit" value="Zaczynamy">
 		</form>

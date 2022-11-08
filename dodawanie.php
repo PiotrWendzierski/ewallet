@@ -9,11 +9,11 @@
 <div id="container">
 	<div id="title">
 		eWallett
-	</div>
-	<div id="formularz">
-		<form method="post">
+	</div> </br></br>
+	<div id="formularz" >
+		<form method="post" action="podsumowanie.php">
 			Wpisz kategorię<input type="text" name="kategoria"> </br></br>
-			Wpisz cenę<input type="number" name="kategoria">  </br></br>
+			Wpisz cenę<input type="number" name="cena">  </br></br>
 			Zatwierdź <input type="submit">
 		</form>
 	</div>

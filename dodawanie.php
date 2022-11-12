@@ -14,6 +14,7 @@
 		<form method="post" action="podsumowanie.php">
 			Wpisz kategorię<input type="text" name="kategoria"> </br></br>
 			Wpisz cenę<input type="number" name="cena">  </br></br>
+			Data <input type="date" name="data_transakcji">  </br></br>
 			Zatwierdź <input type="submit">
 		</form>
 	</div>

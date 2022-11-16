@@ -27,14 +27,24 @@
 	min-height:400px;
 }
 
-.kafelek
+.kafel
 {
 	width: 200px;
 	background-color: white;
 	margin-right: 10px;	
 	margin-left: 10px;
+	margin-bottom: 20px;
 	float:left;
 	height: 100px;
+	text-align: center;
+}
+
+.kafel_duzy
+{
+	width:200px;
+	height: 220px;
+	margin-right: 10px;	
+	margin-left: 10px;
 	text-align: center;
 }
 

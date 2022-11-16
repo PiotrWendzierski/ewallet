@@ -17,6 +17,7 @@
 		<div class="option"><a href="index2.php">Ekran główny</a></div>
 		<div class="option"><a href="dodawanie.php">Wprowadzanie transakcji</a></div>
 		<div class="option"><a href="historia.php">Historia portfela</a></div>
+		<div class="option"><a href="skarbonka.php">Skarbonka</a></div>
 		<div class="option"><a href="wyloguj.php">Wyloguj</a></div>
 		<div style="clear:both;"></div>
 	</div>
@@ -40,7 +41,7 @@
 		<div class="kafel">
 		Ostatnia transakcja: </br></br>
 		<?php
-		if(isset($_SESSION['data_transakcji']))
+			if(isset($_SESSION['data_transakcji']))
 		  {
 				echo "Dnia: ".$_SESSION['data_transakcji']."</br>";
 			}
@@ -51,6 +52,34 @@
 		?>
 		</div>
 		<div style="clear:both"></div>
+		<div class="kafel_duzy">
+		</br>Skarbonka </br></br>
+		<?php
+			if((isset($_SESSION['skarbonka']))&&($_SESSION['oszczednosci'] == false))
+		  {
+				echo "Cel zbieraniny: ".$_SESSION['cel_oszczednosci']."</br></br>";
+				echo "Potrzebujesz: ".$_SESSION['potrzebna_ilosc']."</br>";
+				echo "Masz już: 0zł"."</br></br>";
+				echo "Łącznie: 0%";
+			}
+			else if((isset($_SESSION['skarbonka']))&&($_SESSION['oszczednosci'] == true))
+			{
+				$_SESSION['stan_skarbonki'] =$_SESSION['stan_skarbonki'] + $_SESSION['kwota_przeznaczona'];
+				$stan_skarbonki = $_SESSION['stan_skarbonki'] ;
+				$procent_celu = ($_SESSION['stan_skarbonki']/$_SESSION['potrzebna_ilosc'])*100;
+				echo "Łącznie: ".$stan_skarbonki."</br>";
+				echo "Masz już: ".$procent_celu."%</br></br>";
+				echo "Cel zbieraniny: ".$_SESSION['cel_oszczednosci']."</br></br>";
+				$_SESSION['kwota_przeznaczona'] = 0;
+				$pozostalo = $_SESSION['potrzebna_ilosc'] - $stan_skarbonki;
+				echo "Pozostało do uzbierania: ".$pozostalo;
+			}
+			else 
+		  {				
+				echo "Narazie brak celów";
+			}
+		?>
+		</div>
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone</div>
 </div>

@@ -22,10 +22,11 @@
 			 $_SESSION['zmiana'] = $_POST['cena'];
 			 $_SESSION['kategoria'] = $_POST['kategoria'];
 			 $_SESSION['data_transakcji'] = $_POST['data_transakcji'];
+			 $_SESSION['ilosc_transakcji'] ++;
 			 
 			 echo "Stan przed transakcją: ".$_SESSION['stan']."</br>";
 			 
-			 $_SESSION['stan'] = $_POST['stan'] + $_SESSION['zmiana'];
+			 $_SESSION['stan'] = $_SESSION['stan'] + $_SESSION['zmiana'];
 			 
 			 echo "Zmieniono o: ".$_SESSION['zmiana']." PLN"."</br></br>";
 			 echo "Dnia: ".$_SESSION['data_transakcji']."</br></br>";

@@ -21,6 +21,9 @@
 		<div class="option"><a href="wyloguj.php">Wyloguj</a></div>
 		<div style="clear:both;"></div>
 	</div>
+	<?php
+		echo $_SESSION['ilosc_transakcji'];
+	?>
 	<div id="dashboard">
 		<div class="kafel">
 		<?php
@@ -51,9 +54,12 @@
 			}
 		?>
 		</div>
+		<div class="kafel">
+		Ilość transakcji
+		</div>
 		<div style="clear:both"></div>
 		<div class="kafel_duzy">
-		</br></br>Skarbonka </br></br>
+		</br>Skarbonka </br></br>
 		<?php
 			if((isset($_SESSION['skarbonka']))&&($_SESSION['oszczednosci'] == false))
 		  {

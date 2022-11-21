@@ -1,3 +1,7 @@
+<?php
+	session_start();
+?>
+
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -17,6 +21,7 @@
 			Data <input type="date" name="data_transakcji">  </br></br>
 			Zatwierdź <input type="submit">
 		</form>
+
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone</div>
 </div>

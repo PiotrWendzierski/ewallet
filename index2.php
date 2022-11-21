@@ -21,6 +21,9 @@
 		<div class="option"><a href="wyloguj.php">Wyloguj</a></div>
 		<div style="clear:both;"></div>
 	</div>
+	<?php
+		echo $_SESSION['ilosc_transakcji'];
+	?>
 	<div id="dashboard">
 		<div class="kafel">
 		<?php
@@ -50,6 +53,12 @@
 				echo "Brak danych";
 			}
 		?>
+		</div>
+		<div class="kafel">
+		Ilość transakcji:
+		</div>
+		<div class="kafel">
+		Łączny majątek:
 		</div>
 		<div style="clear:both"></div>
 		<div class="kafel_duzy">

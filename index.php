@@ -1,6 +1,12 @@
 <?php
 	session_start();
 	$_SESSION['ilosc_transakcji'] = 0;
+	if(!isset($_SESSION['zalogowany']))
+	{
+		header('Location: login.php');
+		exit();
+	}
+?>
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">

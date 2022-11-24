@@ -30,6 +30,7 @@
 			 {
 				 $_SESSION['kwota_przeznaczona'] = $_POST['kwota_przeznaczona'];
 				 $_SESSION['stan'] = $_SESSION['stan'] - $_SESSION['kwota_przeznaczona'] ;
+				 $_SESSION['data_transakcji'] = $_POST['data_transakcji'];
 				 echo "Fajnie! Dodajesz do swojej skarbonki: ".$_SESSION['kwota_przeznaczona']."</br></br>";
 				 echo '<a href="index2.php">Wróć na stronę główną</a>';
 				 

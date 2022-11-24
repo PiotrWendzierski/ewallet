@@ -1,5 +1,10 @@
 <?php
 	session_start();
+	if(!isset($_SESSION['zalogowany']))
+	{
+		header('Location: login.php');
+		exit();
+	}
 	session_destroy();
 ?>
 <!DOCTYPE HTML>
@@ -17,7 +22,7 @@
 	
 	<div id="pole">
 		</br></br>Dziękujemy i zapraszamy ponownie!</br></br>
-		<a href="index.php">Wróć do strony początkowej</a>
+		<a href="login.php">Wróć do strony początkowej</a>
 		</br><br>
 	</div>
 </div>

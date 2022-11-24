@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	session_destroy();
 ?>
 <!DOCTYPE HTML>
@@ -16,7 +17,7 @@
 	
 	<div id="pole">
 		</br></br>Dziękujemy i zapraszamy ponownie!</br></br>
-		<a href="index.php">Wróć do strony początkowej</a>
+		<a href="login.php">Wróć do strony początkowej</a>
 		</br><br>
 	</div>
 </div>

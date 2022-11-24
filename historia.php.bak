@@ -1,5 +1,11 @@
 <?php
 	session_start();
+	if(!isset($_SESSION['zalogowany']))
+	{
+		header('Location: login.php');
+		exit();
+	}
+?>
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -23,7 +29,7 @@
 	</div>
 	<div id="dashboard">
 	<?php
-		echo $_SESSION['transakcja'][1]['cena'];
+	//	echo $_SESSION['transakcja'][1]['cena'];
 	?>
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone</div>

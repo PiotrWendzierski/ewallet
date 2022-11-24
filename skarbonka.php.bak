@@ -37,6 +37,7 @@
 		echo "</br></br>Wpisz kwotę którą przeznaczasz: </br></br>
 					<form action='podsumowanie_skarbonki.php' method='post'>
 						<input type='number' name='kwota_przeznaczona'> </br></br>
+						<input type='date' name='data_transakcji'>  </br></br>
 						<input type='submit' value='Zaoszczędź'>
 					</form>
 					</br><br>";

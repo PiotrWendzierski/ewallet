@@ -1,5 +1,10 @@
 <?php
 	session_start();
+	if(!isset($_SESSION['zalogowany']))
+	{
+		header('Location: login.php');
+		exit(0);
+	}
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -22,22 +27,22 @@
 		<div style="clear:both;"></div>
 	</div>
 	<?php
-		echo $_SESSION['ilosc_transakcji'];
+		echo "     Witaj ".$_SESSION['user']." w swoim wirtualnym portfelu!</br></br>";
 	?>
 	<div id="dashboard">
 		<div class="kafel">
 		<?php
 			echo "Obecny stan portfela"."</br></br>";
-			if(isset($_SESSION['stan']))
+			if(isset($_SESSION['stan_konta']))
 		  {
-				$stan = $_SESSION['stan'];
-				echo $stan." zł";
+				$stan_konta = $_SESSION['stan_konta'];
+				echo $stan_konta." zł";
 			}
 			else 
 		  {				
-				$stan = $_POST['stan'];
-				$_SESSION['stan'] = $stan;
-				echo $stan." zł";
+				//$stan = $_POST['stan'];
+				//$_SESSION['stan'] = $stan;
+				//echo $stan." zł";
 			}
 		?>
 		</div>
@@ -55,7 +60,10 @@
 		?>
 		</div>
 		<div class="kafel">
-		Ilość transakcji
+		Ilość transakcji:
+		</div>
+		<div class="kafel">
+		Łączny majątek:
 		</div>
 		<div style="clear:both"></div>
 		<div class="kafel_duzy">

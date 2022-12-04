@@ -1,6 +1,6 @@
 <?php
 	$host = "localhost";
 	$db_user = "root";
-	$db_password = "s";
-	$db_name = "ewallet";
+	$db_password = "";
+	$db_name = "uzytkownicy";
 ?>

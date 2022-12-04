@@ -1,12 +1,14 @@
 <?php
-	session_start();
-	$_SESSION['ilosc_transakcji'] = 0;
-	if(!isset($_SESSION['zalogowany']))
+	/*session_start();
+	if(!isset($_SESSION['udana_rejestracja']))
 	{
 		header('Location: login.php');
 		exit();
 	}
-?>
+	else 
+	{
+		unset ($_SESSION['udana_rejestracja']);
+	}*/
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">

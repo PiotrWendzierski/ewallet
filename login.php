@@ -15,11 +15,20 @@
 	<link rel="stylesheet"  href="style.css" type="text/css" / >
 </head>
 <body>
+<?php
+	if(isset($_SESSION['udana_rejestracja']))
+	{
+		echo "Udana rejestracja! Zaloguj się na swoje nowe konto :) "."</br>";
+		unset ($_SESSION['udana_rejestracja']);
+	}
+?>
 <form action="zaloguj.php" method="post">
 	Login: </br> <input type="text" name="login" /> </br>
-	Hasło: </br> <input type="password" name="haslo" /> </br>
+	Hasło: </br> <input type="password" name="haslo" /> </br></br>
 	<input type="submit" value="Zaloguj się!" />
 </form>
+</br>
+<a href="rejestracja.php">Utwórz nowe konto!</a>
 
 <?php
 	if(isset($_SESSION['blad']))

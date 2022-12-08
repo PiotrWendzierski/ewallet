@@ -4,7 +4,8 @@
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #F6F3F3;
-	min-height: 1000px;
+	min-height: 700px;
+	margin-top: none;
 }
 
 #title
@@ -13,6 +14,12 @@
 	color: blue;
 	font-size: 40px;
 	border-bottom: 5px solid blue;
+}
+
+#login
+{
+	margin-top: 100px;
+	text-align: center;
 }
 
 #meni
@@ -41,6 +48,7 @@
 
 .kafel_duzy
 {
+	background-color: white;
 	width:200px;
 	height: 220px;
 	margin-right: 10px;	

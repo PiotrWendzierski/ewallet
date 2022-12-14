@@ -5,6 +5,7 @@
 		header('Location: login.php');
 		exit();
 	}
+	require_once "connect.php";
 ?>
 
 <!DOCTYPE HTML>
@@ -27,9 +28,37 @@
 		<div class="option"><a href="wyloguj.php">Wyloguj</a></div>
 		<div style="clear:both;"></div>
 	</div>
-	<div id="dashboard">
+	<div id="historia">
 	<?php
-	//	echo $_SESSION['transakcja'][1]['cena'];
+	mysqli_report(MYSQLI_REPORT_STRICT);
+	try
+	{
+		$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+		if($polaczenie->connect_errno!=0)
+		{
+			throw new Exception(mysqli_connect_errno());
+		}
+		else
+		{
+			$id = $_SESSION['id'];
+			$rezultat = $polaczenie ->query("SELECT kategoria, cena, data, saldo FROM transakcje WHERE id = '$id'");
+			$ile_transakcji = $rezultat -> num_rows;
+			if ($ile_transakcji != 0)
+			{
+				$row = $rezultat -> fetch_assoc();
+				$kategoria = $row['kategoria'];
+				$cena = $row['cena'];
+				$data = $row['data'];
+				
+				echo $kategoria." ".$cena." ".$data." ";
+			}
+			else echo "Brak transakcji. Zapraszamy do dodania danych do Twojego konta.";
+		}
+	}
+	catch(Exception $e)
+	{
+		echo $e;
+	}
 	?>
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone</div>

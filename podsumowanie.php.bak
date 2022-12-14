@@ -5,7 +5,6 @@
 		header('Location: login.php');
 		exit();
 	}
-	$wszystko_ok = true;
 	require_once "connect.php";
 	$wszystko_ok = true;
 ?>
@@ -25,7 +24,7 @@
 	<div id="pole">
 		</br></br>Podsumowanie:</br></br>
 		<?php
-				
+				echo $_POST['data_transakcji'];
 				try
 				{
 					$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);

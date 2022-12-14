@@ -33,7 +33,7 @@
 		<div style="clear:both;"></div>
 	</div>
 	<?php
-		echo "Witaj ".$_SESSION['user']." w swoim wirtualnym portfelu!</br></br>";
+		echo "Witaj ".$_SESSION['user']." w swoim wirtualnym portfelu!</br></br>".$_SESSION['id'];
 			  try
 			{
 				$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
@@ -49,7 +49,6 @@
 					{
 						$wiersz  = $rezultat->fetch_assoc();
 						$stan_konta = $wiersz['stan_konta'];
-						//echo $stan_konta;
 					}
 					else 
 					{

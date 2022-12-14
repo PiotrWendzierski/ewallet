@@ -1,21 +1,70 @@
 <?php
 	session_start();
-	$wszystko_ok = true;
 	//czy jest wpisana kategoria
-	if((isset($_POST['kategoria']))&&($_POST['kategoria'] ==""))
+	if(isset($_POST['kategoria']))
 	{
-		$wszystko_ok = false;
 		$kategoria = $_POST['kategoria'];
-		$e_kategoria = '</br>'.'<span style="color:red">Wprowadź kategorię!</span>'.'</br>';
+		$wszystko_ok = true;
+		if($_POST['kategoria']=="")
+		{
+			$wszystko_ok = false;
+			$e_kategoria = '</br>'.'<span style="color:red">Wprowadź kategorię!</span>'.'</br>';
+		}
 	}
 	//czy jest wpisana cena i czy jest rozna od zera
-	if((isset($_POST['cena']))&&(($_POST['cena'] ==  0)|| ($_POST['cena']=="")))
+	if(isset($_POST['cena']))
 	{
-		$wszystko_ok = false;
-		//$cena = $_POST['cena'];
-		$e_cena= '</br>'.'<span style="color:red">Wprowadź cenę (cena nie może być różna od zera)!</span>'.'</br>';
+		$cena = $_POST['cena'];
+		$wszystko_ok = true;
+		if(($_POST['cena']==0)|| ($_POST['cena'] == ""))
+		{
+			$wszystko_ok = false;
+			//$cena = $_POST['cena'];
+			$e_cena= '</br>'.'<span style="color:red">Wprowadź cenę (cena nie może być różna od zera)!</span>'.'</br>';
+		}
 	}
-	
+	//czy wpisana jest data 
+	if(isset($_POST['data_transakcji']))
+	{
+		$data = $_POST['data_transakcji'];
+		$wszystko_ok = true;
+		if($_POST['data_transakcji']=="")
+		{
+			$wszystko_ok = false;
+			$e_data = '</br>'.'<span style="color:red">Wprowadź datę transakcji!</span>'.'</br>';
+		}
+	}
+	require_once "connect.php";
+	try
+	{
+		$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+		if($polaczenie->connect_errno!=0)
+		{
+			throw new Exception(mysqli_connect_errno());
+		}
+		else
+		{
+			if((isset($wszystko_ok))&& ($wszystko_ok == true))
+			{
+				$id = $_SESSION['id'];
+				if($polaczenie->query("INSERT INTO transakcje VALUES (NULL,'$id', '$kategoria', '$cena', '$data', '0' )"))
+				{
+					
+					header('Location: podsumowanie.php');
+				}
+				else 
+				{
+					throw new Exception($polaczenie->error);
+				}
+			}
+			$polaczenie->close();
+		}
+	}
+	catch (Exception $e)
+	{
+		echo $e;
+	}
+
 ?>
 
 <!DOCTYPE HTML>
@@ -31,13 +80,13 @@
 		eWallett
 	</div> </br></br>
 	<div id="formularz" >
-		<form method="post" >
+		<form method="post"  >
 			Wpisz kategorię<input type="text" name="kategoria"> </br>
 			<?php
 				if(isset($e_kategoria))
 				{
 					echo $e_kategoria;
-					unset $e_kategoria;
+					unset ($e_kategoria);
 				}
 			?></br>
 			Wpisz cenę<input type="number" name="cena">  </br>
@@ -48,7 +97,14 @@
 					unset($e_cena);
 				}
 			?></br>
-			Data <input type="date" name="data_transakcji">  </br></br>
+			Data <input type="date" name="data_transakcji">  </br>
+			<?php
+			if(isset($e_data))
+				{
+					echo $e_data;
+					unset($e_data);
+				}
+			?></br>
 			Zatwierdź <input type="submit">
 		</form>
 

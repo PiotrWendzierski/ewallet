@@ -24,7 +24,6 @@
 	<div id="pole">
 		</br></br>Podsumowanie:</br></br>
 		<?php
-				
 				try
 				{
 					$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);

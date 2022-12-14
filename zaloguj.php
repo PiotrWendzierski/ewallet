@@ -25,16 +25,14 @@
 		if ($rezultat = @$polaczenie->query($sql));
 		{
 			$ilu_userow = $rezultat->num_rows;
-			echo $ilu_userow;
+			//echo $ilu_userow;
 			if($ilu_userow > 0)
 			{
 				$wiersz  = $rezultat->fetch_assoc();
-				
+				$_SESSION['id'] = $wiersz['id'];
 				if(password_verify($haslo,$wiersz['haslo']))
 				{
 					$_SESSION['zalogowany'] = true;
-					
-					
 					$_SESSION['user'] = $wiersz['login'];
 					$_SESSION['stan_konta'] = $wiersz['stan_konta'];
 					unset($_SESSION['blad']);

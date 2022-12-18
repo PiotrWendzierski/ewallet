@@ -1,38 +1,31 @@
 <?php
 	session_start();
-	//czy jest wpisana kategoria
-	if(isset($_POST['kategoria']))
-	{
-		$kategoria = $_POST['kategoria'];
+	
+	if (isset($_POST['kategoria']))
+  {
 		$wszystko_ok = true;
-		if($_POST['kategoria']=="")
+		//czy jest podana kategoria
+		$kategoria = $_POST['kategoria'];
+		if ($kategoria == "")
 		{
 			$wszystko_ok = false;
 			$e_kategoria = '</br>'.'<span style="color:red">Wprowadź kategorię!</span>'.'</br>';
 		}
-	}
-	//czy jest wpisana cena i czy jest rozna od zera
-	if(isset($_POST['cena']))
-	{
 		$cena = $_POST['cena'];
-		$wszystko_ok = true;
-		if(($_POST['cena']==0)|| ($_POST['cena'] == ""))
+		//czy cena jest pusta lub rowna zero
+		if(($cena == "")|| ($cena == 0))
 		{
 			$wszystko_ok = false;
-			//$cena = $_POST['cena'];
 			$e_cena= '</br>'.'<span style="color:red">Wprowadź cenę (cena nie może być różna od zera)!</span>'.'</br>';
 		}
-	}
-	//czy wpisana jest data 
-	if(isset($_POST['data_transakcji']))
-	{
+		//czy wpisana jest data
 		$data = $_POST['data_transakcji'];
-		$wszystko_ok = true;
-		if($_POST['data_transakcji']=="")
+		if($data == "")
 		{
 			$wszystko_ok = false;
 			$e_data = '</br>'.'<span style="color:red">Wprowadź datę transakcji!</span>'.'</br>';
 		}
+		
 	}
 	require_once "connect.php";
 	try
@@ -49,7 +42,6 @@
 				$id = $_SESSION['id'];
 				if($polaczenie->query("INSERT INTO transakcje VALUES (NULL,'$id', '$kategoria', '$cena', '$data', '0' )"))
 				{
-					
 					header('Location: podsumowanie.php');
 				}
 				else 
@@ -78,7 +70,16 @@
 <div id="container">
 	<div id="title">
 		eWallett
-	</div> </br></br>
+	</div> 
+	<div id="meni">		
+		<div class="option"><a href="index2.php">Ekran główny</a></div>
+		<div class="option"><a href="dodawanie.php">Wprowadzanie transakcji</a></div>
+		<div class="option"><a href="historia.php">Historia portfela</a></div>
+		<div class="option"><a href="skarbonka.php">Skarbonka</a></div>
+		<div class="option"><a href="wyloguj.php">Wyloguj</a></div>
+		<div style="clear:both;"></div>
+	</div>
+	</br></br>
 	<div id="formularz" >
 		<form method="post"  >
 			Wpisz kategorię<input type="text" name="kategoria"> </br>

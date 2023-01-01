@@ -33,7 +33,7 @@
 		<div style="clear:both;"></div>
 	</div>
 	<?php
-		echo "Witaj ".$_SESSION['user']." w swoim wirtualnym portfelu!</br></br>".$_SESSION['id'];
+		echo "Witaj ".$_SESSION['user']." w swoim wirtualnym portfelu!</br></br>";
 			  try
 			{
 				$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
@@ -49,6 +49,28 @@
 					{
 						$wiersz  = $rezultat->fetch_assoc();
 						$stan_konta = $wiersz['stan_konta'];
+						$_SESSION['stan_konta'] = $stan_konta;
+					}
+					else 
+					{
+						throw new Exception($polaczenie->error);
+					}
+					$id = $_SESSION['id'];
+					$sql2 = "SELECT * FROM transakcje WHERE id = '$id'";
+					if($rezultat = $polaczenie -> query($sql2))
+					{
+						$ile_transakcji = $rezultat->num_rows;
+						if ($ile_transakcji > 0)
+						{
+							$sql3 = "SELECT * FROM transakcje WHERE id = '$id' ORDER BY data ASC LIMIT 1 ";
+							if ($rezultat = $polaczenie -> query ($sql3))
+							{
+								$wiersz2 = $rezultat -> fetch_assoc();
+								$kategoria = $wiersz2['kategoria'];
+								$data = $wiersz2['data'];
+								$cena = $wiersz2['cena'];
+							}
+						}
 					}
 					else 
 					{
@@ -73,10 +95,9 @@
 		<div class="kafel">
 		Ostatnia transakcja: </br></br>
 		<?php
-			if(isset($_SESSION['data_transakcji']))
+			if($ile_transakcji>0)
 		  {
-				echo "Dnia: ".$_SESSION['data_transakcji']."</br>";
-				echo $stan_konta;
+				echo $kategoria."</br>".$data."</br>".$cena;
 			}
 			else 
 		  {				

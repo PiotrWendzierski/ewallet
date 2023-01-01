@@ -12,6 +12,7 @@
 			$e_kategoria = '</br>'.'<span style="color:red">Wprowadź kategorię!</span>'.'</br>';
 		}
 		$cena = $_POST['cena'];
+		$_SESSION['zmiana'] = $cena;
 		//czy cena jest pusta lub rowna zero
 		if(($cena == "")|| ($cena == 0))
 		{
@@ -20,6 +21,7 @@
 		}
 		//czy wpisana jest data
 		$data = $_POST['data_transakcji'];
+	    $_SESSION['data_transakcji'] = $data;
 		if($data == "")
 		{
 			$wszystko_ok = false;
@@ -42,7 +44,12 @@
 				$id = $_SESSION['id'];
 				if($polaczenie->query("INSERT INTO transakcje VALUES (NULL,'$id', '$kategoria', '$cena', '$data', '0' )"))
 				{
-					header('Location: podsumowanie.php');
+					$stanek = $_SESSION['stan_konta'] + $cena;
+					$user = $_SESSION['user'];
+					if ($polaczenie->query("UPDATE uzytkownicy SET stan_konta = $stanek WHERE id = '$user'" ))
+					{
+						header('Location: podsumowanie.php');
+					}
 				}
 				else 
 				{
@@ -70,7 +77,16 @@
 <div id="container">
 	<div id="title">
 		eWallett
-	</div> </br></br>
+	</div> 
+	<div id="meni">		
+		<div class="option"><a href="index2.php">Ekran główny</a></div>
+		<div class="option"><a href="dodawanie.php">Wprowadzanie transakcji</a></div>
+		<div class="option"><a href="historia.php">Historia portfela</a></div>
+		<div class="option"><a href="skarbonka.php">Skarbonka</a></div>
+		<div class="option"><a href="wyloguj.php">Wyloguj</a></div>
+		<div style="clear:both;"></div>
+	</div>
+	</br></br>
 	<div id="formularz" >
 		<form method="post"  >
 			Wpisz kategorię<input type="text" name="kategoria"> </br>

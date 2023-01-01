@@ -58,7 +58,8 @@
 					if(($wszystko_ok == true)&&(isset($_POST['stan'])))
 					{
 						$stan = $_POST['stan'];
-						$sql = "UPDATE uzytkownicy SET stan_konta = '$stan' WHERE id=NULL";
+						$uzytkownik = $_SESSION['user'] ;
+						$sql = "UPDATE uzytkownicy SET stan_konta = '$stan' WHERE login='$uzytkownik'";
 						if($polaczenie->query($sql))
 						{
 							$_SESSION['stan_konta']=true;

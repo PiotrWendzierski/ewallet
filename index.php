@@ -4,7 +4,7 @@
 	{
 		header('Location: login.php');
 		exit();
-	}
+	}	
 	if($_SESSION['stan_konta'] == true)
 	{
 		header('Location: index2.php');

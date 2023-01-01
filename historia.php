@@ -41,16 +41,21 @@
 		else
 		{
 			$id = $_SESSION['id'];
-			$rezultat = $polaczenie ->query("SELECT kategoria, cena, data, saldo FROM transakcje WHERE id = '$id'");
+			$rezultat = $polaczenie ->query("SELECT * FROM transakcje WHERE id = '$id'");
 			$ile_transakcji = $rezultat -> num_rows;
 			if ($ile_transakcji != 0)
 			{
-				$row = $rezultat -> fetch_assoc();
-				$kategoria = $row['kategoria'];
-				$cena = $row['cena'];
-				$data = $row['data'];
-				
-				echo $kategoria." ".$cena." ".$data." ";
+				$numer_transakcji = 1;
+				while ($row = $rezultat -> fetch_assoc())
+				{
+					$kategoria = $row['kategoria'];
+					$cena = $row['cena'];
+					$data = $row['data'];
+					echo "<table>".
+					 $numer_transakcji." ".$kategoria." ".$cena." ".$data." "."</br>"."</table>";
+					"</table>";
+					$numer_transakcji++; 
+				}
 			}
 			else echo "Brak transakcji. Zapraszamy do dodania danych do Twojego konta.";
 		}

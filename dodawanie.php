@@ -12,6 +12,7 @@
 			$e_kategoria = '</br>'.'<span style="color:red">Wprowadź kategorię!</span>'.'</br>';
 		}
 		$cena = $_POST['cena'];
+		$_SESSION['zmiana'] = $cena;
 		//czy cena jest pusta lub rowna zero
 		if(($cena == "")|| ($cena == 0))
 		{
@@ -20,6 +21,7 @@
 		}
 		//czy wpisana jest data
 		$data = $_POST['data_transakcji'];
+	    $_SESSION['data_transakcji'] = $data;
 		if($data == "")
 		{
 			$wszystko_ok = false;
@@ -42,7 +44,12 @@
 				$id = $_SESSION['id'];
 				if($polaczenie->query("INSERT INTO transakcje VALUES (NULL,'$id', '$kategoria', '$cena', '$data', '0' )"))
 				{
-					header('Location: podsumowanie.php');
+					$stanek = $_SESSION['stan_konta'] + $cena;
+					$user = $_SESSION['user'];
+					if ($polaczenie->query("UPDATE uzytkownicy SET stan_konta = $stanek WHERE login = '$user'" ))
+					{
+						header('Location: podsumowanie.php');
+					}
 				}
 				else 
 				{

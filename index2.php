@@ -107,6 +107,10 @@
 		</div>
 		<div class="kafel">
 		Ilość transakcji:
+		<?php
+		if ($ile_transakcji>0) echo "</br></br>".$ile_transakcji;
+		else echo "Brak transakcji";
+		?>
 		</div>
 		<div class="kafel">
 		Łączny majątek:

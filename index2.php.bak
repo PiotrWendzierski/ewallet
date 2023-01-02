@@ -62,7 +62,7 @@
 						$ile_transakcji = $rezultat->num_rows;
 						if ($ile_transakcji > 0)
 						{
-							$sql3 = "SELECT * FROM transakcje WHERE id = '$id' ORDER BY data ASC LIMIT 1 ";
+							$sql3 = "SELECT * FROM transakcje WHERE id = '$id' ORDER BY data DESC LIMIT 1 ";
 							if ($rezultat = $polaczenie -> query ($sql3))
 							{
 								$wiersz2 = $rezultat -> fetch_assoc();
@@ -107,6 +107,10 @@
 		</div>
 		<div class="kafel">
 		Ilość transakcji:
+		<?php
+		if ($ile_transakcji>0) echo $ile_transakcji."</br></br>";
+		else echo "Brak transakcji";
+		?>
 		</div>
 		<div class="kafel">
 		Łączny majątek:

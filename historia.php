@@ -51,11 +51,11 @@
 					$kategoria = $row['kategoria'];
 					$cena = $row['cena'];
 					$data = $row['data'];
-					echo "<table>".
-					 $numer_transakcji." ".$kategoria." ".$cena." ".$data." "."</br>"."</table>";
-					"</table>";
+					//echo "<table border = '1'><tr><td>5</td></tr><table>";
+					echo "<table border='1' rules='all' frame='none' style='width:100%;table-layout:fixed;'><td>".$numer_transakcji."</td><td>".$kategoria."</td><td>".$cena."</td><td>".$data."</td></tr></table>";
 					$numer_transakcji++; 
 				}
+
 			}
 			else echo "Brak transakcji. Zapraszamy do dodania danych do Twojego konta.";
 		}

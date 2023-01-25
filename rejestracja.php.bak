@@ -97,10 +97,10 @@
 				}
 				if($wszystko_ok == true)
 				{
-					if($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$email', '$nick', '$haslo_hash', 0 )"))
+					if($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$email', '$nick', '$haslo_hash', 0, 5 )"))
 					{
 						$_SESSION['udana_rejestracja'] = true;
-						header('Location: index.php');
+						header('Location: login.php');
 					}
 					else 
 					{

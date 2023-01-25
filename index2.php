@@ -76,6 +76,13 @@
 					{
 						throw new Exception($polaczenie->error);
 					}
+					$sql4 = "SELECT skarbonka FROM uzytkownicy WHERE id = $id";
+					if($rezultat = $polaczenie -> query($sql4))
+					{
+						$wiersz4 = $rezultat ->fetch_assoc();
+						$skarbonka = $wiersz4['skarbonka'];
+						$_SESSION['skarbonka'] = $skarbonka;
+					}
 					$polaczenie->close();
 				}
 			  }
@@ -119,12 +126,17 @@
 		<div class="kafel_duzy">
 		</br>Skarbonka </br></br>
 		<?php
-			if((isset($_SESSION['skarbonka']))&&($_SESSION['oszczednosci'] == false))
+			if (!isset($_SESSION['cel']))
+			{
+				echo "Na ten moment brak celów";
+			}
+			else if((isset($skarbonka))&&($skarbonka != 0))
 		  {
 				echo "Cel zbieraniny: ".$_SESSION['cel_oszczednosci']."</br></br>";
 				echo "Potrzebujesz: ".$_SESSION['potrzebna_ilosc']."</br>";
 				echo "Masz już: 0zł"."</br></br>";
-				echo "Łącznie: 0%";
+				echo "Łącznie: 0%"."</br></br></br>";
+				echo $skarbonka;
 			}
 			else if((isset($_SESSION['skarbonka']))&&($_SESSION['oszczednosci'] == true))
 			{
@@ -138,10 +150,7 @@
 				$pozostalo = $_SESSION['potrzebna_ilosc'] - $stan_skarbonki;
 				echo "Pozostało do uzbierania: ".$pozostalo;
 			}
-			else 
-		  {				
-				echo "Narazie brak celów";
-			}
+			
 		?>
 		</div>
 	</div>

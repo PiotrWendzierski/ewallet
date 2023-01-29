@@ -76,12 +76,14 @@
 					{
 						throw new Exception($polaczenie->error);
 					}
-					$sql4 = "SELECT skarbonka FROM uzytkownicy WHERE id = $id";
+					$sql4 = "SELECT * FROM uzytkownicy WHERE id = $id";
 					if($rezultat = $polaczenie -> query($sql4))
 					{
 						$wiersz4 = $rezultat ->fetch_assoc();
 						$skarbonka = $wiersz4['skarbonka'];
+						$cel_oszczednosci = $wiersz4['cel_oszczednosci'];
 						$_SESSION['skarbonka'] = $skarbonka;
+						$_SESSION['cel_oszczednosci'] = $cel_oszczednosci;
 					}
 					$polaczenie->close();
 				}
@@ -126,19 +128,21 @@
 		<div class="kafel_duzy">
 		</br>Skarbonka </br></br>
 		<?php
-			if (!isset($_SESSION['cel']))
+		//jesli jeszcze nic nie było robione ze skarbonką
+			if ($cel_oszczednosci == "brak")
 			{
 				echo "Na ten moment brak celów";
 			}
-			else if((isset($skarbonka))&&($skarbonka != 0))
+			//jeśli jest dodany już cel oszczędzania
+			else if(isset($_SESSION['cel'])) 
 		  {
 				echo "Cel zbieraniny: ".$_SESSION['cel_oszczednosci']."</br></br>";
-				echo "Potrzebujesz: ".$_SESSION['potrzebna_ilosc']."</br>";
+				echo "Potrzebujesz: "."</br>";
 				echo "Masz już: 0zł"."</br></br>";
 				echo "Łącznie: 0%"."</br></br></br>";
-				echo $skarbonka;
 			}
-			else if((isset($_SESSION['skarbonka']))&&($_SESSION['oszczednosci'] == true))
+			//jeśli jest dodany cel i dodane juz pierwsze wpłaty
+			else if((isset($_SESSION['cel']))&&($_SESSION['oszczednosci'] == true))
 			{
 				$_SESSION['stan_skarbonki'] =$_SESSION['stan_skarbonki'] + $_SESSION['kwota_przeznaczona'];
 				$stan_skarbonki = $_SESSION['stan_skarbonki'] ;

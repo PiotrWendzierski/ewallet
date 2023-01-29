@@ -5,6 +5,7 @@
 		header('Location: login.php');
 		exit();
 	}
+	require_once "connect.php";
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -22,13 +23,25 @@
 	<div id="pole">
 		</br></br>Podsumowanie:</br></br>
 		<?php
-			 
-			 if (($_SESSION['skarbonka'] == true)&& ($_SESSION['oszczednosci'] == false))
+			 try
 			 {
-				 $_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'] ;
-				 $_SESSION['potrzebna_ilosc'] = $_POST['potrzebna_ilosc'] ;
-				 echo "Cel zbieraniny: ".$_SESSION['cel_oszczednosci']."</br></br>";
-				 echo "Potrzebujesz: ".$_SESSION['potrzebna_ilosc']."</br></br>";
+				$polacznie = new mysqli ($host, $db_user, $db_password, $db_name);
+				if($polaczenie->connect_errno!=0)
+			   {
+					throw new Exception(mysqli_connect_errno());
+			     }
+
+			 }
+			 catch (Exception $e)
+			  {
+					echo $e;
+			  }
+			 if (($_SESSION['cel'] == true))
+			 {
+				 $_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
+				 echo "Cel zbieraniny: ".$_POST['cel_oszczednosci']."</br></br>";
+				 echo "Potrzebujesz: "."</br></br>";
+				 $_SESSION['cel'] = false;
 				 echo '<a href="index2.php">Wróć na stronę główną</a>';
 			 }
 			 else 
@@ -37,8 +50,7 @@
 				 $_SESSION['stan'] = $_SESSION['stan'] - $_SESSION['kwota_przeznaczona'] ;
 				 $_SESSION['data_transakcji'] = $_POST['data_transakcji'];
 				 echo "Fajnie! Dodajesz do swojej skarbonki: ".$_SESSION['kwota_przeznaczona']."</br></br>";
-				 echo '<a href="index2.php">Wróć na stronę główną</a>';
-				 
+				 echo '<a href="index2.php">Wróć na stronę główną</a>';			 
 			 }
 		?>
 		</br><br>

@@ -8,6 +8,7 @@
 	if (isset($_POST['cel_oszczednosci']))
 	{
 			$wszystko_ok = true;
+			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'] ;
 			if($_POST['cel_oszczednosci'] == "")
 			{
 				$wszystko_ok = false;
@@ -18,7 +19,39 @@
 				$wszystko_ok = false;
 				$e_potrzebna_ilosc= '</br>'.'<span style="color:red">Wprowadź kwotę inną niż zero!</span>'.'</br>';
 			}
+			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
+			$_SESSION['potrzebna_ilosc'] = $_POST['potrzebna_ilosc'];
 	}
+	require_once "connect.php";
+	try
+	{
+		$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);			
+		if($polaczenie->connect_errno!=0)
+		{
+			throw new Exception(mysqli_connect_errno());
+		}
+		else
+		{
+				$id = $_SESSION['id'];
+				$sql="SELECT 	* FROM uzytkownicy WHERE id='$id'";
+					if($rezultat = $polaczenie->query($sql))
+					{
+						$wiersz  = $rezultat->fetch_assoc();
+						$cel_oszczednosci = $wiersz['cel_oszczednosci'];
+
+					}
+					else 
+					{
+						throw new Exception($polaczenie->error);
+					}
+			}
+			$polaczenie->close();
+	}
+	catch (Exception $e)
+	{
+		echo $e;
+	}
+		
 
 ?>
 
@@ -37,7 +70,7 @@
 	
 	<div id="pole">
 	<?php
-	if (isset($_SESSION['cel_oszczednosci'])&& ($_SESSION['cel_oszczednosci'] == 'brak'))
+	if ($cel_oszczednosci == 'brak')
 	{
 		echo "</br></br>Wpisz cel twoich oszczędności: </br></br>
 		<form method='post'>
@@ -72,10 +105,9 @@
 					</form>
 					</br><br>";
 					$_SESSION['oszczednosci'] = true;
-	}
+	 }
 	?>
 	</div>
 </div>
 </body>
-
 </html>

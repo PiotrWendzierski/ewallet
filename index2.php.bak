@@ -76,7 +76,7 @@
 					{
 						throw new Exception($polaczenie->error);
 					}
-					$sql4 = "SELECT skarbonka FROM uzytkownicy WHERE id = $id";
+					$sql4 = "SELECT * FROM uzytkownicy WHERE id = $id";
 					if($rezultat = $polaczenie -> query($sql4))
 					{
 						$wiersz4 = $rezultat ->fetch_assoc();

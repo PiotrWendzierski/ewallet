@@ -85,6 +85,10 @@
 						$_SESSION['skarbonka'] = $skarbonka;
 						$_SESSION['cel_oszczednosci'] = $cel_oszczednosci;
 					}
+					else 
+					{
+						throw new Exception($polaczenie->error);
+					}
 					$polaczenie->close();
 				}
 			  }

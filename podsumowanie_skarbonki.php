@@ -25,11 +25,21 @@
 		<?php
 			 try
 			 {
-				$polacznie = new mysqli ($host, $db_user, $db_password, $db_name);
+				$polaczenie = new mysqli ($host, $db_user, $db_password, $db_name);
 				if($polaczenie->connect_errno!=0)
 			   {
 					throw new Exception(mysqli_connect_errno());
 			     }
+				 else 
+				 {
+					 $id = $_SESSION['id'];
+					 $cel_oszczednosci = $_SESSION['cel_oszczednosci'];
+					 if($polaczenie->query("UPDATE uzytkownicy SET cel_oszczednosci = '$cel_oszczednosci' WHERE id = '$id'"))
+					 {
+						 ;
+					 }
+				 }
+				 $polaczenie -> close();
 
 			 }
 			 catch (Exception $e)
@@ -51,6 +61,8 @@
 				 $_SESSION['data_transakcji'] = $_POST['data_transakcji'];
 				 echo "Fajnie! Dodajesz do swojej skarbonki: ".$_SESSION['kwota_przeznaczona']."</br></br>";
 				 echo '<a href="index2.php">Wróć na stronę główną</a>';			 
+				 echo $id;
+				 echo $cel_oszczednosci;
 			 }
 		?>
 		</br><br>

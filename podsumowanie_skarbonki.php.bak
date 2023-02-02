@@ -6,6 +6,9 @@
 		exit();
 	}
 	require_once "connect.php";
+	$cel_oszczednosci = $_SESSION['cel_oszczednosci'];
+	$potrzebna_ilosc = $_SESSION['potrzebna_ilosc'];
+	$skarbonka = $_SESSION['skarbonka'];
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -33,11 +36,22 @@
 				 else 
 				 {
 					 $id = $_SESSION['id'];
-					 $cel_oszczednosci = $_SESSION['cel_oszczednosci'];
 					 if($polaczenie->query("UPDATE uzytkownicy SET cel_oszczednosci = '$cel_oszczednosci' WHERE id = '$id'"))
 					 {
-						 header('Location: index.php');
+						 ;
 					 }
+					 else 
+					{
+						throw new Exception($polaczenie->error);
+					}
+					if($polaczenie->query("UPDATE uzytkownicy SET potrzebna_ilosc = '$potrzebna_ilosc' WHERE id = '$id'"))
+					 {
+						 ;
+					 }
+					 else 
+					{
+						throw new Exception($polaczenie->error);
+					}
 				 }
 				 $polaczenie -> close();
 
@@ -46,12 +60,11 @@
 			  {
 					echo $e;
 			  }
-			 if (($_SESSION['cel'] == true))
+			 if (($skarbonka == 0))
 			 {
-				 $_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
-				 echo "Cel zbieraniny: ".$_POST['cel_oszczednosci']."</br></br>";
+
+				 echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
 				 echo "Potrzebujesz: "."</br></br>";
-				 $_SESSION['cel'] = false;
 				 echo '<a href="index2.php">Wróć na stronę główną</a>';
 			 }
 			 else 
@@ -61,8 +74,9 @@
 				 $_SESSION['data_transakcji'] = $_POST['data_transakcji'];
 				 echo "Fajnie! Dodajesz do swojej skarbonki: ".$_SESSION['kwota_przeznaczona']."</br></br>";
 				 echo '<a href="index2.php">Wróć na stronę główną</a>';			 
-				 echo $id;
 				 echo $cel_oszczednosci;
+				 echo $potrzebna_ilosc;
+				 echo $skarbonka;
 			 }
 		?>
 		</br><br>

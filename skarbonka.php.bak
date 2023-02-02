@@ -32,21 +32,20 @@
 		}
 		else
 		{
-				$id = $_SESSION['id'];
-				$sql="SELECT 	* FROM uzytkownicy WHERE id='$id'";
-					if($rezultat = $polaczenie->query($sql))
-					{
-						$wiersz  = $rezultat->fetch_assoc();
-						$cel_oszczednosci = $wiersz['cel_oszczednosci'];
-
-					}
-					else 
-					{
-						throw new Exception($polaczenie->error);
-					}
+			$id = $_SESSION['id'];
+			$sql="SELECT 	* FROM uzytkownicy WHERE id='$id'";
+			if($rezultat = $polaczenie->query($sql))
+			{
+				$wiersz  = $rezultat->fetch_assoc();
+				$cel_oszczednosci = $wiersz['cel_oszczednosci'];
+				$skarbonka = $wiersz['skarbonka'];
 			}
-			$polaczenie->close();
+			else 
+			{
+				throw new Exception($polaczenie->error);
+			}
 		}
+		$polaczenie->close();
 	}
 	catch (Exception $e)
 	{
@@ -94,6 +93,8 @@
 		if((isset($wszystko_ok)) && ($wszystko_ok == true))
 		{
 			header('Location: podsumowanie_skarbonki.php');
+			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
+			$_SESSION['potrzebna_ilosc'] = $_POST['potrzebna_ilosc'];
 		}
 	}
 	else 

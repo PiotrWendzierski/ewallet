@@ -5,8 +5,6 @@
 		header('Location: login.php');
 		exit();
 	}
-
-	session_start();
 	
 	if (isset($_POST['kategoria']))
   {

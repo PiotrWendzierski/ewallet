@@ -95,6 +95,7 @@
 			header('Location: podsumowanie_skarbonki.php');
 			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
 			$_SESSION['potrzebna_ilosc'] = $_POST['potrzebna_ilosc'];
+			$_SESSION['skarbonka'] = $skarbonka;
 		}
 	}
 	else 

@@ -82,8 +82,14 @@
 						$wiersz4 = $rezultat ->fetch_assoc();
 						$skarbonka = $wiersz4['skarbonka'];
 						$cel_oszczednosci = $wiersz4['cel_oszczednosci'];
+						$potrzebna_ilosc = $wiersz4['potrzebna_ilosc'];
 						$_SESSION['skarbonka'] = $skarbonka;
 						$_SESSION['cel_oszczednosci'] = $cel_oszczednosci;
+						$_SESSION['potrzebna_ilosc'] = $potrzebna_ilosc;
+					}
+					else 
+					{
+						throw new Exception($polaczenie->error);
 					}
 					$polaczenie->close();
 				}
@@ -134,9 +140,9 @@
 				echo "Na ten moment brak celów";
 			}
 			//jeśli jest dodany już cel oszczędzania
-			else if(isset($_SESSION['cel'])) 
+			else if($cel_oszczednosci != "brak") 
 		  {
-				echo "Cel zbieraniny: ".$_SESSION['cel_oszczednosci']."</br></br>";
+				echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
 				echo "Potrzebujesz: "."</br>";
 				echo "Masz już: 0zł"."</br></br>";
 				echo "Łącznie: 0%"."</br></br></br>";

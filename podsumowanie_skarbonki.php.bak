@@ -64,7 +64,7 @@
 			 {
 
 				 echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
-				 echo "Potrzebujesz: "."</br></br>";
+				 echo "Potrzebujesz: ".$potrzebna_ilosc."</br></br>";
 				 echo '<a href="index2.php">Wróć na stronę główną</a>';
 			 }
 			 else 

@@ -67,7 +67,14 @@
 	<div id="title">
 		eWallett
 	</div>
-	
+	<div id="meni">		
+		<div class="option"><a href="index2.php">Ekran główny</a></div>
+		<div class="option"><a href="dodawanie.php">Wprowadzanie transakcji</a></div>
+		<div class="option"><a href="historia.php">Historia portfela</a></div>
+		<div class="option"><a href="skarbonka.php">Skarbonka</a></div>
+		<div class="option"><a href="wyloguj.php">Wyloguj</a></div>
+		<div style="clear:both;"></div>
+	</div>	
 	<div id="pole">
 	<?php
 	if ($cel_oszczednosci == 'brak')

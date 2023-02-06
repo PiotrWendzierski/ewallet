@@ -5,6 +5,7 @@
 		header('Location: login.php');
 		exit();
 	}
+	//sprawdzanie poprawności wprowadzenia danych w przypadku pierwszego dodanie celu oszczędności
 	if (isset($_POST['cel_oszczednosci']))
 	{
 			$wszystko_ok = true;
@@ -22,6 +23,34 @@
 			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
 			$_SESSION['potrzebna_ilosc'] = $_POST['potrzebna_ilosc'];
 	}
+	//sprawdzenie poprawności danych w przypadku, gdy cel jest już ustawiony i wpisujemy pierwszą i kolejną kwotę przeznaczoną na cel
+	if (isset($_POST['kwota_przeznaczona']))
+	{
+		$wszystko_ok = true;
+		$_SESSION['kwota_przeznaczona'] = $_POST['kwota_przeznaczona'];
+		//gdy kowta przeznaczona jest wieksza niz kwota naszego portfela
+		if($_POST['kwota_przeznaczona'] > $_SESSION['stan_konta'])
+		{
+			$wszystko_ok = false;
+			$e_kwota_przeznaczona = '</br>'.'<span style="color:red">Kwota przeznaczona musi być mniejsza niż obecny stan portfela!</span>'.'</br>';
+		}
+		//gdy kwota prenacona jest pusta
+		if(($_POST['kwota_przeznaczona'] == "")|| ($_POST['kwota_przeznaczona'] == 0))
+		{
+			$wszystko_ok = false;
+			$e_kwota_przeznaczona2 = '</br>'.'<span style="color:red">Kwota przeznaczona musi rózna od 0!</span>'.'</br>';
+		}
+		//gdy nie wprowadono daty transakcji
+		if($_POST['data_transakcji'] =="")
+		{
+			$wszystko_ok = false;
+			$e_data_transakcji= '</br>'.'<span style="color:red">Wpisz datę transakcji!</span>'.'</br>';
+		}
+		//gdy data transakcji jest pozniejsza, niz dzisiejsza data (later dopisać!)
+		$_SESSION['kwota_przeznaczona'] = $_POST['kwota_przeznaczona'];
+		$_SESSION['data_transakcji'] = $_POST['data_transakcji'];
+	}
+	
 	require_once "connect.php";
 	try
 	{
@@ -114,7 +143,21 @@
 						<input type='submit' value='Zaoszczędź'>
 					</form>
 					</br><br>";
-					$_SESSION['oszczednosci'] = true;
+		if(isset($e_kwota_przeznaczona))
+		{
+			echo $e_kwota_przeznaczona;
+			unset($e_kwota_przeznaczona);
+		}
+		if(isset($e_kwota_przeznaczona2))
+		{
+			echo $e_kwota_przeznaczona2;
+			unset($e_kwota_przeznaczona2);
+		}
+		if(isset($e_data_transakcji))
+		{
+			echo $e_data_transakcji;
+			unset($e_data_transakcji);
+		}
 	 }
 	?>
 	</div>

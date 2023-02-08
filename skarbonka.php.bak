@@ -32,7 +32,7 @@
 		if($_POST['kwota_przeznaczona'] > $_SESSION['stan_konta'])
 		{
 			$wszystko_ok = false;
-			$e_kwota_przeznaczona = '</br>'.'<span style="color:red">Kwota przeznaczona musi być mniejsza niż obecny stan portfela!</span>'.'</br>';
+			$e_kwota_przeznaczona = '</br>'.'<span style="color:red">Kwota przeznaczona musi być niewiększa niż obecny stan portfela!</span>'.'</br>';
 		}
 		//gdy kwota prenacona jest pusta
 		if(($_POST['kwota_przeznaczona'] == "")|| ($_POST['kwota_przeznaczona'] == 0))
@@ -152,6 +152,16 @@
 		{
 			echo $e_kwota_przeznaczona2;
 			unset($e_kwota_przeznaczona2);
+		}
+		if(isset($e_data_transakcji))
+		{
+			echo $e_data_transakcji;
+			unset($e_data_transakcji);
+		}
+		if((isset($wszystko_ok)) && ($wszystko_ok == true))
+		{
+			header('Location: podsumowanie_skarbonki.php');
+			
 		}
 	 }
 	?>

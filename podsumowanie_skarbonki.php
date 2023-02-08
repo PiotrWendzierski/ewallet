@@ -9,6 +9,11 @@
 	$cel_oszczednosci = $_SESSION['cel_oszczednosci'];
 	$potrzebna_ilosc = $_SESSION['potrzebna_ilosc'];
 	$skarbonka = $_SESSION['skarbonka'];
+	if(isset($_SESSION['kwota_przeznaczona']))
+	{
+		$kwota_przeznaczona = $_SESSION['kwota_przeznaczona'];
+		$stan_skarbonki = $skarbonka+$kwota_przeznaczona;
+	}
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -61,6 +66,17 @@
 					{
 						throw new Exception($polaczenie->error);
 					}
+					if(isset($kwota_przeznaczona))
+					{
+						if($polaczenie->query("UPDATE uzytkownicy SET skarbonka = '$stan_skarbonki' WHERE id = '$id'"))
+						 {
+							 ;
+						}
+						else 
+						{
+						throw new Exception($polaczenie->error);
+						}
+					}
 				 }
 				 $polaczenie -> close();
 
@@ -69,23 +85,16 @@
 			  {
 					echo $e;
 			  }
-			 if (($skarbonka == 0))
+			 if (($skarbonka == 0)&& (!isset($kwota_przeznaczona)))
 			 {
-
 				 echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
 				 echo "Potrzebujesz: ".$potrzebna_ilosc."</br></br>";
 				 echo '<a href="index2.php">Wróć na stronę główną</a>';
 			 }
 			 else 
 			 {
-				 $_SESSION['kwota_przeznaczona'] = $_POST['kwota_przeznaczona'];
-				 $_SESSION['stan'] = $_SESSION['stan'] - $_SESSION['kwota_przeznaczona'] ;
-				 $_SESSION['data_transakcji'] = $_POST['data_transakcji'];
-				 echo "Fajnie! Dodajesz do swojej skarbonki: ".$_SESSION['kwota_przeznaczona']."</br></br>";
+				 echo "Fajnie! Dodajesz do swojej skarbonki: ".$kwota_przeznaczona."</br></br>";
 				 echo '<a href="index2.php">Wróć na stronę główną</a>';			 
-				 echo $cel_oszczednosci;
-				 echo $potrzebna_ilosc;
-				 echo $skarbonka;
 			 }
 		?>
 		</br><br>

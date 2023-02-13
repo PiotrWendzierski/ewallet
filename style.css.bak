@@ -25,7 +25,6 @@
 {
     margin-top: 20px;
     color: white;
-	padding: 15px; 
 }
 
 #dashboard
@@ -77,9 +76,28 @@
 #historia
 {
 	text-align: center;
+	min-height:400px;
 }
 
 #pole
 {
 	text-align: center;
+}
+
+ol
+{
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	list-style: none;
+	font-size: 18px;
+	height: 80px;
+	line-height: 200%;
+	display: inline-block;
+}
+ol > li
+{
+	width: 180px;
+	float: left;
+	padding: 10px;
 }

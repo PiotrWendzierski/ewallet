@@ -25,12 +25,13 @@
 		eWallett
 	</div>
 	<div id="meni">		
-		<div class="option"><a href="index2.php">Ekran główny</a></div>
-		<div class="option"><a href="dodawanie.php">Wprowadzanie transakcji</a></div>
-		<div class="option"><a href="historia.php">Historia portfela</a></div>
-		<div class="option"><a href="skarbonka.php">Skarbonka</a></div>
-		<div class="option"><a href="wyloguj.php">Wyloguj</a></div>
-		<div style="clear:both;"></div>
+	<ol>
+		<li><a href="index2.php">Ekran główny</a></li>
+		<li><a href="dodawanie.php">Nowa transakcja</a></li>
+		<li><a href="historia.php">Historia portfela</a></li>
+		<li><a href="skarbonka.php">Skarbonka</a></li>
+		<li><a href="wyloguj.php">Wyloguj</a></li>
+	</ol>
 	</div>
 	<?php
 		echo "Witaj ".$_SESSION['user']." w swoim wirtualnym portfelu!</br></br>";

@@ -161,7 +161,8 @@
 		if((isset($wszystko_ok)) && ($wszystko_ok == true))
 		{
 			header('Location: podsumowanie_skarbonki.php');
-			
+			$_SESSION['skarbonka'] = $skarbonka;
+			$_SESSION['kwota_przeznaczona'] = $_POST['kwota_przeznaczona'] ;
 		}
 	 }
 	?>

@@ -85,7 +85,7 @@
 			  {
 					echo $e;
 			  }
-			 if (($skarbonka == 0)&& (!isset($kwota_przeznaczona))
+			 if (($skarbonka == 0)&& (!isset($kwota_przeznaczona)))
 			 {
 				 echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
 				 echo "Potrzebujesz: ".$potrzebna_ilosc."</br></br>";

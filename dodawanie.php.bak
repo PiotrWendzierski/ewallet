@@ -55,6 +55,10 @@
 					{
 						header('Location: podsumowanie.php');
 					}
+					else 
+					{
+						throw new Exception($polaczenie->error);
+					}
 				}
 				else 
 				{

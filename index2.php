@@ -140,7 +140,7 @@
 				echo "Na ten moment brak celów";
 			}
 			//jeśli jest dodany już cel oszczędzania
-			else if($cel_oszczednosci != "brak") 
+			else if(($cel_oszczednosci != "brak")&& ($skarbonka == 0) )
 		  {
 				echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
 				echo "Potrzebujesz: ".$potrzebna_ilosc."</br>";
@@ -148,17 +148,13 @@
 				echo "Łącznie: 0%"."</br></br></br>";
 			}
 			//jeśli jest dodany cel i dodane juz pierwsze wpłaty
-			else if((isset($_SESSION['cel']))&&($_SESSION['oszczednosci'] == true))
+			else 
 			{
-				$_SESSION['stan_skarbonki'] =$_SESSION['stan_skarbonki'] + $_SESSION['kwota_przeznaczona'];
-				$stan_skarbonki = $_SESSION['stan_skarbonki'] ;
-				$procent_celu = ($_SESSION['stan_skarbonki']/$_SESSION['potrzebna_ilosc'])*100;
-				echo "Łącznie: ".$stan_skarbonki."</br>";
-				echo "Masz już: ".$procent_celu."%</br></br>";
-				echo "Cel zbieraniny: ".$_SESSION['cel_oszczednosci']."</br></br>";
-				$_SESSION['kwota_przeznaczona'] = 0;
-				$pozostalo = $_SESSION['potrzebna_ilosc'] - $stan_skarbonki;
-				echo "Pozostało do uzbierania: ".$pozostalo;
+				$procent = ($skarbonka/$potrzebna_ilosc)*100;
+				echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
+				echo "Potrzebujesz: ".$potrzebna_ilosc."zł"."</br>";
+				echo "Masz już: ".$skarbonka."zł"."</br></br>";
+				echo "Łącznie: ".$procent."%"."</br></br></br>";
 			}
 			
 		?>

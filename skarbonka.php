@@ -164,6 +164,7 @@
 			header('Location: podsumowanie_skarbonki.php');
 			$_SESSION['skarbonka'] = $skarbonka;
 			$_SESSION['kwota_przeznaczona'] = $_POST['kwota_przeznaczona'] ;
+			$_SESSION['data_transakcji_skarbonki'] = $_POST['data_transakcji'];
 		}
 	 }
 	?>

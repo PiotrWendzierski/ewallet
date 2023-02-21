@@ -13,6 +13,7 @@
 	{
 		$kwota_przeznaczona = $_SESSION['kwota_przeznaczona'];
 		$stan_skarbonki = $skarbonka+$kwota_przeznaczona;
+		$data_transakcji_skarbonki = $_SESSION['data_transakcji_skarbonki'];
 	}
 ?>
 <!DOCTYPE HTML>
@@ -29,12 +30,13 @@
 	</div>
 	
 	<div id="meni">		
-		<div class="option"><a href="index2.php">Ekran główny</a></div>
-		<div class="option"><a href="dodawanie.php">Wprowadzanie transakcji</a></div>
-		<div class="option"><a href="historia.php">Historia portfela</a></div>
-		<div class="option"><a href="skarbonka.php">Skarbonka</a></div>
-		<div class="option"><a href="wyloguj.php">Wyloguj</a></div>
-		<div style="clear:both;"></div>
+	<ol>
+		<li><a href="index2.php">Ekran główny</a></li>
+		<li><a href="dodawanie.php">Nowa transakcja</a></li>
+		<li><a href="historia.php">Historia portfela</a></li>
+		<li><a href="skarbonka.php">Skarbonka</a></li>
+		<li><a href="wyloguj.php">Wyloguj</a></li>
+	</ol>
 	</div>
 	
 	<div id="pole">
@@ -70,7 +72,13 @@
 					{
 						if($polaczenie->query("UPDATE uzytkownicy SET skarbonka = '$stan_skarbonki' WHERE id = '$id'"))
 						 {
-							 ;
+							 
+							 $a = "INSERT INTO transakcji_skarbonki VALUES (NULL, '$id' , '$data_transakcji_skarbonki' , '3' )";
+							 if ($polaczenie->query($a))
+							{
+								;
+							}
+							else echo "Nie dodano nic";
 						}
 						else 
 						{

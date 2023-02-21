@@ -13,6 +13,7 @@
 	{
 		$kwota_przeznaczona = $_SESSION['kwota_przeznaczona'];
 		$stan_skarbonki = $skarbonka+$kwota_przeznaczona;
+		$data_transakcji_skarbonki = $_SESSION['data_transakcji_skarbonki'];
 	}
 ?>
 <!DOCTYPE HTML>
@@ -71,7 +72,13 @@
 					{
 						if($polaczenie->query("UPDATE uzytkownicy SET skarbonka = '$stan_skarbonki' WHERE id = '$id'"))
 						 {
-							 ;
+							 
+							 $a = "INSERT INTO transakcji_skarbonki VALUES (NULL, '$id' , '$data_transakcji_skarbonki' , '$kwota_przeznaczona' )";
+							 if ($polaczenie->query($a))
+							{
+								;
+							}
+							else echo "Nie dodano nic";
 						}
 						else 
 						{

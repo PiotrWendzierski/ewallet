@@ -73,7 +73,7 @@
 						if($polaczenie->query("UPDATE uzytkownicy SET skarbonka = '$stan_skarbonki' WHERE id = '$id'"))
 						 {
 							 
-							 $a = "INSERT INTO transakcji_skarbonki VALUES (NULL, '$id' , '$data_transakcji_skarbonki' , '3' )";
+							 $a = "INSERT INTO transakcji_skarbonki VALUES (NULL, '$id' , '$data_transakcji_skarbonki' , '$kwota_przeznaczona' )";
 							 if ($polaczenie->query($a))
 							{
 								;

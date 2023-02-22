@@ -21,12 +21,18 @@
 		eWallett
 	</div>
 	<div id="meni">		
-		<div class="option"><a href="index2.php">Ekran główny</a></div>
-		<div class="option"><a href="dodawanie.php">Wprowadzanie transakcji</a></div>
-		<div class="option"><a href="historia.php">Historia portfela</a></div>
-		<div class="option"><a href="skarbonka.php">Skarbonka</a></div>
-		<div class="option"><a href="wyloguj.php">Wyloguj</a></div>
-		<div style="clear:both;"></div>
+	<ol>
+		<li><a href="index2.php">Ekran główny</a></li>
+		<li><a href="dodawanie.php">Nowa transakcja</a></li>
+		<li><a href="historia.php">Historia portfela</a></li>
+		<li><a href="#">Skarbonka</a>
+					<ul>
+						<li><a href="skarbonka.php">Dodaj transakcję</a></li>
+						<li><a href="podsumowanie_skarbonki.php">Historia skarbonki</a></li>
+					</ul>
+				</li>
+		<li><a href="wyloguj.php">Wyloguj</a></li>
+	</ol>
 	</div>
 	<div id="pole">
 		</br></br>Podsumowanie:</br></br>

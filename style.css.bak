@@ -24,6 +24,7 @@
 #meni
 {
     margin-top: 20px;
+	height: 80px;
     color: white;
 }
 
@@ -88,16 +89,39 @@ ol
 {
 	padding: 0;
 	margin: 0;
-	text-align: center;
 	list-style: none;
 	font-size: 18px;
-	height: 80px;
+	height: 35px;
 	line-height: 200%;
 	display: inline-block;
+
 }
+
 ol > li
 {
-	width: 180px;
 	float: left;
-	padding: 10px;
+	width: 200px;
+	height: 80px;
+	text-align: center;
+}
+
+ol>li>ul
+{
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		height: 40px;
+		display: none;
+}
+
+ol > li:hover > ul
+{
+	display: block;
+}
+
+ol>li>ul>li
+{
+		position: relative;
+		z-index: 100;
+		border-top: 1px dashed #751d1b;
 }

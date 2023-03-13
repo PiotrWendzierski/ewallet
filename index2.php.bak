@@ -32,7 +32,7 @@
 		<li><a href="#">Skarbonka</a>
 					<ul>
 						<li><a href="skarbonka.php">Dodaj transakcję</a></li>
-						<li><a href="#">Historia skarbonki</a></li>
+						<li><a href="historia_skarbonki.php">Historia skarbonki</a></li>
 					</ul>
 				</li>
 		<li><a href="wyloguj.php">Wyloguj</a></li>
@@ -68,7 +68,7 @@
 						$ile_transakcji = $rezultat->num_rows;
 						if ($ile_transakcji > 0)
 						{
-							$sql3 = "SELECT * FROM transakcje WHERE id = '$id' ORDER BY data DESC LIMIT 1 ";
+							$sql3 = "SELECT * FROM transakcje WHERE id = '$id' ORDER BY data ASC LIMIT 1 ";
 							if ($rezultat = $polaczenie -> query ($sql3))
 							{
 								$wiersz2 = $rezultat -> fetch_assoc();

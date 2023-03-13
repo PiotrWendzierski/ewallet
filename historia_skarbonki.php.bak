@@ -52,7 +52,7 @@
 			if ($ile_transakcji != 0)
 			{
 				$numer_transakcji = 1;
-				echo "<table border='1' rules='all' frame='none' style='width:100%;table-layout:fixed;'><td>Numer transakcji</td><td>Data transakcji</td><td>Kwota przeznaczona</table>";
+				echo "<table border='1' rules='all' frame='none' style='width:100%;table-layout:fixed;'><td>Numer transakcji</td></table>";
 				while ($row = $rezultat -> fetch_assoc())
 				{
 					$data_transakcji = $row['data_transakcji'];

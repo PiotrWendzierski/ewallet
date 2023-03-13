@@ -24,6 +24,13 @@
 			$wszystko_ok = false;
 			$e_cena= '</br>'.'<span style="color:red">Wprowadź cenę (cena nie może być różna od zera)!</span>'.'</br>';
 		}
+		//czy cena jest nizsza lub równa stanowi konta
+		if (($_SESSION['stan_konta'] + $cena)<0)
+		{
+			$wszystko_ok = false;
+			$e_cena2= '</br>'.'<span style="color:red">Cena nie może być większa niz obecny stan konta!</span>'.'</br>';
+		}
+		
 		//czy wpisana jest data
 		$data = $_POST['data_transakcji'];
 	    $_SESSION['data_transakcji'] = $data;
@@ -95,7 +102,7 @@
 		<li><a href="#">Skarbonka</a>
 					<ul>
 						<li><a href="skarbonka.php">Dodaj transakcję</a></li>
-						<li><a href="podsumowanie_skarbonki.php">Historia skarbonki</a></li>
+						<li><a href="histroria_skarbonki.php">Historia skarbonki</a></li>
 					</ul>
 				</li>
 		<li><a href="wyloguj.php">Wyloguj</a></li>
@@ -118,6 +125,10 @@
 				{
 					echo $e_cena;
 					unset($e_cena);
+				}if(isset($e_cena2))
+				{
+					echo $e_cena2;
+					unset($e_cena2);
 				}
 			?></br>
 			Data <input type="date" name="data_transakcji">  </br>

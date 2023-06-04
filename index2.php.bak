@@ -68,7 +68,7 @@
 						$ile_transakcji = $rezultat->num_rows;
 						if ($ile_transakcji > 0)
 						{
-							$sql3 = "SELECT * FROM transakcje WHERE id = '$id' ORDER BY data ASC LIMIT 1 ";
+							$sql3 = "SELECT * FROM transakcje WHERE id = '$id' ORDER BY data DESC LIMIT 1 ";
 							if ($rezultat = $polaczenie -> query ($sql3))
 							{
 								$wiersz2 = $rezultat -> fetch_assoc();
@@ -110,7 +110,7 @@
 		<div class="kafel">
 		<?php
 			echo "Obecny stan portfela"."</br></br>";
-			echo $stan_konta;
+			echo $stan_konta." zł";
 		?>
 		</div>
 		<div class="kafel">
@@ -118,7 +118,10 @@
 		<?php
 			if($ile_transakcji>0)
 		  {
-				echo $kategoria."</br>".$data."</br>".$cena;
+			  $dataczas = new DateTime();			  
+			  $koniec = DateTime::createFromFormat('Y-m-d', $data);
+			  $roznica = $dataczas->diff($koniec);
+			  echo $kategoria."</br>".$data." ".$roznica->format('( %d dni temu)')."</br>".$cena." zł";
 			}
 			else 
 		  {				

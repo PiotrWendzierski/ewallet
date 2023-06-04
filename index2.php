@@ -110,7 +110,7 @@
 		<div class="kafel">
 		<?php
 			echo "Obecny stan portfela"."</br></br>";
-			echo $stan_konta;
+			echo $stan_konta." zł";
 		?>
 		</div>
 		<div class="kafel">
@@ -118,7 +118,10 @@
 		<?php
 			if($ile_transakcji>0)
 		  {
-				echo $kategoria."</br>".$data."</br>".$cena;
+			  $dataczas = new DateTime();			  
+			  $koniec = DateTime::createFromFormat('Y-m-d', $data);
+			  $roznica = $dataczas->diff($koniec);
+			  echo $kategoria."</br>".$data." ".$roznica->format('(%d dni temu)')."</br>".$cena." zł";
 			}
 			else 
 		  {				

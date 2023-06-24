@@ -34,6 +34,16 @@
 		<li><a href="wyloguj.php">Wyloguj</a></li>
 	</ol>
 	</div>
+	<div id="sortowanie">
+	<select name="" class="form-control">
+		<option value = ""> --Wybierz opcję sortowania''</option>
+		<option value = "Wg daty">Według daty rosnąco</option>
+		<option value = "Wg daty2"> Według daty malejąco</option>
+		<option value = "Wg alfabetu"> Alfabetycznie (a-z)</option>
+		<option value = "Wg alfabetu2"> Alfabetycznie (z-a)</option>
+	</select>
+	<button type="submit">Sortuj</button>
+	</div>
 	<div id="historia">
 	<?php
 	mysqli_report(MYSQLI_REPORT_STRICT);
@@ -64,6 +74,7 @@
 
 			}
 			else echo "Brak transakcji. Zapraszamy do dodania danych do Twojego konta.";
+			$polaczenie -> close();
 		}
 	}
 	catch(Exception $e)

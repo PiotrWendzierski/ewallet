@@ -61,6 +61,7 @@
 			if((isset($wszystko_ok))&& ($wszystko_ok == true))
 			{
 				$id = $_SESSION['id'];
+				//wkładanie do tabeli transakcje rekordu
 				if($polaczenie->query("INSERT INTO transakcje VALUES (NULL,'$id', '$kategoria', '$cena', '$data', '0' )"))
 				{
 					$stanek = $_SESSION['stan_konta'] + $cena;
@@ -73,6 +74,49 @@
 					{
 						throw new Exception($polaczenie->error);
 					}
+				 //wkładanie do tabeli kategorie nazwy nowej kategorii
+				 $rezultat = $polaczenie ->query("SELECT kategoria FROM kategorie WHERE kategoria='$kategoria' AND id='id'");
+				 if(!$rezultat)throw new Exception($polaczenie->error);
+				 $ilosc_kategorii = $rezultat->num_rows;
+				 $_SESSION['ilosc_kategorii'] = $ilosc_kategorii;
+				 //jesli nie było takiej kategorii to dodaj nazwe kategorii do bazy
+				 if($ilosc_kategorii<1)
+				 {
+					 //dodawanie nazwy kategorii do bazy danych
+					 if($polaczenie->query("INSERT INTO kategorie VALUES (NULL, '$kategoria', '$id', 1)"))
+					{
+						;
+					  }
+					else 
+					{
+						throw new Exception($polaczenie->error);
+					}
+				 }
+				 //jeśli była to dodać jedną ilość transakcji do bazy
+				 else
+				 {
+					 //odczytanie ilosc transakcji w danej kategorii ile ma dany uzytkownik
+					 $sql = "SELECT ilosc_transakcji FROM kategorie WHERE id = $id";
+					 if($rezultat = $polaczenie -> query ($sql))
+					 {
+						 $wiersz = $rezultat -> fetch_assoc();
+						 $ilosc_transakcji = $wiersz['ilosc_transakcji'];
+					 }
+					 else 
+					{
+						throw new Exception($polaczenie->error);
+					}
+					$ilosc_transakcji = $ilosc_transakcji+1;
+					 if($polaczenie->query("UPDATE kategorie SET ilosc_transakcji = $ilosc_transakcji WHERE id='$id'"))
+					 {
+						 ;
+					 }
+					else 
+					{
+						throw new Exception($polaczenie->error);
+					}
+				 }
+				 
 				}
 				else 
 				{
@@ -147,8 +191,8 @@
 				}
 			if(isset($e_data2))
 			{
-				echo $e_data2;
-				unset $e_data2;
+				echo ($e_data2);
+				unset ($e_data2);
 			}
 			?></br>
 			Zatwierdź <input type="submit">

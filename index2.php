@@ -138,6 +138,10 @@
 		</div>
 		<div class="kafel">
 		Łączny majątek:
+		<?php
+			$lacznie = $skarbonka+$stan_konta;
+			echo "</br></br>".$lacznie;
+		?>
 		</div>
 		<div style="clear:both"></div>
 		<div class="kafel_duzy">
@@ -168,6 +172,13 @@
 			
 		?>
 		</div>
+		<a href = "kategorie_wydatkow.php" >
+			<div class = "wykres">
+			Kategoria wydatków </br></br>
+			<img width="200" height = "150" src = "wykres.jpg" />
+			</div>
+		</a>
+		<div style= "clear:both"></div>
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone</div>
 </div>

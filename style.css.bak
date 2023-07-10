@@ -21,6 +21,8 @@
 
 #sortowanie
 {
+	width: 20%;
+	float:left;
 	height: 60px;
 }
 
@@ -104,6 +106,8 @@
 
 #historia
 {
+	width:500px;
+	float:left;
 	text-align: center;
 	min-height:400px;
 }
@@ -111,7 +115,7 @@
 #kategorie_wydatkow
 {
 	text-align: center;
-	min-height: 400px
+	min-height: 400px;
 }
 
 #pole

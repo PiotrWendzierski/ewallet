@@ -21,6 +21,8 @@
 
 #sortowanie
 {
+	width: 20%;
+	float:left;
 	height: 60px;
 }
 
@@ -104,6 +106,8 @@
 
 #historia
 {
+	width:80%;
+	float:left;
 	text-align: center;
 	min-height:400px;
 }

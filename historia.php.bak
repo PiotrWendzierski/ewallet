@@ -44,12 +44,14 @@
 			<input type="date" name = "od" value="<?php if(isset($_GET['od'])){echo $_GET['od'];}?>"/> </br></br>
 			<label>Do</label>
 			<input type="date" name = "do" value="<?php if(isset($_GET['do'])){echo $_GET['do'];}?>"/> </br></br>
-
+			</br></br> 
+			Cena od</br><input type="number" name = "cena_od" /> </br>
+			Cena do</br><input type="number" name = "cena_do" /> </br></br>
 		
 		</br></br>
 
 			<input type="checkbox" name="wplywy" value="<?php if(isset($_GET['wplywy'])){echo $_GET['wplywy'] ;}?>"/> Wpływy </br>
-			<input type="checkbox" name="wyplywy" value="<?php if(isset($_GET['wplywy'])){echo $_GET['wplywy'] ;}?>"> Wypływy </br></br>
+			<input type="checkbox" name="wyplywy" value="<?php if(isset($_GET['wplywy'])){echo $_GET['wplywy'] ;}?>"> Wypływy </br></br></br></br>
 			<input type="submit" value="Filtruj"></input>
 		</form>
 		
@@ -77,15 +79,19 @@
 				//jeśli ktoś kliknął filtruj
 				if(isset($_GET['od'] ))
 				{
-					//jeśli ktos na formularzu nie zaznaczył dat;
 					$search = $_GET['search'];
+					//jeśli ktos na formularzu nie zaznaczył dat;
+					
 					if ($_GET['od'] == "") $od = $_GET['od'] = "0000-01-01"; else $od = $_GET['od'];
 					if ($_GET['do'] == "") $do = $_GET['do'] = "6000-01-01"; else $do = $_GET['do'];
-					if($_GET['search'] == "") $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')" ;
-					else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria='$search')" ;
 					
+					//jeśli ktoś nie zaznaczył ceny od;
+					if($_GET['cena_od'] == "") $cena_od = "-100000000000"; else $cena_od = $_GET['cena_od'];
+					if($_GET['cena_do'] == "") $cena_do = "100000000000"; else $cena_do = $_GET['cena_do'];
 					
-					
+					//jesli ktos na formularzu nie zaznaczyl search'a
+					if($_GET['search'] == "") $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
+					else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 					
 					//jesli zaznaczył wpływy
 					if ((isset($_GET['wplywy']))&& (!isset($_GET['wyplywy']))) 
@@ -94,17 +100,17 @@
 						{
 							if ($search == "")
 							{
-								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0)" ;
+								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0)AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 							}
-							else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0) AND(kategoria='$search')" ;
+							else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0) AND(kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 						}
 						else
 						{
 							if($search == "")
 							{
-								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')" ;
+								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 							}
-							else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria = '$search')" ;
+							else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria = '$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 						}
 					}						
 					
@@ -129,7 +135,7 @@
 						{
 							$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')" ;
 						}
-						else 
+						else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id') AND(kategoria='$search')" ;
 					}
 					
 					$rezultat = $polaczenie->query($query);

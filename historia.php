@@ -37,24 +37,21 @@
 	
 	
 	<div id="sortowanie">
-		
-		<form action = "" method = "GET">
+		<form action="" method = "GET">
+			Wyszukaj po nazwie </br>
+			<input type="text" name="search" value = "<?php if(isset($_GET['search'])){echo $_GET['search'];}?>"/> </br></br></br></br>
 			<label>Od</label>
 			<input type="date" name = "od" value="<?php if(isset($_GET['od'])){echo $_GET['od'];}?>"/> </br></br>
 			<label>Do</label>
 			<input type="date" name = "do" value="<?php if(isset($_GET['do'])){echo $_GET['do'];}?>"/> </br></br>
-			<button type="submit">Filtruj</button>
+
+		
+		</br></br>
+
+			<input type="checkbox" name="wplywy" value="<?php if(isset($_GET['wplywy'])){echo $_GET['wplywy'] ;}?>"/> Wpływy </br>
+			<input type="checkbox" name="wyplywy" value="<?php if(isset($_GET['wplywy'])){echo $_GET['wplywy'] ;}?>"> Wypływy </br></br>
+			<input type="submit" value="Filtruj"></input>
 		</form>
-		<!--<form action="" method="GET">
-			<select name="sorting" class="form-control">
-				<option value = ""> --Wybierz opcję sortowania''</option>
-				<option value = "Wg_daty" <?php if(isset($_GET['sorting']) && $_GET['sorting'] == "Wg_daty") {echo "selected";}  ?>>Według daty rosnąco</option>
-				<option value = "Wg_daty2"  <?php if(isset($_GET['sorting']) && $_GET['sorting'] == "Wg_daty2") {echo "selected";}  ?>> Według daty malejąco</option>
-				<option value = "Wpływy"> Alfabetycznie (a-z)</option>
-				<option value = "Wypływy"> Alfabetycznie (z-a)</option>
-			</select>
-			<button type="submit">Sortuj</button> 
-		</form> -->
 		
 	</div>
 	
@@ -77,37 +74,92 @@
 			$ile_transakcji = $rezultat -> num_rows;
 			if ($ile_transakcji != 0)
 			{
-				//jeśli ktoś szuka określonych dat i istnieją zmienne od i do
-				if((isset($_GET['od'] ))&& isset($_GET['do']))
+				//jeśli ktoś kliknął filtruj
+				if(isset($_GET['od'] ))
 				{
-					$od = $_GET['od'];
-					$do = $_GET['do'];
-				
-					$query = "SELECT * FROM transakcje WHERE data BETWEEN '$od' AND '$do'";
+					//jeśli ktos na formularzu nie zaznaczył dat;
+					$search = $_GET['search'];
+					if ($_GET['od'] == "") $od = $_GET['od'] = "0000-01-01"; else $od = $_GET['od'];
+					if ($_GET['do'] == "") $do = $_GET['do'] = "6000-01-01"; else $do = $_GET['do'];
+					if($_GET['search'] == "") $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')" ;
+					else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria='$search')" ;
+					
+					
+					
+					
+					//jesli zaznaczył wpływy
+					if ((isset($_GET['wplywy']))&& (!isset($_GET['wyplywy']))) 
+					{	
+						if(!isset($_GET['wyplywy']))
+						{
+							if ($search == "")
+							{
+								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0)" ;
+							}
+							else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0) AND(kategoria='$search')" ;
+						}
+						else
+						{
+							if($search == "")
+							{
+								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')" ;
+							}
+							else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria = '$search')" ;
+						}
+					}						
+					
+					//jeśli zaznaczył wypływy
+					if ((isset($_GET['wyplywy']))&& (!isset($_GET['wplywy']))) 
+					{	
+						if(!isset($_GET['wplywy']))
+						{
+							if($search == "")
+							{
+								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0)" ;
+							}
+							else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0) AND(kategoria='$search')" ;
+						}
+						else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')" ;
+					}		
+
+					//jeśli zaznaczone wpływy i wypływy;
+					if((isset($_GET['wpływy'])) && (isset($_GET['wyplywy'])))
+					{
+						if($search == "")
+						{
+							$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')" ;
+						}
+						else $query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id') AND(kategoria='$search')" ;
+					}
+					
 					$rezultat = $polaczenie->query($query);
 					$ile_transakcji = $rezultat->num_rows;
 					if($ile_transakcji > 0)
 					{
 							echo "<a href ='historia.php' >[Wszystkie transakcje]</a>"."</br>";	
+							
 							$numer_transakcji = 1;
+							echo $query;
 							while ($row = $rezultat -> fetch_assoc())
 							{
 								$kategoria = $row['kategoria'];
 								$cena = $row['cena'];
 								$data = $row['data'];
 								//echo "<table border = '1'><tr><td>5</td></tr><table>";
-								echo "</br>";
 								echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>".$numer_transakcji."</td><td>".$kategoria."</td><td>".$cena."</td><td>".$data."</td></tr></table>";
 								$numer_transakcji++; 
 								}
 					}
 					else 
 					{
+						echo $query;
 						echo "<a href ='historia.php' >[Wszystkie transakcje]</a>"."</br>";	
-						echo $brak_danych_w_danym_czasie = '</br>'.'<span style="color:red">Nie znaleziono transakcji w podanych okresie czasu!</span>'.'</br>';
+						echo $brak_danych_w_danym_czasie = '</br>'.'<span style="color:red">Nie znaleziono pasujących rekordów!</span>'.'</br>';
 						unset($brak_danych_w_danym_czasie);
 					}
 				}
+				
+				
 				else //jeśli nikt nie szuka i nie istnieją zmienne od i do to pokazywać normalnie wszystkie transakcje
 				{
 							$numer_transakcji = 1;

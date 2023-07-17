@@ -2,6 +2,7 @@
 {
 	box-sizing: border-box;
 }
+
 #container
 {
 	width: 100%;
@@ -22,9 +23,9 @@
 #sortowanie
 {
 	width: 20%;
-	float:left;
-	height: 60px;
+	text-align: float:left;
 }
+
 
 #login
 {
@@ -106,7 +107,7 @@
 
 #historia
 {
-	width:500px;
+	width:80%;
 	float:left;
 	text-align: center;
 	min-height:400px;

@@ -2,6 +2,7 @@
 {
 	box-sizing: border-box;
 }
+
 #container
 {
 	width: 100%;
@@ -23,8 +24,8 @@
 {
 	width: 20%;
 	float:left;
-	height: 60px;
 }
+
 
 #login
 {

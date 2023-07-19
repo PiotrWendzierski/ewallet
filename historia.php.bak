@@ -40,6 +40,12 @@
 			<select name = "sorting"> 
 				<option value="">--Sortuj według</option> 
 				<option value="a-z" <?php if(isset($_GET['sorting'])&& $_GET['sorting'] == "a-z"){echo "selected";}?>>Od A do Z</option> 
+				<option value="z-a" <?php if(isset($_GET['sorting'])&& $_GET['sorting'] == "z-a"){echo "selected";}?>>Od Z do A</option> 
+				<option value="data_up" <?php if(isset($_GET['sorting'])&& $_GET['sorting'] == "data_up"){echo "selected";}?>>Według daty rosnąco</option> 
+				<option value="data_down" <?php if(isset($_GET['sorting'])&& $_GET['sorting'] == "data_down"){echo "selected";}?>>Według daty malejąco</option> 
+				<option value="cena_down" <?php if(isset($_GET['sorting'])&& $_GET['sorting'] == "cena_down"){echo "selected";}?>>Według ceny rosnąco</option> 
+				<option value="cena_up" <?php if(isset($_GET['sorting'])&& $_GET['sorting'] == "cena_up"){echo "selected";}?>>Według ceny malejąco</option> 
+				<option value="default" <?php if(isset($_GET['sorting'])&& $_GET['sorting'] == "default"){echo "selected";}?>>Domyślnie</option> 
 			
 			</select> </br></br></br>
 			Wyszukaj po nazwie </br>
@@ -98,11 +104,22 @@
 					{
 						$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 						if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria ASC" ;
+						else if ($_GET['sorting'] == "z-a")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria DESC" ;
+						else if ($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data ASC" ;
+						else if ($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data DESC" ;
+						else if ($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena ASC" ;
+						else if ($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena DESC" ;
+						else if ($_GET['sorting'] == "cena_default")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 					}
 					else 
 					{
 						$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 						if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria ASC" ;
+						else if ($_GET['sorting'] == "z-a")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria DESC" ;
+						else if ($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data ASC" ;
+						else if ($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data DESC" ;
+						else if ($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena ASC" ;
+						else if ($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena DESC" ;
 					}
 
 					//jesli zaznaczył wpływy
@@ -114,11 +131,21 @@
 							{
 								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0)AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 								if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0)AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria ASC" ;
+								else if ($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0)AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria DESC" ;
+								else if ($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0)AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data ASC" ;
+								else if ($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0)AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data DESC" ;
+								else if ($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0)AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena ASC" ;
+								else if ($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0)AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena DESC" ;
 							}
 							else 
 							{
 								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0) AND(kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 								if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0) AND(kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria ASC" ;
+								else if ($_GET['sorting'] == "z-a")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0) AND(kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria DESC" ;
+								else if ($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0) AND(kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data ASC" ;
+								else if ($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0) AND(kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data DESC" ;
+								else if ($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0) AND(kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena ASC" ;
+								else if ($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena>0) AND(kategoria='$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena DESC" ;
 							}
 						}
 						else
@@ -127,11 +154,21 @@
 							{
 								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 								if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria ASC" ;
+								else if($_GET['sorting'] == "z-a")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria DESC" ;
+								else if($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data ASC" ;
+								else if($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data DESC" ;
+								else if($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena ASC" ;
+								else if($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena DESC" ;
 							}
 							else 
 							{
 								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria = '$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')" ;
 								if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria = '$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria ASC" ;
+								else if($_GET['sorting'] == "z-a")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria = '$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY kategoria DESC" ;
+								else if($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria = '$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data ASC" ;
+								else if($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria = '$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY data DESC" ;
+								else if($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria = '$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena ASC" ;
+								else if($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (kategoria = '$search')AND (cena BETWEEN '$cena_od' AND '$cena_do')ORDER BY cena DESC" ;
 							}
 						}
 					}						
@@ -146,17 +183,32 @@
 							{
 								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0)" ;
 								if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0)ORDER by kategoria ASC" ;
+								else if($_GET['sorting'] == "z-a")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0)ORDER by kategoria DESC" ;
+								else if($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0)ORDER by data ASC" ;
+								else if($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0)ORDER by data DESC" ;
+								else if($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0)ORDER by cena ASC" ;
+								else if($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0)ORDER by cena DESC" ;
 							}
 							else
 							{
 								$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0) AND(kategoria='$search')" ;
 								if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0) AND(kategoria='$search')ORDER BY kategoria ASC" ;
+								else if($_GET['sorting'] == "z-a")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0) AND(kategoria='$search')ORDER BY kategoria DESC" ;
+								else if($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0) AND(kategoria='$search')ORDER BY data ASC" ;
+								else if($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0) AND(kategoria='$search')ORDER BY data DESC" ;
+								else if($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0) AND(kategoria='$search')ORDER BY cena ASC" ;
+								else if($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')AND (cena<0) AND(kategoria='$search')ORDER BY cena DESC" ;
 							}
 						}
 						else 
 						{
 							$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')" ;
 							if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY kategoria ASC" ;
+							else if($_GET['sorting'] == "z-a")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY kategoria DESC" ;
+							else if($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY data ASC" ;
+							else if($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY data DESC" ;
+							else if($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY cenaa ASC" ;
+							else if($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY cenaa DESC" ;
 						}
 					}		
 					//jeśli zaznaczone wpływy i wypływy;
@@ -166,10 +218,21 @@
 						{
 							$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')" ;
 							if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY kategoria ASC" ;
+							else if($_GET['sorting'] == "z-a")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY kategoria DESC" ;
+							else if($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY data ASC" ;
+							else if($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY data DESC" ;
+							else if($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY cena ASC" ;
+							else if($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id')ORDER BY cena DESC" ;
 						}
 						else 
 						{
 							$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id') AND(kategoria='$search')" ;
+							if($_GET['sorting'] == "a-z")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id') AND(kategoria='$search')ORDER BY kategoria ASC" ;
+							else if($_GET['sorting'] == "z-a")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id') AND(kategoria='$search')ORDER BY kategoria DESC" ;
+							else if($_GET['sorting'] == "data_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id') AND(kategoria='$search')ORDER BY data ASC" ;
+							else if($_GET['sorting'] == "data_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id') AND(kategoria='$search')ORDER BY data DESC" ;
+							else if($_GET['sorting'] == "cena_up")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id') AND(kategoria='$search')ORDER BY cena ASC" ;
+							else if($_GET['sorting'] == "cena_down")$query = "SELECT * FROM transakcje WHERE (data BETWEEN '$od' AND '$do') AND (id = '$id') AND(kategoria='$search')ORDER BY cena DESC" ;
 						}
 					}
 					

@@ -22,8 +22,9 @@
 
 #sortowanie
 {
+	background-color: #5CAED7;
 	width: 20%;
-	text-align: float:left;
+	float:left;
 }
 
 

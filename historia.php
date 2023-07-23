@@ -27,7 +27,7 @@
 		<li><a href="#">Skarbonka</a>
 					<ul>
 						<li><a href="skarbonka.php">Dodaj transakcję</a></li>
-						<li><a href="histroria_skarbonki.php">Historia skarbonki</a></li>
+						<li><a href="historia_skarbonki.php">Historia skarbonki</a></li>
 					</ul>
 				</li>
 		<li><a href="wyloguj.php">Wyloguj</a></li>
@@ -54,9 +54,9 @@
 			<input type="date" name = "od" value="<?php if(isset($_GET['od'])){echo $_GET['od'];}?>"/> </br></br>
 			<label>Do</label>
 			<input type="date" name = "do" value="<?php if(isset($_GET['do'])){echo $_GET['do'];}?>"/> </br></br>
-			</br></br> 
-			Cena od</br><input type="number" name = "cena_od" /> </br>
-			Cena do</br><input type="number" name = "cena_do" /> </br>
+			</br> 
+			Cena od</br><input type="number" name = "cena_od" value="<?php if(isset($_GET['cena_od'])){echo $_GET['cena_od'];}?>" /> </br>
+			Cena do</br><input type="number" name = "cena_do" value="<?php if(isset($_GET['cena_do'])){echo $_GET['cena_do'];}?>" /> </br>
 
 		</br></br>
 
@@ -84,6 +84,7 @@
 			$id = $_SESSION['id'];
 			$rezultat = $polaczenie ->query("SELECT * FROM transakcje WHERE id = '$id'");
 			$ile_transakcji = $rezultat -> num_rows;
+			$ilosc_rekordow = $ile_transakcji;
 			if ($ile_transakcji != 0)
 			{
 				//jeśli ktoś kliknął filtruj
@@ -242,8 +243,11 @@
 					{
 
 							$numer_transakcji = 1;
-							echo "<a href ='historia.php' >[Wszystkie transakcje]</a>"."</br>";	
-							echo $query;
+							if ($ile_transakcji != $ilosc_rekordow)echo "<a href ='historia.php' >[Wszystkie transakcje]</a>"."</br>";	
+							//echo $query;
+							
+							echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>Numer transakcji</td>
+							<td>Nazwa transakcji</td><td>Kwota transakcji</td><td>Data transakcji</table>";
 
 							while ($row = $rezultat -> fetch_assoc())
 							{
@@ -267,6 +271,8 @@
 				else //jeśli nikt nie szuka i nie istnieją zmienne od i do to pokazywać normalnie wszystkie transakcje
 				{
 							$numer_transakcji = 1;
+							echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>Numer transakcji</td>
+							<td>Nazwa transakcji</td><td>Kwota transakcji</td><td>Data transakcji</table>";
 							while ($row = $rezultat -> fetch_assoc())
 							{
 								$kategoria = $row['kategoria'];

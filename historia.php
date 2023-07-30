@@ -6,6 +6,8 @@
 		exit();
 	}
 	require_once "connect.php";
+	
+
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -272,16 +274,27 @@
 				{
 							$numer_transakcji = 1;
 							echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>Numer transakcji</td>
-							<td>Nazwa transakcji</td><td>Kwota transakcji</td><td>Data transakcji</table>";
+							<td>Nazwa transakcji</td><td>Kwota transakcji</td><td>Data transakcji</td><td>Operacja</td></table>";
 							while ($row = $rezultat -> fetch_assoc())
 							{
 								$kategoria = $row['kategoria'];
 								$cena = $row['cena'];
 								$data = $row['data'];
 								//echo "<table border = '1'><tr><td>5</td></tr><table>";
-								echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>".$numer_transakcji."</td><td>".$kategoria."</td><td>".$cena."</td><td>".$data."</td></tr></table>";
+								echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>".$numer_transakcji."</td><td>".$kategoria."</td><td>".$cena."</td><td>".$data."</td>
+								
+								<form action = 'delete.php' method = 'post'>
+									<input type = 'hidden' name = 'id' value = '$id' >
+									<input type = 'hidden' name = 'kategoria' value = '$kategoria' >
+									<input type = 'hidden' name = 'cena' value = '$cena' >
+									<input type = 'hidden' name = 'data' value = '$data' >
+									<td> <input type='submit' name='delete'  value = 'Usuń'></td>
+								</form>
+								</tr></table>";
+								
 								$numer_transakcji++; 
 							}
+							
 				}
 				
 			}

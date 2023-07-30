@@ -74,53 +74,36 @@
 					{
 						throw new Exception($polaczenie->error);
 					}
-				 //wkładanie do tabeli kategorie nazwy nowej kategorii
-				 $rezultat = $polaczenie ->query("SELECT kategoria FROM kategorie WHERE kategoria='$kategoria' AND id='id'");
-				 if(!$rezultat)throw new Exception($polaczenie->error);
+				 //wkładanie do tabeli kategorie nazwy nowej kategorii, tutaj dowiadujemy się czy dana kategoria juz istnieje czy jeszcze nie 
+				 $rezultat = $polaczenie ->query("SELECT * FROM kategorie WHERE kategoria='$kategoria' AND id='$id'");
+				 //tu ponizej mamy odpowiedz, czy w bazie KATEGORIE jest juz taka kategoria, jaką w tym momencie w tej konkretnej transakcji wprowadza uzytkownik;
 				 $ilosc_kategorii = $rezultat->num_rows;
-				 $_SESSION['ilosc_kategorii'] = $ilosc_kategorii;
-				 //jesli nie było takiej kategorii to dodaj nazwe kategorii do bazy
-				 if($ilosc_kategorii<1)
-				 {
-					 //dodawanie nazwy kategorii do bazy danych
-					 if($polaczenie->query("INSERT INTO kategorie VALUES (NULL, '$kategoria', '$id', 1)"))
-					{
-						;
-					  }
-					else 
-					{
-						throw new Exception($polaczenie->error);
-					}
-				 }
-				 //jeśli była to dodać jedną ilość transakcji do bazy
+				 
+				 $_SESSION['ilosc_kategorii'] = $ilosc_kategorii ;
+				 if(!$rezultat)throw new Exception($polaczenie->error);
 				 else
 				 {
-					 //odczytanie ilosc transakcji w danej kategorii ile ma dany uzytkownik
-					 $sql = "SELECT ilosc_transakcji FROM kategorie WHERE id = $id";
-					 if($rezultat = $polaczenie -> query ($sql))
+					 if($ilosc_kategorii <1)
 					 {
-						 $wiersz = $rezultat -> fetch_assoc();
-						 $ilosc_transakcji = $wiersz['ilosc_transakcji'];
+						 ; //tu napisać dodawanie do bazy nowej nazwy kategorii
 					 }
-					 else 
-					{
-						throw new Exception($polaczenie->error);
-					}
-					$ilosc_transakcji = $ilosc_transakcji+1;
-					 if($polaczenie->query("UPDATE kategorie SET ilosc_transakcji = $ilosc_transakcji WHERE id='$id'"))
+					 else //tu jeśli dodana transakcja ma juz swoją kategorię
 					 {
-						 ;
+						 //teraz w bazie "kategorie" sprawdzamy ile transakcji w było w tej jednej konkretnej kategorii i w podsumowanie.php
+						 //będziemy dodawać za pomocą UPDATE kolejną transakcje, zeby np z 4 zwiększyło się na 5 transakcji tej konkretnej kategorii; 
+						 $rezultat = $polaczenie->query("SELECT * FROM kategorie WHERE kategoria = '$kategoria' AND id = '$id'");
+						 $row = $rezultat -> fetch_assoc();
+						 $_SESSION['ilosc_transakcji'] = $row['ilosc_transakcji'];
+						 $_SESSION['ilosc_transakcji'] = $_SESSION['ilosc_transakcji']+1;
+						 $ilosc_transakcji = $_SESSION['ilosc_transakcji'] ;
+						 $kategoria = $row['kategoria'];
+						 if( $polaczenie ->query("UPDATE kategorie SET ilosc_transakcji = '$ilosc_transakcji'  WHERE kategoria='$kategoria' AND id='$id'"))
+						 {
+							 ;
+						 }
+						 
 					 }
-					else 
-					{
-						throw new Exception($polaczenie->error);
-					}
 				 }
-				 
-				}
-				else 
-				{
-					throw new Exception($polaczenie->error);
 				}
 			}
 			$polaczenie->close();
@@ -153,7 +136,7 @@
 		<li><a href="#">Skarbonka</a>
 					<ul>
 						<li><a href="skarbonka.php">Dodaj transakcję</a></li>
-						<li><a href="histroria_skarbonki.php">Historia skarbonki</a></li>
+						<li><a href="historia_skarbonki.php">Historia skarbonki</a></li>
 					</ul>
 				</li>
 		<li><a href="wyloguj.php">Wyloguj</a></li>

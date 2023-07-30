@@ -1,4 +1,9 @@
 <?php
+	if(!isset($_SESSION['zalogowany']))
+	{
+		header('Location: login.php');
+		exit();
+	}
 $connection = mysqli_connect("localhost", "root", "");
 $db = mysqli_select_db($connection, "ewallet");
 

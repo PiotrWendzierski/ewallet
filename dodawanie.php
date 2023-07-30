@@ -87,7 +87,7 @@
 					 {
 						 $rezultat = $polaczenie -> query("INSERT INTO kategorie VALUES (NULL, '$kategoria', '$id', 1)");
 					 }
-					 else //tu jeśli dodana transakcja ma juz swoją kategorię
+					 else //tu jeśli dodana transakcja ma juz swoją kategorięa
 					 {
 						 //teraz w bazie "kategorie" sprawdzamy ile transakcji w było w tej jednej konkretnej kategorii i w podsumowanie.php
 						 //będziemy dodawać za pomocą UPDATE kolejną transakcje, zeby np z 4 zwiększyło się na 5 transakcji tej konkretnej kategorii; 

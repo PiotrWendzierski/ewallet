@@ -85,7 +85,7 @@
 				 {
 					 if($ilosc_kategorii <1)
 					 {
-						 ; //tu napisać dodawanie do bazy nowej nazwy kategorii
+						 $rezultat = $polaczenie -> query("INSERT INTO kategorie VALUES (NULL, '$kategoria', '$id', 1)");
 					 }
 					 else //tu jeśli dodana transakcja ma juz swoją kategorię
 					 {

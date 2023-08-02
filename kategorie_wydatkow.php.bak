@@ -50,7 +50,7 @@ if(!isset($_SESSION['stan_konta'])|| ($_SESSION['stan_konta'] ==false))
 		 else
 		 {
 			 $id = $_SESSION['id'];
-			 $sql = "SELECT * FROM kategorie WHERE id = '$id'";
+			 $sql = "SELECT * FROM kategorie WHERE id = '$id' AND cena < 0 ";
 			 $rezultat = $polaczenie -> query ($sql);
 			 $ile_kategorii = $rezultat -> num_rows;
 			 if($ile_kategorii !=0)
@@ -73,6 +73,7 @@ if(!isset($_SESSION['stan_konta'])|| ($_SESSION['stan_konta'] ==false))
 	 }
 	
 	?>
+	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone</div>
 </div>
 </body>

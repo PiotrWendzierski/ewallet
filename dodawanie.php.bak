@@ -17,7 +17,7 @@
 			$e_kategoria = '</br>'.'<span style="color:red">Wprowadź kategorię!</span>'.'</br>';
 		}
 		$cena = $_POST['cena'];
-		$_SESSION['zmiana'] = $cena;
+		$_SESSION['$zmianaa'] = $cena;
 		//czy cena jest pusta lub rowna zero
 		if(($cena == "")|| ($cena == 0))
 		{
@@ -25,7 +25,7 @@
 			$e_cena= '</br>'.'<span style="color:red">Wprowadź cenę (cena nie może być różna od zera)!</span>'.'</br>';
 		}
 		//czy cena jest nizsza lub równa stanowi konta
-		if (($_SESSION['stan_konta'] .$cena)<0)
+		if (($_SESSION['stan_konta'] + $cena)<0)
 		{
 			$wszystko_ok = false;
 			$e_cena2= '</br>'.'<span style="color:red">Cena nie może być większa niz obecny stan konta!</span>'.'</br>';
@@ -62,7 +62,9 @@
 			{
 				$id = $_SESSION['id'];
 				//wkładanie do tabeli transakcje rekordu
-				if($polaczenie->query("INSERT INTO transakcje VALUES (NULL,'$id', '$kategoria', '$cena', '$data', '0' )"))
+				$zmiana = "wplyw";
+				if($cena < 0)$zmiana = "wyplyw";
+				if($polaczenie->query("INSERT INTO transakcje VALUES (NULL,'$id', '$kategoria', '$cena', '$data', '0' , '$zmiana')"))
 				{
 					$stanek = $_SESSION['stan_konta'] + $cena;
 					$user = $_SESSION['user'];
@@ -75,7 +77,7 @@
 						throw new Exception($polaczenie->error);
 					}
 				 //wkładanie do tabeli kategorie nazwy nowej kategorii, tutaj dowiadujemy się czy dana kategoria juz istnieje czy jeszcze nie 
-				 $rezultat = $polaczenie ->query("SELECT * FROM kategorie WHERE kategoria='$kategoria' AND id='$id'");
+				 $rezultat = $polaczenie ->query("SELECT * FROM kategorie WHERE kategoria='$kategoria' AND id='$id' AND wplywwyplyw = '$zmiana'");
 				 //tu ponizej mamy odpowiedz, czy w bazie KATEGORIE jest juz taka kategoria, jaką w tym momencie w tej konkretnej transakcji wprowadza uzytkownik;
 				 $ilosc_kategorii = $rezultat->num_rows;
 				 
@@ -85,19 +87,19 @@
 				 {
 					 if($ilosc_kategorii <1)
 					 {
-						 $rezultat = $polaczenie -> query("INSERT INTO kategorie VALUES (NULL, '$kategoria', '$id', 1)");
+						 $rezultat = $polaczenie -> query("INSERT INTO kategorie VALUES (NULL, '$kategoria', '$id', 1, '$zmiana')");
 					 }
-					 else //tu jeśli dodana transakcja ma juz swoją kategorię
+					 else //tu jeśli dodana transakcja ma juz swoją kategorięa
 					 {
 						 //teraz w bazie "kategorie" sprawdzamy ile transakcji w było w tej jednej konkretnej kategorii i w podsumowanie.php
 						 //będziemy dodawać za pomocą UPDATE kolejną transakcje, zeby np z 4 zwiększyło się na 5 transakcji tej konkretnej kategorii; 
-						 $rezultat = $polaczenie->query("SELECT * FROM kategorie WHERE kategoria = '$kategoria' AND id = '$id'");
+						 $rezultat = $polaczenie->query("SELECT * FROM kategorie WHERE kategoria = '$kategoria' AND id = '$id' AND wplywwyplyw = '$zmiana'");
 						 $row = $rezultat -> fetch_assoc();
 						 $_SESSION['ilosc_transakcji'] = $row['ilosc_transakcji'];
 						 $_SESSION['ilosc_transakcji'] = $_SESSION['ilosc_transakcji']+1;
 						 $ilosc_transakcji = $_SESSION['ilosc_transakcji'] ;
 						 $kategoria = $row['kategoria'];
-						 if( $polaczenie ->query("UPDATE kategorie SET ilosc_transakcji = '$ilosc_transakcji'  WHERE kategoria='$kategoria' AND id='$id'"))
+						 if( $polaczenie ->query("UPDATE kategorie SET ilosc_transakcji = '$ilosc_transakcji'  WHERE kategoria='$kategoria' AND id='$id' AND wplywwyplyw = '$zmiana' "))
 						 {
 							 ;
 						 }

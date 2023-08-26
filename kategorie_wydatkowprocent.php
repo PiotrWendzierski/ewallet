@@ -50,23 +50,40 @@ if(!isset($_SESSION['stan_konta'])|| ($_SESSION['stan_konta'] ==false))
 		 else
 		 {
 			 $id = $_SESSION['id'];
-			 $sql = "SELECT * FROM kategorie WHERE id = '$id' AND wplywwyplyw = 'wyplyw'";
+			 $sql = "SELECT * FROM transakcje WHERE id = '$id' AND wplywwyplyw = 'wyplyw' ";
 			 $rezultat = $polaczenie -> query ($sql);
 			 $ile_kategorii = $rezultat -> num_rows;
-			 $laczna_ilosc_transakcji = 0;
+			 $laczna_ilosc_wydanej_kasy= 0;
 			 if($ile_kategorii !=0)
 			 {
-				$i=0;
+				 //tutaj liczymi ile jest wydanej kasy łącznie
 				 while($row = $rezultat -> fetch_assoc())
 				 {
 					 $kategoria = $row['kategoria'];
-					 $ilosc_transakcji = $row['ilosc_transakcji'];
-					 echo $kategoria."   ".$ilosc_transakcji."</br>";
-					 $laczna_ilosc_transakcji = $laczna_ilosc_transakcji + $ilosc_transakcji;
-					 $i++;
-					 if($i>=3)break;
+					 $ilosc_wydanej_kasy = $row['cena'];
+					 $laczna_ilosc_wydanej_kasy = $laczna_ilosc_wydanej_kasy + $ilosc_wydanej_kasy;
+					 
 				 }
-				 echo "Łącznie: ".$laczna_ilosc_transakcji;
+				 echo "Łącznie: ".$laczna_ilosc_wydanej_kasy;
+				 //tutaj ile kasy wydanej w poszczególnej kategorii;
+				 $sql2 = "SELECT * FROM kategorie WHERE id = '$id' AND wplywwyplyw = 'wyplyw'";
+				 $rezultat2 = $polaczenie -> query ($sql2);
+				 
+				 while($row2 = $rezultat2 -> fetch_assoc())
+				 {
+					 $kategoriaa = $row2['kategoria'];
+					 $sql3 = "SELECT * FROM transakcje WHERE id ='$id' AND kategoria = '$kategoriaa' AND wplywwyplyw = 'wyplyw' ";
+					 $rezultat3 = $polaczenie -> query($sql3);
+					 $ilosc_wydanej_kasy = 0;
+					 while($row3 = $rezultat3 -> fetch_assoc())
+					 {
+						 $cenaa = $row3['cena'];
+						 $ilosc_wydanej_kasy = $ilosc_wydanej_kasy + $cenaa;
+						 $procent = ($ilosc_wydanej_kasy/$laczna_ilosc_wydanej_kasy)*100;
+						 $procent = round($procent);
+					 }
+					 echo "</br>".$kategoriaa." ".$procent."%"."</br>";
+				 }
 			 }
 			 else echo "Brak wydatków !";
 			 

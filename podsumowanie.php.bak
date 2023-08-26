@@ -37,8 +37,6 @@
 	<div id="pole">
 		</br></br>Podsumowanie:</br></br>
 		<?php
-				//tu wprowadzic zapytanie UPDATE, zeby updatować ilosc transakcji w danej kategorii o +1 (po skokach)
-				
 				
 				 echo "Stan przed transakcją: ".$_SESSION['stan_konta']."</br>";
 				 echo "Zmieniono o: ".$_SESSION['zmiana']." PLN"."</br></br>";

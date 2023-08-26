@@ -39,7 +39,7 @@
 		<?php
 				
 				 echo "Stan przed transakcją: ".$_SESSION['stan_konta']."</br>";
-				 echo "Zmieniono o: ".$_SESSION['zmiana']." PLN"."</br></br>";
+				 echo "Zmieniono o: ".$_SESSION['zmianaa']." PLN"."</br></br>";
 				 echo "Dnia: ".$_SESSION['data_transakcji']."</br></br>";
 				 echo '<a href="index2.php">Wróć na stronę główną</a>';
 

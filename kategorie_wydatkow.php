@@ -50,17 +50,21 @@ if(!isset($_SESSION['stan_konta'])|| ($_SESSION['stan_konta'] ==false))
 		 else
 		 {
 			 $id = $_SESSION['id'];
-			 $sql = "SELECT * FROM kategorie WHERE id = '$id'";
+			 $sql = "SELECT * FROM kategorie WHERE id = '$id' AND wplywwyplyw = 'wyplyw'";
 			 $rezultat = $polaczenie -> query ($sql);
 			 $ile_kategorii = $rezultat -> num_rows;
+			 $laczna_ilosc_transakcji = 0;
 			 if($ile_kategorii !=0)
 			 {
+				
 				 while($row = $rezultat -> fetch_assoc())
 				 {
 					 $kategoria = $row['kategoria'];
 					 $ilosc_transakcji = $row['ilosc_transakcji'];
 					 echo $kategoria."   ".$ilosc_transakcji."</br>";
+					 $laczna_ilosc_transakcji = $laczna_ilosc_transakcji + $ilosc_transakcji;
 				 }
+				 echo "Łącznie: ".$laczna_ilosc_transakcji;
 			 }
 			 else echo "Brak wydatków !";
 			 

@@ -155,7 +155,7 @@ if(!isset($_POST['id']))
 			{
 				if($query_run2)
 				{
-					echo $_SESSION['stan_konta_przed_edytowaniem']."</br>";
+					echo $_SESSION['stan_konta_przed_edytowaniem'];
 					echo $stan_konta_po_edycji;
 					//header("Location: historia.php");
 				}

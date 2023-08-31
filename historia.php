@@ -280,6 +280,8 @@
 								$kategoria = $row['kategoria'];
 								$cena = $row['cena'];
 								$data = $row['data'];
+								$id_jedynej_transakcji = $row['id_transakcji'];
+								
 								//echo "<table border = '1'><tr><td>5</td></tr><table>";
 								echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>".$numer_transakcji."</td><td>".$kategoria."</td><td>".$cena."</td><td>".$data."</td>
 								
@@ -288,7 +290,15 @@
 									<input type = 'hidden' name = 'kategoria' value = '$kategoria' >
 									<input type = 'hidden' name = 'cena' value = '$cena' >
 									<input type = 'hidden' name = 'data' value = '$data' >
-									<td> <input type='submit' name='delete'  value = 'Usuń'></td>
+									<td> <input type='submit' name='delete'  value = 'Usuń'>  
+								</form>
+								
+								<form id = 'idddd' action = 'updatedata.php' method = 'post'>
+									<input type = 'hidden' name = 'id' value = '$id' >
+									<input type = 'hidden' name = 'kategoria' value = '$kategoria' >
+									<input type = 'hidden' name = 'cena' value = '$cena' >
+									<input type = 'hidden' name = 'data' value = '$data' >
+									 <input type='submit' name='delete'  value = 'Edytuj'> </td>
 								</form>
 								</tr></table>";
 								

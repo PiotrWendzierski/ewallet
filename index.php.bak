@@ -5,7 +5,7 @@
 		header('Location: login.php');
 		exit();
 	}	
-	if($_SESSION['stan_konta'] == true)
+	if((isset($_SESSION['stan_konta'] ))&&($_SESSION['stan_konta'] != 0))
 	{
 		header('Location: index2.php');
 		exit();
@@ -29,7 +29,8 @@
 	</div>
 	
 	<div id="pole">
-		</br></br>Wpisz stan początkowy swojego portfela: </br></br>
+		</br></br>Wpisz stan początkowy swojego portfela (Jeśli nie masz aktualnie pieniędzy, wpisz wartość 0. Komunikat pojawiać będzię się do czasu zwiększenia
+		aktualnego stanu konta): </br></br>
 		<form method="post">
 			<input type="number" name="stan"> </br></br>
 			
@@ -86,6 +87,8 @@
 					unset($_SESSION['e_stan']);
 				}
 			?>
+			
+			
 	</div>
 </div>
 </body>

@@ -3,6 +3,11 @@
 	box-sizing: border-box;
 }
 
+#idddd
+{
+	padding-left: 30px;
+	float:left;
+}
 #container
 {
 	width: 1320px;

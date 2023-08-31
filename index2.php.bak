@@ -285,7 +285,7 @@
 							 }
 							 if($i == 0 )echo "Brak wpływów w tym miesiącu!";
 						 }
-						 else echo "Brak wydatków !";
+						 else echo "Brak wpływów !";
 						 
 					 }
 					 $polaczenie -> close();

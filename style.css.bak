@@ -3,6 +3,11 @@
 	box-sizing: border-box;
 }
 
+#idddd
+{
+	padding-left: 10px;
+	float:left;
+}
 #container
 {
 	width: 1320px;
@@ -79,7 +84,7 @@
 {
 	background-color: white;
 	width:220px;
-	height: 200px;
+	height: 190px;
 	border-left: 10px solid #F6F3F3;
 	border-right: 10px solid #F6F3F3;
 	text-align: center;

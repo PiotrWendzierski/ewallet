@@ -5,6 +5,11 @@
 		header('Location: login.php');
 		exit();
 	}
+	if(!isset($_POST['delete']))
+	{
+		header('Location: historia.php');
+		exit();
+	}
 $connection = mysqli_connect("localhost", "root", "");
 $db = mysqli_select_db($connection, "ewallet");
 

@@ -35,6 +35,7 @@
 					$_SESSION['zalogowany'] = true;
 					$_SESSION['user'] = $wiersz['login'];
 					$_SESSION['stan_konta'] = $wiersz['stan_konta'];
+					
 					unset($_SESSION['blad']);
 					$rezultat->free_result();
 					header('Location: index.php');

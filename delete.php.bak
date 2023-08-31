@@ -41,7 +41,7 @@ if(isset($_POST['delete']))
 
 	
 	//tutaj praca z tabelą rekordy, aby usunięcie transakcji, albo pomniejszalo ilosc transakcji w poszczegolnej kategorii w tabeli KATEGORIE albo usuwało kategorię z tabeli
-	$query3 = "SELECT * FROM kategorie WHERE kategoria = '$kategoria' AND id = '$id_user' AND wplywwyplyw = '$zmiana";
+	$query3 = "SELECT * FROM kategorie WHERE kategoria = '$kategoria' AND id = '$id_user' AND wplywwyplyw = '$zmiana'";
 	$wiersz = mysqli_query($connection, $query3);
 	$rezultat = mysqli_fetch_assoc($wiersz);
 	

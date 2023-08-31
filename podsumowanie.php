@@ -5,6 +5,11 @@
 		header('Location: login.php');
 		exit();
 	}
+	if(!isset($_POST['cena']))
+	{
+		header('Location: dodawanie.php');
+		exit();
+	}
 	require_once "connect.php";
 	$wszystko_ok = true;
 ?>

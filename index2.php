@@ -5,7 +5,7 @@
 		header('Location: login.php');
 		exit();
 	}
-	if(!isset($_SESSION['stan_konta'])|| ($_SESSION['stan_konta'] ==false))
+	if(!isset($_SESSION['stan_konta']))
 	{
 		header('Location: index.php');
 		exit();

@@ -5,6 +5,11 @@
 		header('Location: login.php');
 		exit();
 	}
+	if(!isset($_POST['kwota_przeznaczona']))
+	{
+		header('Location: skarbonka.php');
+		exit();
+	}
 	require_once "connect.php";
 	$cel_oszczednosci = $_SESSION['cel_oszczednosci'];
 	$potrzebna_ilosc = $_SESSION['potrzebna_ilosc'];

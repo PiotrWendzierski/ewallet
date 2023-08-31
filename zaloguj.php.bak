@@ -25,7 +25,7 @@
 		if ($rezultat = @$polaczenie->query($sql));
 		{
 			$ilu_userow = $rezultat->num_rows;
-			echo $ilu_userow;
+			//echo $ilu_userow;
 			if($ilu_userow > 0)
 			{
 				$wiersz  = $rezultat->fetch_assoc();
@@ -35,6 +35,7 @@
 					$_SESSION['zalogowany'] = true;
 					$_SESSION['user'] = $wiersz['login'];
 					$_SESSION['stan_konta'] = $wiersz['stan_konta'];
+					$_SESSION['pierwsze_logowanie'] = false;
 					unset($_SESSION['blad']);
 					$rezultat->free_result();
 					header('Location: index.php');

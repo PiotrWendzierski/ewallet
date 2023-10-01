@@ -15,6 +15,7 @@ $db = mysqli_select_db($connection, "ewallet");
 
 if(isset($_POST['delete']))
 {
+	$wszystko_ok = true;
 	//to jest id uzytkownika zalogowanego
 	$id_user = $_SESSION['id'];
 	$id = $_POST['id'];

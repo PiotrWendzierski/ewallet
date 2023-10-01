@@ -5,9 +5,9 @@
 		header('Location: login.php');
 		exit();
 	}
-	if(!isset($_POST['cena']))
+	if(!isset($_SESSION['data_transakcji'])
 	{
-		header('Location: login.php');
+		header('Location: dodawanie.php');
 		exit();
 	}
 	require_once "connect.php";

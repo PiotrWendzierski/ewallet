@@ -5,7 +5,7 @@
 		header('Location: login.php');
 		exit();
 	}
-	if(!isset($_POST['cena']))
+	if(!isset($_SESSION['data_transakcji']))
 	{
 		header('Location: dodawanie.php');
 		exit();

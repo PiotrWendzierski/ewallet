@@ -7,7 +7,11 @@
 	}
 	require_once "connect.php";
 	
-
+		setcookie('cena', '');
+		setcookie('kategoria', '');
+		setcookie('zmiana', '');
+		setcookie('data',"");
+		
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -279,6 +283,7 @@
 							{
 								$kategoria = $row['kategoria'];
 								$cena = $row['cena'];
+								$_SESSION['cena'] = $cena;
 								$data = $row['data'];
 								$id_jedynej_transakcji = $row['id_transakcji'];
 								
@@ -301,6 +306,7 @@
 									 <input type='submit' name='delete'  value = 'Edytuj'> </td>
 								</form>
 								</tr></table>";
+								
 								
 								$numer_transakcji++; 
 							}

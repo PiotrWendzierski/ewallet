@@ -5,7 +5,7 @@
 		header('Location: login.php');
 		exit();
 	}
-	if(!isset($_SESSION['stan_konta'])|| ($_SESSION['stan_konta'] ==false))
+	if(!isset($_SESSION['stan_konta']))
 	{
 		header('Location: index.php');
 		exit();
@@ -141,6 +141,8 @@
 		<?php
 			$lacznie = $skarbonka+$stan_konta;
 			echo "</br></br>".$lacznie;
+			unset($_SESSION['kwota_przeznaczona']);
+			
 		?>
 		</div>
 		<div style="clear:both"></div>
@@ -159,6 +161,8 @@
 				echo "Potrzebujesz: ".$potrzebna_ilosc."</br>";
 				echo "Masz już: 0zł"."</br></br>";
 				echo "Łącznie: 0%"."</br></br></br>";
+				echo '<a href="usun_skarbonke.php">USUŃ cel zbieraniny!</a>'."</br>";
+				echo '<a href="edytuj_skarbonke.php">EDYTUJ cel zbieraniny!</a>'."</br>";
 			}
 			//jeśli jest dodany cel i dodane juz pierwsze wpłaty
 			else 
@@ -168,6 +172,9 @@
 				echo "Potrzebujesz: ".$potrzebna_ilosc."zł"."</br>";
 				echo "Masz już: ".$skarbonka."zł"."</br></br>";
 				echo "Łącznie: ".$procent."%"."</br></br></br>";
+				
+				echo '<a href="usun_skarbonke.php">USUŃ cel zbieraniny!</a>'."</br>";
+				echo '<a href="edytuj_skarbonke.php">EDYTUJ cel zbieraniny!</a>'."</br>";
 			}
 			
 		?>
@@ -356,6 +363,9 @@
 		
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone</div>
+	<?php
+	echo $_SESSION['stan_konta'];
+	?>
 </div>
 </body>
 

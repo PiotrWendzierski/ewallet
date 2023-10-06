@@ -18,7 +18,7 @@
 			if(($_POST['potrzebna_ilosc'] == 0)|| ($_POST['potrzebna_ilosc'] == ""))
 			{
 				$wszystko_ok = false;
-				$e_potrzebna_ilosc= '</br>'.'<span style="color:red">Wprowadź kwotę inną niż zero!</span>'.'</br>';
+				$e_potrzebna_ilosc= '</br>'.'<span style="color:red">Wprowadź kwotę większą niż zero!</span>'.'</br>';
 			}
 			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
 			$_SESSION['potrzebna_ilosc'] = $_POST['potrzebna_ilosc'];
@@ -51,7 +51,7 @@
 		$_SESSION['data_transakcji'] = $_POST['data_transakcji'];
 		$data = $_POST['data_transakcji'];
 		$dataczas = new DateTime();
-		$koniec = DataTime::createFromFormat('Y-m-d', $data);
+		$koniec = DateTime::createFromFormat('Y-m-d', $data);
 		if($dataczas<$koniec)
 		{
 			$wszystko_ok = false;

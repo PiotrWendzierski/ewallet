@@ -5,11 +5,7 @@
 		header('Location: login.php');
 		exit();
 	}
-	if(!isset($_POST['kwota_przeznaczona']))
-	{
-		header('Location: skarbonka.php');
-		exit();
-	}
+
 	require_once "connect.php";
 	$cel_oszczednosci = $_SESSION['cel_oszczednosci'];
 	$potrzebna_ilosc = $_SESSION['potrzebna_ilosc'];
@@ -20,6 +16,9 @@
 		$stan_skarbonki = $skarbonka+$kwota_przeznaczona;
 		$data_transakcji_skarbonki = $_SESSION['data_transakcji_skarbonki'];
 	}
+	
+	//zrobić, ze usuniecie celu skarbonki zwieksza stan konta, jeśli usuwa transakcje skarbonki
+	//i gdzieś tam zrobić unset kwoty przeznaczonej i to co ponizej ten komentarz!!!
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -110,11 +109,25 @@
 			  {
 					echo $e;
 			  }
-			 if (($skarbonka == 0)&& (!isset($kwota_przeznaczona)))
+			  
+			  
+			  if($cel_oszczednosci == 'brak')
+			  {
+				  echo "Nie ustaliłeś jeszcze celu zbieraniny."."</br>";
+				  echo '<a href="skarbonka.php">Dodaj cel zbieraniny!</a>';
+			  }
+			  
+			  else if($skarbonka != 0)
+			  {
+				  header('Location: index2.php');
+			  }
+			  
+			 else if (($skarbonka == 0)&& !(isset($kwota_przeznaczona)))//tutaj coś dopisać aby po dodanie transakcji skarbonki pojawiał robił sie ten else ponizej!!!!
 			 {
 				 echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
 				 echo "Potrzebujesz: ".$potrzebna_ilosc."</br></br>";
-				 echo '<a href="index2.php">Wróć na stronę główną</a>';
+				 echo '<a href="index2.php">Wróć na stronę główną</a>'."</br>";
+				 
 			 }
 			 else 
 			 {

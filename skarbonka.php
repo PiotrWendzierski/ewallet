@@ -15,10 +15,10 @@
 				$wszystko_ok = false;
 				$e_cel_oszczednosci = '</br>'.'<span style="color:red">Wprowadź cel skarbonki!</span>'.'</br>';
 			}
-			if(($_POST['potrzebna_ilosc'] == 0)|| ($_POST['potrzebna_ilosc'] == ""))
+			if(($_POST['potrzebna_ilosc'] == 0)|| ($_POST['potrzebna_ilosc'] == "")||  ($_POST['potrzebna_ilosc'] < 0))
 			{
 				$wszystko_ok = false;
-				$e_potrzebna_ilosc= '</br>'.'<span style="color:red">Wprowadź kwotę inną niż zero!</span>'.'</br>';
+				$e_potrzebna_ilosc= '</br>'.'<span style="color:red">Wprowadź kwotę większą niż zero!</span>'.'</br>';
 			}
 			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
 			$_SESSION['potrzebna_ilosc'] = $_POST['potrzebna_ilosc'];

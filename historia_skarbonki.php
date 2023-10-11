@@ -137,13 +137,27 @@
 					else
 					{
 						$numer_transakcji = 1;
-						echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>Numer transakcji</td><td>Kwota przeznaczona</td><td>Data transakcji</table>";
+						echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>Numer transakcji</td><td>Kwota przeznaczona</td><td>Data transakcji</td><td>Operacja</td></table>";
 						while ($row = $rezultat -> fetch_assoc())
 						{
 							$data_transakcji = $row['data_transakcji'];
 							$kwota_przeznaczona = $row['kwota_przeznaczona'];
 							//echo "<table border = '1'><tr><td>5</td></tr><table>";
-							echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>".$numer_transakcji."</td><td>".$kwota_przeznaczona."</td><td>".$data_transakcji."</td></table>";
+							echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed;'><td>".$numer_transakcji."</td><td>".$kwota_przeznaczona."</td><td>".$data_transakcji."</td>
+							<form action = 'deleteskarbonka.php' method = 'post'>
+									<input type = 'hidden' name = 'id' value = '$id' >
+									<input type = 'hidden' name = 'cena' value = '$kwota_przeznaczona' >
+									<input type = 'hidden' name = 'data' value = '$data_transakcji' >
+									<td> <input type='submit' name='delete'  value = 'Usuń'>  
+								</form>
+								
+								<form id = 'idddd' action = 'updatedata.php' method = 'post'>
+									<input type = 'hidden' name = 'id' value = '$id' >
+									<input type = 'hidden' name = 'cena' value = '$kwota_przeznaczona' >
+									<input type = 'hidden' name = 'data' value = '$data_transakcji' >
+									 <input type='submit' name='delete'  value = 'Edytuj'> </td>
+								</form>
+								</tr></table>";
 							$numer_transakcji++; 
 						}
 

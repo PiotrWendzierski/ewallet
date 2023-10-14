@@ -6,6 +6,9 @@
 		exit();
 	}
 	require_once "connect.php";
+	
+	setcookie('kwota_przeznaczona', '');
+	setcookie('data', '');
 ?>
 
 <!DOCTYPE HTML>
@@ -151,7 +154,7 @@
 									<td> <input type='submit' name='delete'  value = 'Usuń'>  
 								</form>
 								
-								<form id = 'idddd' action = 'updatedata.php' method = 'post'>
+								<form id = 'idddd' action = 'editskarbonka.php' method = 'post'>
 									<input type = 'hidden' name = 'id' value = '$id' >
 									<input type = 'hidden' name = 'cena' value = '$kwota_przeznaczona' >
 									<input type = 'hidden' name = 'data' value = '$data_transakcji' >

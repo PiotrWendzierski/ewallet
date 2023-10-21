@@ -18,6 +18,8 @@
 	<meta charset="utf-8">
 	<title>eWallet - twój elektroniczny portfel</title>
 	<link rel="stylesheet"  href="style.css" type="text/css" / >
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
 </head>
 <body>
 <div id="container">
@@ -89,6 +91,9 @@
 						$skarbonka = $wiersz4['skarbonka'];
 						$cel_oszczednosci = $wiersz4['cel_oszczednosci'];
 						$potrzebna_ilosc = $wiersz4['potrzebna_ilosc'];
+						
+						$brakuje = $potrzebna_ilosc - $skarbonka;
+						
 						$_SESSION['skarbonka'] = $skarbonka;
 						$_SESSION['cel_oszczednosci'] = $cel_oszczednosci;
 						$_SESSION['potrzebna_ilosc'] = $potrzebna_ilosc;
@@ -147,37 +152,77 @@
 		</div>
 		<div style="clear:both"></div>
 		<div class="kafel_duzy">
-		</br>Skarbonka </br></br>
+		Moja Skarbonka
 		<?php
+		function wykres($cel_oszczednosci, $skarbonka, $brakuje )
+		{
+			echo "<div id='donutchart' style='width: 200px; height: 200px;'>
+				<script type='text/javascript'>
+				  google.charts.load('current', {packages:['corechart']});
+				  google.charts.setOnLoadCallback(drawChart);
+				  function drawChart() {
+					var data = google.visualization.arrayToDataTable([
+					  ['Task', 'Hours per Day'],
+					  ['Wpłacone środki', $skarbonka],
+					  ['Do celu brakuje', $brakuje]
+					]);
+
+					var options = {
+					  legend: 'none',
+					  pieHole: 0.6,
+					  slices: {  4: {offset: 0.2},
+					12: {offset: 0.3},
+                    14: {offset: 0.4},
+                    15: {offset: 0.5},
+					},
+
+					var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+					chart.draw(data, options);
+					}
+				</script></div>";
+		}
 		//jesli jeszcze nic nie było robione ze skarbonką
 			if ($cel_oszczednosci == "brak")
 			{
-				echo "Na ten moment brak celów";
+				echo "</br>"."Na ten moment brak celów";
 			}
 			//jeśli jest dodany już cel oszczędzania
 			else if(($cel_oszczednosci != "brak")&& ($skarbonka == 0) )
 		  {
-				echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
-				echo "Potrzebujesz: ".$potrzebna_ilosc."</br>";
-				echo "Masz już: 0zł"."</br></br>";
-				echo "Łącznie: 0%"."</br></br></br>";
+				echo "</br>CEL: ".$cel_oszczednosci;			  
+				wykres($cel_oszczednosci, $skarbonka, $brakuje);
+				echo "</br>".'<a href="usun_skarbonke.php">USUŃ cel zbieraniny!</a>'."</br>";
+				echo '<a href="edytuj_skarbonke.php">EDYTUJ cel zbieraniny!</a>'."</br>";
+			}
+			//jeśli jest dodany cel i dodane juz pierwsze wpłaty i ilość zaoszczedzonej kasy nie przewyzsza tego ile potrzeba
+			else if(($cel_oszczednosci != "brak")&& ($skarbonka != 0)&& ($brakuje >0 ))
+			{
+				echo "</br>CEL: ".$cel_oszczednosci;
+				wykres($cel_oszczednosci, $skarbonka, $brakuje);
 				echo '<a href="usun_skarbonke.php">USUŃ cel zbieraniny!</a>'."</br>";
 				echo '<a href="edytuj_skarbonke.php">EDYTUJ cel zbieraniny!</a>'."</br>";
 			}
-			//jeśli jest dodany cel i dodane juz pierwsze wpłaty
-			else 
+			
+			//jeśli jest dodany cel i dodane juz pierwsze wpłaty i ilość zaoszczedzonej kasy jest ile potrzeba
+			else if(($cel_oszczednosci != "brak")&& ($skarbonka != 0)&& ($brakuje ==0 ))
 			{
-				$procent = ($skarbonka/$potrzebna_ilosc)*100;
-				echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
-				echo "Potrzebujesz: ".$potrzebna_ilosc."zł"."</br>";
-				echo "Masz już: ".$skarbonka."zł"."</br></br>";
-				echo "Łącznie: ".$procent."%"."</br></br></br>";
-				
+				echo "</br>"."Gratulacje!  Uzbierałeś pieniądze na "."$cel_oszczednosci";
+				wykres($cel_oszczednosci, $skarbonka, $brakuje);
+				echo '<a href="usun_skarbonke.php">USUŃ cel zbieraniny!</a>'."</br>";
+				echo '<a href="edytuj_skarbonke.php">EDYTUJ cel zbieraniny!</a>'."</br>";
+			}
+			
+			//jeśli jest dodany cel i dodane juz pierwsze wpłaty i ilość zaoszczedzonej kasy jest wieksza niz potrzeba
+			else if(($cel_oszczednosci != "brak")&& ($skarbonka != 0)&& ($brakuje <0 ))
+			{
+				echo "</br>"."Gratulacje!  Uzbierałeś pieniądze na "."$cel_oszczednosci";
+				wykres($cel_oszczednosci, $skarbonka, $brakuje=0);
 				echo '<a href="usun_skarbonke.php">USUŃ cel zbieraniny!</a>'."</br>";
 				echo '<a href="edytuj_skarbonke.php">EDYTUJ cel zbieraniny!</a>'."</br>";
 			}
 			
 		?>
+
 		</div>
 		<div id="wplywyiwyplywy">
 		
@@ -363,9 +408,6 @@
 		
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone</div>
-	<?php
-	echo $_SESSION['stan_konta'];
-	?>
 </div>
 </body>
 

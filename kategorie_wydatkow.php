@@ -53,6 +53,8 @@ $rezultat = mysqli_query($polaczenie,$sql);
 		<li><a href="wyloguj.php">Wyloguj</a></li>
 	</ol>
 	</div>
+	<div>
+	<a href="kategorie_wydatkowprocent.php">POKAŻ WYKRES KWOTOWY</a>
 	<form id = "okres" action="" method = "GET">
 			Wybierz okres</br>
 			<input type="date" name = "od" value="<?php if(isset($_GET['od'])){echo $_GET['od'];}?>"/> 
@@ -67,6 +69,7 @@ $rezultat = mysqli_query($polaczenie,$sql);
 			?>
 			<input type="submit" value="Filtruj"></input>
 	</form>
+	</div>
 	<div id="kategorie_wydatkow">
 	<div id="piechart" style="width: 900px; height: 500px; margin-left: auto; margin-right: auto; ">
 	<script type='text/javascript'>

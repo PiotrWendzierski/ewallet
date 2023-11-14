@@ -5,6 +5,11 @@ if(!isset($_SESSION['zalogowany']))
 	header('Location: login.php');
 	exit();
 }
+if($_COOKIE['i'] != 0)
+{
+	header('Location: login.php');
+	exit();
+}
 ?><!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -33,7 +38,7 @@ if(!isset($_SESSION['zalogowany']))
 	</ol>
 	</div>
 	<div id = "brak">
-	<form action="kategorie_wydatkow.php" method = "POST">
+	<form action="historia.php" method = "POST">
 			<?php
 			if((isset($_COOKIE['i'])) && ($_COOKIE['i'] == 0))
 			{

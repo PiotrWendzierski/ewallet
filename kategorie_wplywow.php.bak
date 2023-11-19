@@ -54,7 +54,7 @@ $rezultat = mysqli_query($polaczenie,$sql);
 	</ol>
 	</div>
 	<div>
-	<a href="kategorie_wydatkowprocent.php">POKAŻ WYKRES KWOTOWY</a>
+	<a href="kategorie_wplywowprocent.php">POKAŻ WYKRES KWOTOWY</a>
 	<form id = "okres" action="" method = "GET">
 			Wybierz okres</br>
 			<input type="date" name = "od" value="<?php if(isset($_GET['od'])){echo $_GET['od'];}?>"/> 

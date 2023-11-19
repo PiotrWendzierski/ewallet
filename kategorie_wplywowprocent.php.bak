@@ -52,7 +52,7 @@ $rezultat = mysqli_query($polaczenie,$sql);
 	</ol>
 	</div>
 	<div>
-	<a href="kategorie_wydatkow.php">POKAŻ WYKRES ILOŚCIOWY</a>
+	<a href="kategorie_wplywow.php">POKAŻ WYKRES ILOŚCIOWY</a>
 	<form id = "okres" action="" method = "GET">
 			Wybierz okres</br>
 			<input type="date" name = "od" value="<?php if(isset($_GET['od'])){echo $_GET['od'];}?>"/> 

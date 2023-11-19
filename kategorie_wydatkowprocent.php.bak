@@ -104,7 +104,7 @@ $rezultat = mysqli_query($polaczenie,$sql);
 				 if($i == 0)
 				 {
 					 setcookie('i', 0);
-					 header('Location: kategorie_wydatkow.php');
+					 header('Location: kategorie_wydatkowprocent.php');
 				 }
 			}
 

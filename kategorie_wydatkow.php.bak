@@ -54,7 +54,7 @@ $rezultat = mysqli_query($polaczenie,$sql);
 	</ol>
 	</div>
 	<div>
-	</br><a href="kategorie_wydatkowprocent.php">POKAŻ WYKRES KWOTOWY</a>
+	<a href="kategorie_wydatkowprocent.php">POKAŻ WYKRES KWOTOWY</a>
 	<form id = "okres" action="" method = "GET">
 			Wybierz okres</br>
 			<input type="date" name = "od" value="<?php if(isset($_GET['od'])){echo $_GET['od'];}?>"/> 
@@ -82,6 +82,7 @@ $rezultat = mysqli_query($polaczenie,$sql);
           ['Task', 'Hours per Day'],
 		 <?php
 			$ile_kategorii = $rezultat -> num_rows; 
+			$_SESSION['brak_wydatkow'] = $ile_kategorii;
 			if($ile_kategorii >0)
 			{
 				$i = 0;
@@ -105,6 +106,11 @@ $rezultat = mysqli_query($polaczenie,$sql);
 					 setcookie('i', 0);
 					 header('Location: kategorie_wydatkow.php');
 				 }
+			}
+			else
+			{
+				header('Location: brak_danych.php');
+				exit();
 			}
 		 ?>
         ]);

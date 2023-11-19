@@ -27,7 +27,17 @@
 	font-size: 40px;
 	border-bottom: 5px solid blue;
 }
-
+.wykres_duzy
+{
+	width: 330px;
+	border-left: 10px solid #F6F3F3;
+	border-right: 10px solid #F6F3F3;
+	background-color: white;
+	margin-bottom: 20px;
+	float:left;
+	height: 270px;
+	text-align: center;
+}
 #sortowanie
 {
 	width: 20%;

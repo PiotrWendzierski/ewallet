@@ -228,7 +228,7 @@
 		
 			<a href = "kategorie_wydatkow.php" >
 				<div class = "wykres">
-				WYDATKI 
+				Wydatki 
 				<?php
 				require_once("connect.php");
 
@@ -293,7 +293,7 @@
 			</a>
 			<a href = "kategorie_wplywow.php" >
 				<div class = "wykres">
-				PRZYCHODY
+				Przychody
 				<?php
 				require_once("connect.php");
 
@@ -410,6 +410,78 @@
 			</div>
 			<div style= "clear:both"></div>
 		</div>
+		
+		<div class="wykres_duzy">Stan portfela (ostatnie 7 dni)
+		<?php
+			require_once("connect.php");
+
+			$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+			$sql = "SELECT * FROM uzytkownicy WHERE id = '$id' ";
+			$rezultat = mysqli_query($polaczenie,$sql);
+			$row = $rezultat->fetch_assoc();
+			$stan_konta = $row['stan_konta'];
+			for($j =0; $j<7; $j++)
+			{
+				$datan[$j] = date("Y-m-d", strtotime("- $j day"));
+			}
+			for ($j=0; $j<7; $j++)
+			{
+				$wydatki[$j] = 0;
+				$sql2 = "SELECT * FROM transakcje WHERE id = '$id' AND data = '$datan[$j]'";
+				$rezultat2 = mysqli_query($polaczenie,$sql2);
+				while($row2 = $rezultat2->fetch_assoc())
+				{
+					$kwota = $row2['cena'];
+					$wydatki[$j] = $wydatki[$j] + $kwota;
+				}
+				$kwota = 0;
+			}
+			for ($j = 6; $j>=0; $j--)
+			{
+				$wydatkidnia[$j+1] = 0;
+				for ($i=0; $i<$j; $i++)
+				{
+					$wydatkidnia[$j+1] = $wydatkidnia[$j+1]+$wydatki[$i];
+				}
+				$standnia[$j] = $stan_konta - $wydatkidnia[$j+1];
+			}
+		?>
+			<div id="chart_div" style="width: 300px; height: 250px; text-align: center;">
+				<script type="text/javascript">
+					  google.charts.load('current', {'packages':['corechart']});
+					  google.charts.setOnLoadCallback(drawChart);
+
+					  function drawChart() {
+						var data = google.visualization.arrayToDataTable([
+						  ['', 'kwota'],
+
+						  <?php 
+						  for($j =0; $j<7; $j++)
+						{
+							$dzien[$j] = date("d-m	", strtotime("- $j day"));
+						}
+						  
+						  for ($i=6; $i>=0; $i--)
+						  {
+							  echo "['$dzien[$i]',  $standnia[$i]],";
+						  }
+						   ?>
+						  
+						]);
+
+						var options = {
+							legend: 'none',
+							chartArea:{top:30,width:'80%',height:'70%'},
+						  vAxis: {minValue: 0}
+						};
+
+						var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+						chart.draw(data, options);
+					  }
+				</script>
+			</div>
+		</div>
+		<div class="wykres_duzy"></div>
 		
 		<div style= "clear:both"></div>
 		

@@ -125,10 +125,14 @@
 		<?php
 			if($ile_transakcji>0)
 		  {
-			  $dataczas = new DateTime();			  
-			  $koniec = DateTime::createFromFormat('Y-m-d', $data);
-			  $roznica = $dataczas->diff($koniec);
-			  echo $kategoria."</br>".$data." ".$roznica->format('(%d dni temu)')."</br>".$cena." zł";
+			 $teraz=gmmktime();
+			 $dzienn = strtotime($data);
+			$sekund = abs($teraz-$dzienn);
+			$minut = (int)($sekund/60);
+			$godzin = (int)($minut/60);
+			$dni = (int)($godzin/24);
+			  
+			  echo $kategoria."</br>".$data." "."(".$dni." dni temu)"."</br>".$cena." zł";
 			}
 			else 
 		  {				
@@ -411,7 +415,7 @@
 			<div style= "clear:both"></div>
 		</div>
 		
-		<div class="wykres_duzy">Stan portfela (ostatnie 7 dni)
+		<div class="wykres_duzy"><a href="stan_portfela.php">Stan portfela (ostatnie 7 dni)</a>
 		<?php
 			require_once("connect.php");
 
@@ -486,7 +490,8 @@
 		<div style= "clear:both"></div>
 		
 	</div>
-	<div id="footer">Wszelkie prawa zastrzeżone</div>
+	<div id="footer">Wszelkie prawa zastrzeżone
+	</div>
 </div>
 </body>
 

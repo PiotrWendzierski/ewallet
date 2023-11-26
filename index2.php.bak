@@ -475,7 +475,7 @@
 
 						var options = {
 							legend: 'none',
-							chartArea:{top:30,width:'80%',height:'70%'},
+							chartArea:{top:30,width:'70%',height:'70%'},
 						  vAxis: {minValue: 0}
 						};
 
@@ -491,12 +491,6 @@
 		
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone
-	<?php
-	for ($i=6; $i>=0; $i--)
-						  {
-							  echo "['$dzien[$i]',  $standnia[$i]],";
-						  }
-	?>
 	</div>
 </div>
 </body>

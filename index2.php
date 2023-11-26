@@ -475,7 +475,7 @@
 
 						var options = {
 							legend: 'none',
-							chartArea:{top:30,width:'80%',height:'70%'},
+							chartArea:{top:30,width:'75%',height:'70%'},
 						  vAxis: {minValue: 0}
 						};
 

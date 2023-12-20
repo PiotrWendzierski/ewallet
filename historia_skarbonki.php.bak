@@ -6,6 +6,9 @@
 		exit();
 	}
 	require_once "connect.php";
+	
+	setcookie('kwota_przeznaczona', '');
+	setcookie('data', '');
 ?>
 
 <!DOCTYPE HTML>

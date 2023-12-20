@@ -106,6 +106,11 @@ $rezultat = mysqli_query($polaczenie,$sql);
 					 header('Location: kategorie_wplywow.php');
 				 }
 			}
+			else
+			{
+				header('Location: brak_danych.php');
+				exit();
+			}
 		 ?>
         ]);
 

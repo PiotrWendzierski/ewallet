@@ -55,7 +55,7 @@ if($ile_kategorii != 0)
 	</ol>
 	</div>
 	<div id = "brak">
-	Brak wydatków! </br>
+	Brak danych! </br>
 	<a href="index.php">Wróć</a>
 	</div>
 </body>

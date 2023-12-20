@@ -54,6 +54,15 @@
 						<li><a href="historia_skarbonki.php">Historia skarbonki</a></li>
 					</ul>
 				</li>
+				<li><a href="#">Wykresy</a>
+					<ul>
+						<li><a href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
+						<li><a href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
+						<li><a href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a href="stan_portfela.php">Stan portfela</a></li>
+					</ul>
+		</li>
 		<li><a href="wyloguj.php">Wyloguj</a></li>
 	</ol>
 	</div>

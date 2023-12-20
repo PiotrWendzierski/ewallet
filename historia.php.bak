@@ -10,6 +10,7 @@
 		setcookie('cena', '');
 		setcookie('kategoria', '');
 		setcookie('zmiana', '');
+		setcookie('data',"");
 		
 ?>
 <!DOCTYPE HTML>

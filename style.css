@@ -8,6 +8,11 @@
 	padding-left: 30px;
 	float:left;
 }
+#tlo
+{
+	background-image: url("img/tlo.jpg");
+	min-height:700px;
+}
 #container
 {
 	width: 1320px;
@@ -49,11 +54,7 @@
 	text-align: right;
 }
 
-#login
-{
-	margin-top: 100px;
-	text-align: center;
-}
+
 
 #meni
 {
@@ -202,7 +203,7 @@ ol
 ol > li
 {
 	float: left;
-	width: 200px;
+	min-width: 200px;
 	height: 80px;
 	text-align: center;
 }
@@ -225,4 +226,5 @@ ol>li>ul>li
 {
 		position: relative;
 		z-index: 100;
+		min-width: 200px;
 }

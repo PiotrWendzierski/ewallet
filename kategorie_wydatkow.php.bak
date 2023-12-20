@@ -82,7 +82,6 @@ $rezultat = mysqli_query($polaczenie,$sql);
           ['Task', 'Hours per Day'],
 		 <?php
 			$ile_kategorii = $rezultat -> num_rows; 
-			$_SESSION['brak_wydatkow'] = $ile_kategorii;
 			if($ile_kategorii >0)
 			{
 				$i = 0;

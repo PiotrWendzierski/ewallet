@@ -46,7 +46,7 @@
 			$wszystko_ok = false;
 			$e_data_transakcji= '</br>'.'<span style="color:red">Wpisz datę transakcji!</span>'.'</br>';
 		}
-		//gdy data transakcji jest pozniejsza, niz dzisiejsza data (later dopisać!)
+		//gdy data transakcji jest pozniejsza, niz dzisiejsza data 
 		$_SESSION['kwota_przeznaczona'] = $_POST['kwota_przeznaczona'];
 		$_SESSION['data_transakcji'] = $_POST['data_transakcji'];
 		$data = $_POST['data_transakcji'];

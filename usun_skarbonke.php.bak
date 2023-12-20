@@ -79,9 +79,11 @@
 					{
 						if($queryrun2)
 						{
-							header('Location: index2.php');
-							exit();
-							
+							if($queryrun3)
+							{
+								header('Location: index2.php');
+								exit();
+							}
 						}
 					}
 					

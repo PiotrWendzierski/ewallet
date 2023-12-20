@@ -29,7 +29,7 @@
 		{
 			$wszystko_ok = false;
 			$e_cena2= '</br>'.'<span style="color:red">Cena nie może być większa niz obecny stan konta!</span>'.'</br>';
-			if($cena = "")
+			if($cena == "")
 			{
 				$wszystko_ok = false;
 				$e_cena2 =  '</br>'.'<span style="color:red">Cena nie może być pusta!</span>'.'</br>';

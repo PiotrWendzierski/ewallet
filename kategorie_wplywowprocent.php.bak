@@ -108,10 +108,11 @@ $rezultat = mysqli_query($polaczenie,$sql);
 				 }
 			}
 
-		 else echo "Brak wydatków !";
-		 
-		 
-		 
+		 else 
+		 {
+				header('Location: brak_danych.php');
+				exit();
+		 }
 		 ?>
         ]);
 

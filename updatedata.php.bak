@@ -338,6 +338,7 @@ if(!isset($_POST['id']))
 							$query_run5 = mysqli_query($connection, $query7);
 						}
 					}
+				}
 			
 			if($query_run1)
 			{

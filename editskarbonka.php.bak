@@ -55,6 +55,13 @@
 			$wszystko_ok = false;
 			$e_kwota_przeznaczona2 = '<span style="color:red">Po wprowadzeniu nowej kwoty, stan konta musi być większy lub równy 0!</span>'.'</br>';
 		}
+		if($stan_skarbonki - $stara_kwota_przeznaczona + $nowa_kwota_przeznaczona<0)
+		{
+			$wszystko_ok = false;
+			$e_kwota_przeznaczona3 = '<span style="color:red">Po wprowadzeniu nowej kwoty, stan skarbonki musi być większy lub równy 0!</span>'.'</br>';
+		}
+		
+		
 		//gdy nie wprowadono daty transakcji
 		if($_POST['data_transakcji'] =="")
 		{
@@ -102,10 +109,7 @@
 				{
 					if($query_run33)
 					{
-						//header("Location:historia_skarbonki.php");
-						
-						echo "ok";
-						echo "ok";
+						header("Location:historia_skarbonki.php");
 				}
 				}
 			}
@@ -158,6 +162,11 @@
 		{
 			echo $e_kwota_przeznaczona2;
 			unset($e_kwota_przeznaczona2);
+		}
+		if(isset($e_kwota_przeznaczona3))
+		{
+			echo $e_kwota_przeznaczona3;
+			unset($e_kwota_przeznaczona3);
 		}
 		?>
 		<input type='date' name='data_transakcji' value = <?php if(isset($_POST['data']))echo $_POST['data']; ?>>  </br></br>

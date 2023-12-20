@@ -24,7 +24,7 @@ if(!isset($_SESSION['stan_konta'])|| ($_SESSION['stan_konta'] ==false))
 			$ile_transakcji = $rezultat8 -> num_rows;
 			if($ile_transakcji == 0)
 			{
-				header('Location: brak.php');
+				header('Location: brak_danych.php');
 				exit();
 			}
 			$rezultat3 = mysqli_query($polaczenie, $sql3);

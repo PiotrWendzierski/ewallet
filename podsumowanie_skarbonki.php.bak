@@ -117,9 +117,13 @@
 				  echo '<a href="skarbonka.php">Dodaj cel zbieraniny!</a>';
 			  }
 			  
+			  else if($skarbonka != 0)
+			  {
+				  header('Location: index2.php');
+			  }
+			  
 			 else if (($skarbonka == 0)&& !(isset($kwota_przeznaczona)))//tutaj coś dopisać aby po dodanie transakcji skarbonki pojawiał robił sie ten else ponizej!!!!
 			 {
-				 echo $skarbonka;
 				 echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
 				 echo "Potrzebujesz: ".$potrzebna_ilosc."</br></br>";
 				 echo '<a href="index2.php">Wróć na stronę główną</a>'."</br>";

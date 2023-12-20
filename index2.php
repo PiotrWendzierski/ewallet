@@ -38,7 +38,16 @@
 						<li><a href="skarbonka.php">Dodaj transakcję</a></li>
 						<li><a href="historia_skarbonki.php">Historia skarbonki</a></li>
 					</ul>
-				</li>
+		</li>
+		<li><a href="#">Wykresy</a>
+					<ul>
+						<li><a href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
+						<li><a href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
+						<li><a href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a href="stan_portfela.php">Stan portfela</a></li>
+					</ul>
+		</li>
 		<li><a href="wyloguj.php">Wyloguj</a></li>
 	</ol>
 	</div>
@@ -477,6 +486,7 @@
 							legend: 'none',
 							chartArea:{top:30,width:'75%',height:'70%'},
 						  vAxis: {minValue: 0}
+						  
 						};
 
 						var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
@@ -485,8 +495,75 @@
 				</script>
 			</div>
 		</div>
-		<div class="wykres_duzy"></div>
-		
+		<div class="wykres_duzy">Wydatki (ostatnie pół roku)
+				<?php
+				for($i=0; $i<6; $i++)
+				{
+					$dzis[$i] = date('Y-m-15', strtotime("- $i month"));
+					$miesia[$i] = date('m.y',strtotime("- $i month"));
+				}
+
+				for($i=0; $i<6; $i++)
+				{
+					$first[$i] = date("Y-m-01", strtotime($dzis[$i])); 
+					$last[$i] = date("Y-m-t", strtotime($dzis[$i])); 
+				}
+				
+				
+				for ($i =0; $i<6; $i++)
+				{
+					$sql = "SELECT * FROM transakcje WHERE id = '$id' AND wplywwyplyw = 'wyplyw' AND data BETWEEN '$first[$i]' AND '$last[$i]'";
+					$rezultat = $polaczenie ->query($sql);
+					$wydatki[$i] = 0;
+					while($row = $rezultat->fetch_assoc())
+					{
+						$wydatek = $row['cena'];
+						$wydatek = $wydatek * (-1);
+						$wydatki[$i] = $wydatki[$i] + $wydatek;
+						$wydatki[$i] = abs($wydatki[$i]);
+					}
+					
+					$sql2 = "SELECT * FROM transakcje WHERE id = '$id' AND wplywwyplyw = 'wplyw' AND data BETWEEN '$first[$i]' AND '$last[$i]'";
+					$rezultat2 = $polaczenie ->query($sql2);
+					$wplywy[$i] = 0;
+					while($row2 = $rezultat2->fetch_assoc())
+					{
+						$wplyw = $row2['cena'];
+						$wplywy[$i] = $wplywy[$i] + $wplyw;
+					}
+					
+				}
+				?>
+				 <script type="text/javascript">
+					  google.charts.load('current', {'packages':['bar']});
+					  google.charts.setOnLoadCallback(drawChart);
+
+					  function drawChart() {
+						var data = google.visualization.arrayToDataTable([
+						  ['',  'Przychody', 'Wydatki'],
+						  <?php
+						  for ($i=5; $i>=0; $i--)
+						  {	  
+							echo "['$miesia[$i]',".$wplywy[$i].",".$wydatki[$i]."],";
+						  }
+						  ?>
+						 
+						]);
+
+						var options = {
+						  legend: { position: "none" },
+						  colors:['green','red'],
+						  animation: {"startup": true}
+						  
+						};
+
+						var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+						chart.draw(data, options);
+					  }
+			</script>
+			<div id="columnchart_material" style="width: 300px; height: 230px;"></div>
+		</div>
 		<div style= "clear:both"></div>
 		
 	</div>

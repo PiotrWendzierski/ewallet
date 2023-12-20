@@ -24,11 +24,8 @@
 </head>
 <body>
 <div id="container">
-	<div id="title">
-		eWallett
-	</div>
+
 	
-	<div id="pole">
 		</br></br>Wpisz stan początkowy swojego portfela </br>(Jeśli nie masz aktualnie pieniędzy, wpisz wartość 0. Komunikat pojawiać będzię się do czasu zwiększenia
 		aktualnego stanu konta): </br></br>
 		<form method="post">
@@ -89,7 +86,7 @@
 			?>
 			
 			
-	</div>
+
 </div>
 </body>
 

@@ -38,7 +38,7 @@ if($_COOKIE['i'] != 0)
 	</ol>
 	</div>
 	<div id = "brak">
-	<form action="historia.php" method = "POST">
+	<form action="index2.php" method = "POST">
 			<?php
 			if((isset($_COOKIE['i'])) && ($_COOKIE['i'] == 0))
 			{

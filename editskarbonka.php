@@ -55,6 +55,13 @@
 			$wszystko_ok = false;
 			$e_kwota_przeznaczona2 = '<span style="color:red">Po wprowadzeniu nowej kwoty, stan konta musi być większy lub równy 0!</span>'.'</br>';
 		}
+		if($stan_skarbonki - $stara_kwota_przeznaczona + $nowa_kwota_przeznaczona<0)
+		{
+			$wszystko_ok = false;
+			$e_kwota_przeznaczona3 = '<span style="color:red">Po wprowadzeniu nowej kwoty, stan skarbonki musi być większy lub równy 0!</span>'.'</br>';
+		}
+		
+		
 		//gdy nie wprowadono daty transakcji
 		if($_POST['data_transakcji'] =="")
 		{
@@ -138,6 +145,15 @@
 						<li><a href="historia_skarbonki.php">Historia skarbonki</a></li>
 					</ul>
 				</li>
+				<li><a href="#">Wykresy</a>
+					<ul>
+						<li><a href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
+						<li><a href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
+						<li><a href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a href="stan_portfela.php">Stan portfela</a></li>
+					</ul>
+		</li>
 		<li><a href="wyloguj.php">Wyloguj</a></li>
 	</ol>
 	</div>
@@ -155,6 +171,11 @@
 		{
 			echo $e_kwota_przeznaczona2;
 			unset($e_kwota_przeznaczona2);
+		}
+		if(isset($e_kwota_przeznaczona3))
+		{
+			echo $e_kwota_przeznaczona3;
+			unset($e_kwota_przeznaczona3);
 		}
 		?>
 		<input type='date' name='data_transakcji' value = <?php if(isset($_POST['data']))echo $_POST['data']; ?>>  </br></br>

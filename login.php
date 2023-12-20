@@ -17,6 +17,8 @@
 <body>
 
 <div id = "container">
+	<div id="tlo">
+	
 	<div id="title">
 		eWallett
 	</div> 	
@@ -26,12 +28,12 @@
 			echo "Udana rejestracja! Zaloguj się na swoje nowe konto :) "."</br>";
 			unset ($_SESSION['udana_rejestracja']);
 		}
-	?></br></br></br></br></br>
+	?>
 	<div id="login">
 		
 		<form action="zaloguj.php" method="post">
-			Login: </br> <input type="text" name="login" /> </br>
-			Hasło: </br> <input type="password" name="haslo" /> </br></br>
+			</br> <input type="text" name="login" /> </br>
+			</br> <input type="password" name="haslo" /> </br></br>
 			<?php
 			if(isset($_SESSION['blad']))
 			{	
@@ -43,6 +45,7 @@
 
 		</br>
 		<a href="rejestracja.php">Utwórz nowe konto!</a>
+	</div>
 	</div>
 </div>
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2023 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="wallet" unicode="&#xe800;" d="M0 22l0 625q0 70 51 121t121 51l640 0q40 0 67-28t27-66l0-281q94-71 94-188t-94-187l0-47q0-70-51-121t-121-51l-562 0q-70 0-121 51t-51 121z m63 0q0-45 32-77t77-33l562 0q45 0 78 33t32 77l0 47-281 0q-65 0-111 46t-46 110 46 110 111 46l281 0 0 63q0 13-9 22t-23 9l-640 0q-63 0-109 39l0-492z m0 625q0-45 31-76l0 123q0 13 9 22t22 9l656 0q14 0 23-9t9-22l0-156q15 0 31-6l0 193q0 14-9 22t-23 9l-640 0q-45 0-77-32t-32-77z m62-98q23-11 47-11l609 0 0 31-656 0 0-20z m0 51l656 0 0 31-656 0 0-31z m0 62l656 0 0 32-656 0 0-32z m344-437q0-39 27-66t67-28l320 0q54 51 54 125 0 59-35 104l0-2q-4-8-7-14-20-25-51-25l-281 0q-40 0-67-28t-27-66z m31 0q0 25 19 44t44 19 43-19 19-44-19-44-43-18-44 18-19 44z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

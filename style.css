@@ -3,11 +3,25 @@
 	box-sizing: border-box;
 }
 
+body
+{
+	margin-left: 0px;
+}
+a
+{
+	text-decoration:none;
+}
+a.rejestracja	
+{
+	color:  #047CF3;
+	text-decoration: none;
+}
 #idddd
 {
 	padding-left: 30px;
 	float:left;
 }
+
 #tlo
 {
 	background-image: url("img/tlo.jpg");
@@ -19,7 +33,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #F6F3F3;
-	min-height: 700px;
+	min-height: 600px;
 }
 #brak
 {
@@ -27,10 +41,11 @@
 }
 #title
 {
+	font-family: 'Patua One', serif;
 	margin-top: 20px;
-	color: blue;
+	color: #047CF3;
 	font-size: 40px;
-	border-bottom: 5px solid blue;
+	border-bottom: 3px solid #047CF3;
 }
 .wykres_duzy
 {
@@ -56,11 +71,14 @@
 
 #login
 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
 	background-color:#151a4d;
 	width:400px;
 	margin-top: 40px;
 	margin-left:40px;
 	text-align: center;
+	color:white;
 	-webkit-box-shadow: 3px 3px 22px 2px rgba(224,221,224,0.68);
 -moz-box-shadow: 3px -3px 22px 2px rgba(224,221,224,0.68);
 box-shadow: 3px 3px 22px 2px rgba(224,221,224,0.68);
@@ -221,7 +239,12 @@ input[type=submit]:hover
 
 #footer
 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+	background-color: #F6F3F3;
+	border-top: 3px solid #047CF3;
 	text-align:center;
+	color:#403B3B; 
 	padding:20px;
 }
 

@@ -32,7 +32,7 @@ a.rejestracja
 	width: 1320px;
 	margin-left: auto;
 	margin-right: auto;
-	background-color: #F6F3F3;
+	background-color: #1A1818;
 	min-height: 600px;
 }
 #brak
@@ -244,7 +244,7 @@ input[type=submit]:hover
 	background-color: #F6F3F3;
 	border-top: 3px solid #047CF3;
 	text-align:center;
-	color:#047CF3; 
+	color:#403B3B; 
 	padding:20px;
 }
 

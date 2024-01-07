@@ -23,7 +23,7 @@
 <body>
 <div id="container">
 	<div id="title">
-		eWallett
+		<a class="rejestracja" href="login.php"><i class="icon-wallet"></i>eWallett</a>
 	</div>
 	<div id="meni">		
 	<ol>

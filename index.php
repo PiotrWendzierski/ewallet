@@ -10,23 +10,27 @@
 		header('Location: index2.php');
 		exit();
 	}
-	//else 
-	//{
-	//	unset ($_SESSION['udana_rejestracja']);
-	//}
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
 	<meta charset="utf-8">
-	<title>eWallet - twój elektroniczny portfel</title>
 	<link rel="stylesheet"  href="style.css" type="text/css" / >
 	<link rel="stylesheet"  href="style.css" type="text/css" / >
+	<link rel="stylesheet"  href="img/fontello-9677cda3/css/fontello.css" type="text/css" / >
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="container">
 
-	
+	<div id="title">
+		<a class="rejestracja" href="login.php"><i class="icon-wallet"></i>eWallett</a>
+	</div> 	
 		</br></br>Wpisz stan początkowy swojego portfela </br>(Jeśli nie masz aktualnie pieniędzy, wpisz wartość 0. Komunikat pojawiać będzię się do czasu zwiększenia
 		aktualnego stanu konta): </br></br>
 		<form method="post">

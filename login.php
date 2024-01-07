@@ -28,12 +28,12 @@
 	<div id="tlo">
 	
 	<div id="title">
-		<i class="icon-wallet"></i>eWallett
+		<a class="rejestracja" href="login.php"><i class="icon-wallet"></i>eWallett</a>
 	</div> 	
 	<?php
 		if(isset($_SESSION['udana_rejestracja']))
 		{
-			echo "Udana rejestracja! Zaloguj się na swoje nowe konto :) "."</br>";
+			echo '<span style="color:  #047CF3;">Udana rejestracja! Zaloguj się</span></br>';
 			unset ($_SESSION['udana_rejestracja']);
 		}
 	?>
@@ -46,6 +46,7 @@
 			if(isset($_SESSION['blad']))
 			{	
 				echo $_SESSION['blad']."</br>";
+				unset($_SESSION['blad']);
 			}
 		?>
 			<input type="submit" value="Zaloguj się!" />

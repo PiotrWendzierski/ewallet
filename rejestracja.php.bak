@@ -97,7 +97,7 @@
 				}
 				if($wszystko_ok == true)
 				{
-					if($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$email', '$nick', '$haslo_hash', 0, 0, 'brak' )"))
+					if($polaczenie->query("INSERT INTO uzytkownicy VALUES (NULL, '$email', '$nick', '$haslo_hash', 0, 0, 'brak' , 0)"))
 					{
 						$_SESSION['udana_rejestracja'] = true;
 						header('Location: login.php');
@@ -125,11 +125,25 @@
 	<title>eWallet - twój elektroniczny portfel - załóż darmowe konto</title>
 	<link rel="stylesheet"  href="style.css" type="text/css" / >
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<link rel="stylesheet"  href="style.css" type="text/css" / >
+	<link rel="stylesheet"  href="img/fontello-9677cda3/css/fontello.css" type="text/css" / >
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
 </script>
 </head>
 <body>
-	<form method="post">
-		Nickname</br>		<input type="text" name="nick" /></br>
+<div id="container">
+<div id="tlo">
+<div id="title">
+		<a class="rejestracja" href="login.php"><i class="icon-wallet"></i>eWallett</a>
+</div> 	
+<div id="login">
+	<form method="post" >
+		</br>		<input type="text" name="nick" placeholder = "Nickname" onfocus = "this.placeholder=''" onblur="this.placeholder='Nickname'"/></br>
 		<?php
 			if(isset($_SESSION['e_nick']))
 			{
@@ -137,7 +151,7 @@
 				unset($_SESSION['e_nick']);
 			}
 		?>
-		E-mail</br>		<input type="text" name="email" /></br>
+		</br>		<input type="text" name="email" placeholder = "E-mail" onfocus = "this.placeholder=''" onblur="this.placeholder='E-mail'"/></br>
 		<?php
 			if(isset($_SESSION['e_email']))
 			{
@@ -155,7 +169,7 @@
 			}
 		?>
 		<label>
-			<input type="checkbox" name="regulamin" /> Akceptuję regulamin
+			</br><input type="checkbox" name="regulamin" /> Akceptuję regulamin
 		</label>
 		<?php
 			if(isset($_SESSION['e_regulamin']))
@@ -164,7 +178,7 @@
 				unset($_SESSION['e_regulamin']);
 			}
 		?>
-		<div class="g-recaptcha" data-sitekey="6LddHz4jAAAAAMqQ7AuhbvtSJHKdgZCnO7IBwMcN"></div>
+		<div class="g-recaptcha" data-sitekey="6LddHz4jAAAAAMqQ7AuhbvtSJHKdgZCnO7IBwMcN" style="margin-left: 50px; margin-top: 10px;"></div>
 		<?php
 			if(isset($_SESSION['e_boot']))
 			{
@@ -173,9 +187,16 @@
 			}
 		?>
 		<br/>
-		<input type="submit" velue="Zarejestruj się!"/>
+		<input type="submit" value="Zarejestruj się!"/>
  		
 	</form>
+	</br>Masz już konto?<a class = "rejestracja" href="login.php">  Zaloguj się!</a>
+	</div>
+	</div>
+	<div id="footer">Wszelkie prawa zastrzeżone
+	</div>
+	</div>
+	
 </body>
 
 </html>

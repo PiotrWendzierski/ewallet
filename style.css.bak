@@ -3,10 +3,7 @@
 	box-sizing: border-box;
 }
 
-body
-{
-	margin-left: 0px;
-}
+
 a
 {
 	text-decoration:none;
@@ -32,7 +29,7 @@ a.rejestracja
 	width: 1320px;
 	margin-left: auto;
 	margin-right: auto;
-	background-color: #1A1818;
+	background-color: #141415;
 	min-height: 600px;
 }
 #brak
@@ -110,6 +107,13 @@ input[type="submit"]
 	cursor: pointer;
 	letter-spacing: 1px;
 	outline: none;
+}
+
+input[type="number"]
+{
+	width:200px;
+	font-size: 20px;
+	border-radius: 5px;
 }
 
 input[type=text]:focus,
@@ -251,6 +255,15 @@ input[type=submit]:hover
 #formularz
 {
 	text-align: center;
+	width:500px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #202022;
+	margin-top:50px;
+	border-radius: 10px;
+	border: 2px solid #047CF3;
+	color: white;
+	font-size: 20px;
 }
 
 #historia

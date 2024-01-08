@@ -40,8 +40,8 @@
 	<div id="login">
 		
 		<form action="zaloguj.php" method="post">
-			</br> <input type="text" name="login" placeholder = "login" onfocus = "this.placeholder=''" onblur="this.placeholder='login'"/> </br>
-			</br> <input type="password" name="haslo" placeholder = "hasło" onfocus = "this.placeholder=''" onblur="this.placeholder='hasło'"//> </br></br>
+			</br> <input type="text" class = "rejestracja" name="login" placeholder = "login" onfocus = "this.placeholder=''" onblur="this.placeholder='login'"/> </br>
+			</br> <input type="password" class= "rejestracja" name="haslo" placeholder = "hasło" onfocus = "this.placeholder=''" onblur="this.placeholder='hasło'"//> </br></br>
 			<?php
 			if(isset($_SESSION['blad']))
 			{	
@@ -49,7 +49,7 @@
 				unset($_SESSION['blad']);
 			}
 		?>
-			<input type="submit" value="Zaloguj się!" />
+			<input type="submit" class="submitrej" value="Zaloguj się!" />
 		</form>
 
 		</br>

@@ -8,6 +8,10 @@ a
 {
 	text-decoration:none;
 }
+body
+{
+	margin: 0px;
+}
 a.rejestracja	
 {
 	color:  #047CF3;
@@ -26,7 +30,8 @@ a.rejestracja
 }
 #container
 {
-	width: 1320px;
+	width: 100%;
+	margin: 0px;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #141415;
@@ -39,7 +44,6 @@ a.rejestracja
 #title
 {
 	font-family: 'Patua One', serif;
-	margin-top: 20px;
 	color: #047CF3;
 	font-size: 40px;
 	border-bottom: 3px solid #047CF3;
@@ -81,8 +85,7 @@ a.rejestracja
 box-shadow: 3px 3px 22px 2px rgba(224,221,224,0.68);
 }
 
-input[type="text"],
-input[type="password"]
+input[class="rejestracja"]
 {
 	width:300px;
 	background-color:#efefef;
@@ -95,7 +98,22 @@ input[type="password"]
 	outline: none;
 }
 
-input[type="submit"]
+input[class="dodawanie"]
+{
+	width:200px;
+	background-color:#efefef;
+	border: 2px solid #128aa8;
+	color: #666;
+	border-radius:5px;
+	font-size: 20px;
+	padding:5px;
+	box-sizing:border-box;
+	outline: none;
+}
+
+
+
+input[class="submitrej"]
 {
 	width:300px;
 	background-color: #047CF3;
@@ -109,15 +127,9 @@ input[type="submit"]
 	outline: none;
 }
 
-input[type="number"]
-{
-	width:200px;
-	font-size: 20px;
-	border-radius: 5px;
-}
 
-input[type=text]:focus,
-input[type=password]:focus
+input[class="rejestracja"]:focus,
+input[class="dodawanie"]:focus
 {
 	-webkit-box-shadow: 0px 0px 10px 2px rgba(224,221,224,0.68);
 	-moz-box-shadow: 0px 0px 10px 2px rgba(224,221,224,0.68);
@@ -126,7 +138,7 @@ input[type=password]:focus
 	color: #31373D;
 }
 
-input[type=submit]:focus
+input[class="submitrej"]:focus
 {
 	-webkit-box-shadow: 0px 0px 10px 2px rgba(224,221,224,0.68);
 	-moz-box-shadow: 0px 0px 10px 2px rgba(224,221,224,0.68);
@@ -134,7 +146,7 @@ input[type=submit]:focus
 }
 
 
-input[type=submit]:hover
+input[class="submitrej"]:hover
 {
 	background-color: #4BA2F9;
 }

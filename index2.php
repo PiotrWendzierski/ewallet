@@ -20,14 +20,21 @@
 	<meta charset="utf-8">
 	<title>eWallet - twój elektroniczny portfel</title>
 	<link rel="stylesheet"  href="style.css" type="text/css" / >
+	<link rel="stylesheet"  href="img/fontello-9677cda3/css/fontello.css" type="text/css" / >
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
 </head>
 <body>
 <div id="container">
 	<div id="title">
-		eWallett
-	</div>
+		<i class="icon-wallet"></i>eWallett
+	</div> 	
 	<div id="meni">		
 	<ol>
 		<li><a href="index2.php">Ekran główny</a></li>

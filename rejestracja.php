@@ -143,7 +143,7 @@
 </div> 	
 <div id="login">
 	<form method="post" >
-		</br>		<input type="text" name="nick" placeholder = "Nickname" onfocus = "this.placeholder=''" onblur="this.placeholder='Nickname'"/></br>
+		</br>		<input type="text" class="rejestracja" name="nick" placeholder = "Nickname" onfocus = "this.placeholder=''" onblur="this.placeholder='Nickname'"/></br>
 		<?php
 			if(isset($_SESSION['e_nick']))
 			{
@@ -151,7 +151,7 @@
 				unset($_SESSION['e_nick']);
 			}
 		?>
-		</br>		<input type="text" name="email" placeholder = "E-mail" onfocus = "this.placeholder=''" onblur="this.placeholder='E-mail'"/></br>
+		</br>		<input type="text" class = "rejestracja" name="email" placeholder = "E-mail" onfocus = "this.placeholder=''" onblur="this.placeholder='E-mail'"/></br>
 		<?php
 			if(isset($_SESSION['e_email']))
 			{
@@ -159,8 +159,8 @@
 				unset($_SESSION['e_email']);
 			}
 		?>
-		</br>		<input type="password" name="haslo1" placeholder = "Twoje hasło" onfocus = "this.placeholder=''" onblur="this.placeholder='Twoje hasło'"/></br>
-		</br>		<input type="password" name="haslo2" placeholder = "Powtórz hasło" onfocus = "this.placeholder=''" onblur="this.placeholder='Powtórz hasło'"/></br>
+		</br>		<input type="password" class="rejestracja" name="haslo1" placeholder = "Twoje hasło" onfocus = "this.placeholder=''" onblur="this.placeholder='Twoje hasło'"/></br>
+		</br>		<input type="password" class="rejestracja" name="haslo2" placeholder = "Powtórz hasło" onfocus = "this.placeholder=''" onblur="this.placeholder='Powtórz hasło'"/></br>
 		<?php
 			if(isset($_SESSION['e_haslo']))
 			{
@@ -187,7 +187,7 @@
 			}
 		?>
 		<br/>
-		<input type="submit" value="Zarejestruj się!"/>
+		<input type="submit" class="submitrej" value="Zarejestruj się!"/>
  		
 	</form>
 	</br>Masz już konto?<a class = "rejestracja" href="login.php">  Zaloguj się!</a>

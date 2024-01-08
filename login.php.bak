@@ -33,15 +33,15 @@
 	<?php
 		if(isset($_SESSION['udana_rejestracja']))
 		{
-			echo '<span style="color:white">Udana rejestracja! Zaloguj się</span></br>';
+			echo '<span style="color:  #047CF3;">Udana rejestracja! Zaloguj się</span></br>';
 			unset ($_SESSION['udana_rejestracja']);
 		}
 	?>
 	<div id="login">
 		
 		<form action="zaloguj.php" method="post">
-			</br> <input type="text" name="login" placeholder = "login" onfocus = "this.placeholder=''" onblur="this.placeholder='login'"/> </br>
-			</br> <input type="password" name="haslo" placeholder = "hasło" onfocus = "this.placeholder=''" onblur="this.placeholder='hasło'"//> </br></br>
+			</br> <input type="text" class = "rejestracja" name="login" placeholder = "login" onfocus = "this.placeholder=''" onblur="this.placeholder='login'"/> </br>
+			</br> <input type="password" class= "rejestracja" name="haslo" placeholder = "hasło" onfocus = "this.placeholder=''" onblur="this.placeholder='hasło'"//> </br></br>
 			<?php
 			if(isset($_SESSION['blad']))
 			{	

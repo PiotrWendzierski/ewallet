@@ -16,7 +16,6 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet"  href="style.css" type="text/css" / >
-	<link rel="stylesheet"  href="style.css" type="text/css" / >
 	<link rel="stylesheet"  href="img/fontello-9677cda3/css/fontello.css" type="text/css" / >
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,9 +34,9 @@
 		</br></br>Wpisz stan początkowy swojego portfela </br>(Jeśli nie masz aktualnie pieniędzy, wpisz wartość 0. Komunikat pojawiać będzię się do czasu zwiększenia
 		aktualnego stanu konta): </br></br>
 		<form method="post">
-			<input type="number" name="stan"> </br></br>
+			<input type="number" class= "dodawanie" name="stan"> </br></br>
 			
-			<input type="submit" value="Zaczynamy">
+			<input type="submit" class = "submitrej" value="Zaczynamy">
 		</form>
 		</br><br>
 		<?php

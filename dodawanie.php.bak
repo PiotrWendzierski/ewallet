@@ -129,11 +129,18 @@
 	<meta charset="utf-8">
 	<title>eWallet - dodaj transakcję</title>
 	<link rel="stylesheet"  href="style.css" type="text/css" / >
+	<link rel="stylesheet"  href="img/fontello-9677cda3/css/fontello.css" type="text/css" / >
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
 </head>
 <body>
 <div id="container">
 	<div id="title">
-		eWallett
+		<a class="rejestracja" href="login.php"><i class="icon-wallet"></i>eWallett</a>
 	</div> 
 	<div id="meni">		
 	<ol>
@@ -146,13 +153,22 @@
 						<li><a href="historia_skarbonki.php">Historia skarbonki</a></li>
 					</ul>
 				</li>
+				<li><a href="#">Wykresy</a>
+					<ul>
+						<li><a href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
+						<li><a href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
+						<li><a href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a href="stan_portfela.php">Stan portfela</a></li>
+					</ul>
+		</li>
 		<li><a href="wyloguj.php">Wyloguj</a></li>
 	</ol>
 	</div>
 	</br></br>
 	<div id="formularz" >
 		<form method="post"  >
-			Wpisz kategorię<input type="text" name="kategoria"> </br>
+			<input type="text" class = "dodawanie" name="kategoria" placeholder = "Wpisz kategorię" onfocus = "this.placeholder=''" onblur="this.placeholder='Wpisz kategorię'"/> </br>
 			<?php
 				if(isset($e_kategoria))
 				{
@@ -160,7 +176,7 @@
 					unset ($e_kategoria);
 				}
 			?></br>
-			Wpisz cenę<input type="number" name="cena">  </br>
+			<input type="number" class="dodawanie" name="cena" placeholder = "Wpisz cenę" onfocus = "this.placeholder=''" onblur="this.placeholder='Wpisz cenę'">  </br>
 			<?php
 				if(isset($e_cena))
 				{
@@ -172,7 +188,7 @@
 					unset($e_cena2);
 				}
 			?></br>
-			Data <input type="date" name="data_transakcji">  </br>
+			<input type="date" class="dodawanie" name="data_transakcji" >  </br>
 			<?php
 			if(isset($e_data))
 				{
@@ -185,12 +201,12 @@
 				unset ($e_data2);
 			}
 			?></br>
-			Zatwierdź <input type="submit">
+			 <input type="submit" class="submitrej" value="Zatwierdź">
 		</form>
-
+</br>
 	</div>
-	<div id="footer">Wszelkie prawa zastrzeżone</div>
-</div>
+	
+</div><div id="footer">Wszelkie prawa zastrzeżone</div>
 </body>
 
 </html>

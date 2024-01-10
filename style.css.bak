@@ -14,9 +14,23 @@ body
 }
 a.rejestracja	
 {
+	display: block;
 	color:  #047CF3;
 	text-decoration: none;
 }
+
+a.rejestraja	
+{
+	display: block;
+	color:  #F0F0F0;
+	text-decoration: none;
+}
+a.rejestraja:hover
+{
+	color: #047CF3;
+	display:block;
+}
+
 #idddd
 {
 	padding-left: 30px;
@@ -105,7 +119,7 @@ input[class="dodawanie"]
 	border: 2px solid #128aa8;
 	color: #666;
 	border-radius:5px;
-	font-size: 20px;
+	font-size: 17px;
 	padding:5px;
 	box-sizing:border-box;
 	outline: none;
@@ -153,8 +167,9 @@ input[class="submitrej"]:hover
 
 #meni
 {
+	padding-top: 25px;
+	background-color: #5C5C5C;
 	text-align: center;
-    margin-top: 20px;
 	height: 80px;
     color: white;
 }
@@ -303,10 +318,10 @@ ol
 	margin: 0;
 	list-style: none;
 	font-size: 18px;
-	height: 35px;
 	line-height: 200%;
 	display: inline-block;
-
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
 }
 
 ol > li
@@ -333,6 +348,10 @@ ol > li:hover > ul
 
 ol>li>ul>li
 {
+	background-color: #5C5C5C;
+		font-family: 'Montserrat', sans-serif;
+		font-size: 15px;
+		border-bottom: 1px solid #141415;
 		position: relative;
 		z-index: 100;
 		min-width: 200px;

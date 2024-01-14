@@ -180,7 +180,7 @@
 		<?php
 		function wykres($cel_oszczednosci, $skarbonka, $brakuje )
 		{
-			echo "<div id='donutchart' style='width: 200px; height: 200px;'>
+			echo "<div id='donutchart' style='width: 100%; height: 200px;'>
 				<script type='text/javascript'>
 				  google.charts.load('current', {packages:['corechart']});
 				  google.charts.setOnLoadCallback(drawChart);
@@ -264,7 +264,7 @@
 
 				$rezultat = mysqli_query($polaczenie,$sql);
 				?>
-				<div id="piechart" style="width: 200px; height: 150px; ">
+				<div id="piechart" style="width: 100%; height: 150px; ">
 				
 				<script type='text/javascript'>
 					  google.charts.load('current', {'packages':['corechart']});
@@ -329,7 +329,7 @@
 
 				$rezultat = mysqli_query($polaczenie,$sql);
 				?>
-				<div id="piechartt" style="width: 200px; height: 150px; ">
+				<div id="piechartt" style="width: 100%; height: 150px; ">
 				
 				<script type='text/javascript'>
 					  google.charts.load('current', {'packages':['corechart']});

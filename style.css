@@ -63,7 +63,7 @@ a.rejestraja:hover
 }
 .wykres_duzy
 {
-	width: 330px;
+	width: 25%;
 	border-left: 10px solid #F6F3F3;
 	border-right: 10px solid #F6F3F3;
 	background-color: white;
@@ -184,7 +184,7 @@ input[class="submitrej"]:hover
 
 .kafel
 {
-	width: 330px;
+	width: 25%;
 	display: inline-block;
 	border-left: 10px solid #F6F3F3;
 	border-right: 10px solid #F6F3F3;
@@ -199,7 +199,7 @@ input[class="submitrej"]:hover
 .kafel_duzy
 {
 	background-color: white;
-	width:220px;
+	width:20%;
 	min-height: 270px;
 	border-left: 10px solid #F6F3F3;
 	border-right: 10px solid #F6F3F3;
@@ -231,7 +231,7 @@ input[class="submitrej"]:hover
 .wykres
 {
 	background-color: white;
-	width:220px;
+	width:50%;
 	height: 160px;
 	border-left: 10px solid #F6F3F3;
 	border-right: 10px solid #F6F3F3;
@@ -243,7 +243,7 @@ input[class="submitrej"]:hover
 #wplywyiwyplywy
 {
 	float:left;
-	width:440px;
+	width:30%;
 	height: 300px;
 }
 
@@ -251,7 +251,7 @@ input[class="submitrej"]:hover
 {
 	background-color: white;
 	float:left;
-	width:220px;
+	width:50%;
 	height: 80px;
 	border-left: 10px solid #F6F3F3;
 	border-right: 10px solid #F6F3F3;

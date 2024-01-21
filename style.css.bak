@@ -38,8 +38,8 @@ a.rejestraja:hover
 
 #tlo
 {
+	width: 100%;
 	background-image: url("img/tlo.jpg");
-	min-height:700px;
 }
 #container
 {
@@ -61,19 +61,42 @@ a.rejestraja:hover
 	font-size: 40px;
 	border-bottom: 3px solid #047CF3;
 }
+.parent1
+{
+	border-sizing: border-box;
+	width: 100%;
+	float:left;
+}
+
+.parent2
+{
+	border-sizing: border-box;
+	width: 50%;
+}
+
+.parent3
+{
+	width:100%;
+	box-sizing: border-box;
+	background-color: yellow;
+}
+
 .wykres_duzy
 {
 	width: 25%;
-	border-left: 10px solid #F6F3F3;
-	border-right: 10px solid #F6F3F3;
 	background-color: white;
 	margin-bottom: 20px;
 	float:left;
 	height: 270px;
 	text-align: center;
 }
+
 #sortowanie
 {
+	color: #838283;
+	font-size: 15px;
+	background-color: #070707;
+	min-height: 470px;
 	width: 20%;
 	float:left;
 }
@@ -124,7 +147,74 @@ input[class="dodawanie"]
 	outline: none;
 }
 
+select[class="sorting"]
+{
+	width:200px;
+	margin-top: 20px;
+	background-color:#efefef;
+	border: 2px solid #128aa8;
+	color: black;
+	border-radius:5px;
+	font-size: 17px;
+	padding:2px;
+	box-sizing:border-box;
+	outline: none;
+}
 
+input[class="sorting"]
+{
+	width:200px;
+	background-color:#efefef;
+	border: 2px solid #128aa8;
+	color: black;
+	border-radius:5px;
+	font-size: 17px;
+	padding:2px;
+	box-sizing:border-box;
+	outline: none;
+}
+
+input[class="filtruj"]
+{
+	width:200px;
+	background-color: #047CF3;
+	font-size: 20px;
+	color: white;
+	border: none;
+	border-radius:5px;
+	cursor: pointer;
+	letter-spacing: 1px;
+	outline: none;
+	margin-bottom: 10px;
+}
+
+input[class="edit"]
+{
+	color: #C0FFC4;
+	border-radius: 5px;
+	margin-left: 4px;
+	margin-right: 4px;
+	border: none;
+	cursor: pointer;
+	background-color: #24AC24;
+	width:70px;
+	letter-spacing: 0.5px;
+	outline: none;
+}
+
+input[class="delete"]
+{
+	color: #ECB2B8;
+	border-radius: 5px;
+	margin-right: 4px;
+	margin-left: 4px;
+	border: none;
+	cursor: pointer;
+	background-color: #F7041C;
+	width:70px;
+	letter-spacing: 0.5px;
+	outline: none;
+}
 
 input[class="submitrej"]
 {
@@ -180,30 +270,54 @@ input[class="submitrej"]:hover
 	margin-right: auto;
 	text-align: center;
 	min-height:400px;
+	background-color: #141415;
 }
 
 .kafel
-{
-	width: 25%;
-	display: inline-block;
-	border-left: 10px solid #F6F3F3;
-	border-right: 10px solid #F6F3F3;
-	background-color: white;
-	padding: 10px;
+{	
+	color: #F2F2F2;
+	box-sizing: border-box;
+	width: 100%;
+	background-color: #070707;
 	margin-bottom: 20px;
 	float:left;
 	height: 100px;
 	text-align: center;
+	border-radius: 5px;
+	border: 1px solid #838282;
+}
+
+.kafell
+{
+	box-sizing: border-box;
+	width: 25%;
+	box-sizing: border-box;
+	padding-left: 10px;
+	padding-right: 10px;
+	float:left;
 }
 
 .kafel_duzy
 {
-	background-color: white;
-	width:20%;
+	border-radius: 5px;
+	border: 1px solid #838282;
+	font-size: 18px;
+	color: #F2F2F2;
+	background-color: #070707;
+	width:100%;
 	min-height: 270px;
-	border-left: 10px solid #F6F3F3;
-	border-right: 10px solid #F6F3F3;
+	max-height: 300px;
 	text-align: center;
+	float:left;
+}
+
+.kafell_duzy
+{
+	box-sizing: border-box;
+	width: 40%;
+	box-sizing: border-box;
+	padding-left: 10px;
+	padding-right: 10px;
 	float:left;
 }
 
@@ -230,11 +344,10 @@ input[class="submitrej"]:hover
 
 .wykres
 {
-	background-color: white;
+	background-color: red;
 	width:50%;
 	height: 160px;
-	border-left: 10px solid #F6F3F3;
-	border-right: 10px solid #F6F3F3;
+	box-sizing: border-box;
 	text-align: center;
 	float:left;	
 	margin-bottom: 10px;
@@ -243,19 +356,37 @@ input[class="submitrej"]:hover
 #wplywyiwyplywy
 {
 	float:left;
-	width:30%;
-	height: 300px;
+	width:100%;
 }
 
+.wplywyyiwyplywy
+{
+	float:left;
+	width: 60%;
+	box-sizing: border-box;
+}
+
+.wplywyyywyplywy
+{
+	box-sizing: border-box;
+	width: 50%;
+	float:left;
+	padding-left: 10px;
+	padding-right: 10px;
+	
+}
 .wplywyywyplywy
 {
-	background-color: white;
+	font-size: 18px;
+	color: #F2F2F2;
+	background-color: #070707;
+	box-sizing: border-box;
 	float:left;
-	width:220px;
+	width:100%;
 	height: 80px;
-	border-left: 10px solid #F6F3F3;
-	border-right: 10px solid #F6F3F3;
-	margin-top: 20px;
+	margin-top: 20px;	
+	border-radius: 5px;
+	border: 1px solid #838282;
 }
 
 
@@ -292,12 +423,28 @@ input[class="submitrej"]:hover
 	font-size: 20px;
 }
 
+th, td
+{
+	border-left: none;
+  border-right: none;
+}
+
+tr:hover
+{
+	background-color: #047CF3;
+	font-size: 22px;
+}
+
 #historia
 {
+	font-size: 20px;
+	color: white;
+	background-color:  #141415;
+	margin-top: 20px;
 	width:80%;
 	float:left;
 	text-align: center;
-	min-height:400px;
+	min-height:450px;
 }
 
 #kategorie_wydatkow

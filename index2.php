@@ -61,7 +61,7 @@
 	</ol>
 	</div>
 	<?php
-		echo "Witaj ".$_SESSION['user']." w swoim wirtualnym portfelu!</br></br>";
+		echo "</br>"."<span style='color: #CBCBCB;'>Witaj "."<b>".$_SESSION['user']."</b>"." w swoim wirtualnym portfelu!</span></br></br>";
 			  try
 			{
 				$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
@@ -132,14 +132,18 @@
 			
 	?>
 	<div id="dashboard">
+	<div class="parent1">
+	<div class="kafell">
 		<div class="kafel">
-		<?php
-			echo "Obecny stan portfela"."</br></br>";
+		<?php 
+			echo '<span style="color:#838283; font-size: 18px;">Obecny stan portfela</span>'.'</br></br>';
 			echo $stan_konta." zł";
 		?>
 		</div>
+	</div>
+	<div class="kafell">
 		<div class="kafel">
-		Ostatnia transakcja: </br></br>
+		<span style="color:#838283; font-size: 18px;">Ostatnia transakcja</span></br></br>
 		<?php
 			if($ile_transakcji>0)
 		  {
@@ -158,15 +162,19 @@
 			}
 		?>
 		</div>
+		</div>
+		<div class="kafell">
 		<div class="kafel">
-		Ilość transakcji:
+		<span style="color:#838283; font-size: 18px;">Ilość transakcji</span>
 		<?php
 		if ($ile_transakcji>0) echo "</br></br>".$ile_transakcji;
-		else echo "Brak transakcji";
+		else echo '</br></br>'."Brak transakcji";
 		?>
 		</div>
+		</div>
+		<div class="kafell">
 		<div class="kafel">
-		Łączny majątek:
+		<span style="color:#838283; font-size: 18px;">Obecny stan portfela</span>
 		<?php
 			$lacznie = $skarbonka+$stan_konta;
 			echo "</br></br>".$lacznie;
@@ -174,13 +182,17 @@
 			
 		?>
 		</div>
+		</div>
+		</div>
 		<div style="clear:both"></div>
+		<div class="parent2">
+		<div class="kafell_duzy">
 		<div class="kafel_duzy">
-		Moja Skarbonka
+		<span style="color:#838283; font-size: 18px;">Moja Skarbonka</span>
 		<?php
 		function wykres($cel_oszczednosci, $skarbonka, $brakuje )
 		{
-			echo "<div id='donutchart' style='width: 100%; height: 200px;'>
+			echo "<div id='donutchart' style='max-width: 100%; height: 185px;'>
 				<script type='text/javascript'>
 				  google.charts.load('current', {packages:['corechart']});
 				  google.charts.setOnLoadCallback(drawChart);
@@ -195,6 +207,7 @@
 					  legend: 'none',
 					  pieHole: 0.6,
 					  chartArea:{top:10,width:'100%',height:'85%'},
+					  backgroundColor: '#070707',
 					  colors:['green','red'],
 					};
 
@@ -211,18 +224,19 @@
 			//jeśli jest dodany już cel oszczędzania
 			else if(($cel_oszczednosci != "brak")&& ($skarbonka == 0) )
 		  {
-				echo "</br>CEL: ".$cel_oszczednosci;			  
+				echo "</br><span style='color: #838283; font-size: 18px;'>CEL: </span>".$cel_oszczednosci;		
 				wykres($cel_oszczednosci, $skarbonka, $brakuje);
-				echo "</br>".'<a href="usun_skarbonke.php">USUŃ cel zbieraniny!</a>'."</br>";
-				echo '<a href="edytuj_skarbonke.php">EDYTUJ cel zbieraniny!</a>'."</br>";
+				echo '<a href="usun_skarbonke.php"><input type="submit" class="delete" value="USUŃ" /></a>';
+				echo '<a href="edytuj_skarbonke.php"><input type="submit" class="edit" value="EDYTUJ" /></a>';
 			}
 			//jeśli jest dodany cel i dodane juz pierwsze wpłaty i ilość zaoszczedzonej kasy nie przewyzsza tego ile potrzeba
 			else if(($cel_oszczednosci != "brak")&& ($skarbonka != 0)&& ($brakuje >0 ))
 			{
-				echo "</br>CEL: ".$cel_oszczednosci;
+				echo "</br><span style='color: #838283; font-size: 18px;'>CEL: </span>".$cel_oszczednosci;		
 				wykres($cel_oszczednosci, $skarbonka, $brakuje);
-				echo '<a href="usun_skarbonke.php">USUŃ cel zbieraniny!</a>'."</br>";
-				echo '<a href="edytuj_skarbonke.php">EDYTUJ cel zbieraniny!</a>'."</br>";
+				
+				echo '<a href="usun_skarbonke.php"><input type="submit" class="delete" value="USUŃ" /></a>';
+				echo '<a href="edytuj_skarbonke.php"><input type="submit" class="edit" value="EDYTUJ" /></a>';
 			}
 			
 			//jeśli jest dodany cel i dodane juz pierwsze wpłaty i ilość zaoszczedzonej kasy jest ile potrzeba
@@ -230,8 +244,8 @@
 			{
 				echo "</br>"."Gratulacje!  Uzbierałeś pieniądze na "."$cel_oszczednosci";
 				wykres($cel_oszczednosci, $skarbonka, $brakuje);
-				echo '<a href="usun_skarbonke.php">USUŃ cel zbieraniny!</a>'."</br>";
-				echo '<a href="edytuj_skarbonke.php">EDYTUJ cel zbieraniny!</a>'."</br>";
+				echo '<a href="usun_skarbonke.php"><input type="submit" class="delete" value="USUŃ" /></a>';
+				echo '<a href="edytuj_skarbonke.php"><input type="submit" class="edit" value="EDYTUJ" /></a>';
 			}
 			
 			//jeśli jest dodany cel i dodane juz pierwsze wpłaty i ilość zaoszczedzonej kasy jest wieksza niz potrzeba
@@ -239,13 +253,15 @@
 			{
 				echo "</br>"."Gratulacje!  Uzbierałeś pieniądze na "."$cel_oszczednosci";
 				wykres($cel_oszczednosci, $skarbonka, $brakuje=0);
-				echo '<a href="usun_skarbonke.php">USUŃ cel zbieraniny!</a>'."</br>";
-				echo '<a href="edytuj_skarbonke.php">EDYTUJ cel zbieraniny!</a>'."</br>";
+				echo '<a href="usun_skarbonke.php"><input type="submit" class="delete" value="USUŃ" /></a>';
+				echo '<a href="edytuj_skarbonke.php"><input type="submit" class="edit" value="EDYTUJ" /></a>';
 			}
 			
 		?>
 
 		</div>
+		</div>
+		<div class="wplywyyiwyplywy">
 		<div id="wplywyiwyplywy">
 		
 			<a href = "kategorie_wydatkow.php" >
@@ -382,9 +398,11 @@
 				</div>
 			</a>
 			<div style="clear:both"></div>
-			<div class = "wplywyywyplywy">Wydatki
+			<div class="parent3">
+			<div class="wplywyyywyplywy">
+			<div class = "wplywyywyplywy"><span style="color:#838283; font-size: 18px;">Wydatki</span>
 			<?php
-				echo date('m-Y'); echo "</br></br>";
+				echo date('m-Y'); echo "</br>";
 				 $sql = "SELECT * FROM transakcje WHERE id = '$id' AND wplywwyplyw = 'wyplyw' AND data BETWEEN '$poczatek_miesiaca' AND '$koniec_miesiaca'";
 				 $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
 				 $rezultat = $polaczenie -> query ($sql);
@@ -400,15 +418,18 @@
 						 $laczna_ilosc_wydanej_kasy = $laczna_ilosc_wydanej_kasy + $ilosc_wydanej_kasy;
 						 
 					 }
-					 echo $laczna_ilosc_wydanej_kasy." zł";
+					 //echo $laczna_ilosc_wydanej_kasy." zł";
+					 echo "</br><span style='color: red; font-size: 18px;'>".$laczna_ilosc_wydanej_kasy." zł</span>";
 				 }
-				 else echo "Brak wydatków w tym miesiącu!";
+				 else echo '<span style="color:#838283; font-size: 15px;">Brak wydatków w tym miesiącu!</span>';
 				 $polaczenie->close();
 			?>
 			</div>
-			<div class = "wplywyywyplywy">Wpływy
+			</div>
+			<div class="wplywyyywyplywy">
+			<div class = "wplywyywyplywy"><span style="color:#838283; font-size: 18px;">Wpływy</span>
 			<?php
-				echo date('m-Y'); echo "</br></br>";
+				echo date('m-Y'); echo "</br>";
 				 $sql = "SELECT * FROM transakcje WHERE id = '$id' AND wplywwyplyw = 'wplyw' AND data BETWEEN '$poczatek_miesiaca' AND '$koniec_miesiaca'";
 				 $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
 				 $rezultat = $polaczenie -> query ($sql);
@@ -424,15 +445,19 @@
 						 $laczna_ilosc_wydanej_kasy = $laczna_ilosc_wydanej_kasy + $ilosc_wydanej_kasy;
 						 
 					 }
-					 echo "+ ".$laczna_ilosc_wydanej_kasy." zł";
+					 echo "</br><span style='color: green; font-size: 18px;'>+".$laczna_ilosc_wydanej_kasy." zł</span>";
 				 }
-				 else echo "Brak wpływów w tym miesiącu!";
+				 else echo '<span style="color:#838283; font-size: 15px;">Brak wpływów w tym miesiącu!</span>';
 				 $polaczenie -> close();
 			?>
 			</div>
+			</div>
+			</div>
 			<div style= "clear:both"></div>
 		</div>
-		
+		</div>
+		</div>
+		<div id="parent">
 		<div class="wykres_duzy"><a href="stan_portfela.php">Stan portfela (ostatnie 7 dni)</a>
 		<?php
 			require_once("connect.php");
@@ -468,7 +493,7 @@
 				$standnia[$j] = $stan_konta - $wydatkidnia[$j+1];
 			}
 		?>
-			<div id="chart_div" style="width: 300px; height: 250px; text-align: center;">
+			<div id="chart_div" style="width: 100%; height: 250px; text-align: center; margin-left:auto; margin-right: auto;">
 				<script type="text/javascript">
 					  google.charts.load('current', {'packages':['corechart']});
 					  google.charts.setOnLoadCallback(drawChart);
@@ -494,7 +519,8 @@
 						var options = {
 							legend: 'none',
 							chartArea:{top:30,width:'75%',height:'70%'},
-						  vAxis: {minValue: 0}
+						  vAxis: {minValue: 0},
+						  backgroundColor: '#141415',
 						  
 						};
 
@@ -504,6 +530,7 @@
 				</script>
 			</div>
 		</div>
+		
 		<div class="wykres_duzy">Wydatki (ostatnie pół roku)
 				<?php
 				for($i=0; $i<6; $i++)
@@ -574,6 +601,8 @@
 			<div id="columnchart_material" style="width: 300px; height: 230px;"></div>
 		</div>
 		<div style= "clear:both"></div>
+		</div>
+
 		
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone

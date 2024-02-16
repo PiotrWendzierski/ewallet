@@ -1,4 +1,5 @@
 <?php
+
 	session_start();
 	if(!isset($_SESSION['zalogowany']))
 	{
@@ -25,8 +26,8 @@ if(isset($_POST['delete']))
 	$zmiana = "wplyw";
 	if($cena < 0) $zmiana = "wyplyw";
 	
-	
 	$data =  $_POST['data'];
+	echo $cena;
 	
 	$query0 = "SELECT * FROM uzytkownicy WHERE id='$id_user' ";
 	$wiersz2 = mysqli_query($connection, $query0);
@@ -73,7 +74,6 @@ if(isset($_POST['delete']))
 			if($query4)
 			{
 				header("Location:historia.php");
-				
 			}
 			else echo "no";
 			

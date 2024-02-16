@@ -146,7 +146,7 @@
 	<div id="meni">		
 	
 	<ol>
-		<a class="rejestraja" href="index2.php"><li><i class="icon-home"></i></li>Ekran główny</a>
+		<li><a class="rejestraja" href="index2.php"><i class="icon-home"></i>Ekran główny</a></li>
 		<li><a class="rejestraja" href="dodawanie.php"><i class="icon-plus-circled"></i>Nowa transakcja</a></li>
 		<li><a class="rejestraja" href="historia.php"><i class="icon-history"></i>Historia portfela</a></li>
 		<li><a class="rejestraja" href="#"><i class="icon-bank"></i>Skarbonka</a>
@@ -204,7 +204,7 @@
 				unset ($e_data2);
 			}
 			?></br>
-			 <input type="submit" class="submitrej" value="Zatwierdź">
+			 <input type="submit" class="submitrej" value="ZATWIERDŹ">
 		</form>
 </br>
 	</div>

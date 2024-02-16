@@ -25,7 +25,7 @@
 			$e_cena= '</br>'.'<span style="color:red">Wprowadź cenę (cena nie może być równa  zeru)!</span>'.'</br>';
 		}
 		//czy cena jest nizsza lub równa stanowi konta
-		if (($_SESSION['stan_konta'] + $cena)<0)
+		if ((($_SESSION['stan_konta'] + $cena)<0)||($cena == ""))
 		{
 			$wszystko_ok = false;
 			$e_cena2= '</br>'.'<span style="color:red">Cena nie może być większa niz obecny stan konta!</span>'.'</br>';
@@ -204,7 +204,7 @@
 				unset ($e_data2);
 			}
 			?></br>
-			 <input type="submit" class="submitrej" value="Zatwierdź">
+			 <input type="submit" class="submitrej" value="ZATWIERDŹ">
 		</form>
 </br>
 	</div>

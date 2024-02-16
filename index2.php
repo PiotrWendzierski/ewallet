@@ -263,10 +263,11 @@
 		</div>
 		<div class="wplywyyiwyplywy">
 		<div id="wplywyiwyplywy">
-		
+		<div class="parent3">
 			<a href = "kategorie_wydatkow.php" >
+			<div class="wplywyyyywyplywy">
 				<div class = "wykres">
-				Wydatki 
+				<span style="color:#838283; font-size: 18px;">Wydatki</span>
 				<?php
 				require_once("connect.php");
 
@@ -280,7 +281,7 @@
 
 				$rezultat = mysqli_query($polaczenie,$sql);
 				?>
-				<div id="piechart" style="width: 100%; height: 150px; ">
+				<div id="piechart" style="width: 100%; height: 135px; ">
 				
 				<script type='text/javascript'>
 					  google.charts.load('current', {'packages':['corechart']});
@@ -318,6 +319,7 @@
 
 						var options = {
 						  legend: 'none',
+						  backgroundColor: '#070707',
 						  chartArea:{top:10,width:'100%',height:'85%'},
 						};
 
@@ -328,10 +330,12 @@
 					</script>
 				</div>
 				</div>
+				</div>
 			</a>
 			<a href = "kategorie_wplywow.php" >
+			<div class="wplywyyyywyplywy">
 				<div class = "wykres">
-				Przychody
+				<span style="color:#838283; font-size: 18px;">Wpływy</span>
 				<?php
 				require_once("connect.php");
 
@@ -345,7 +349,7 @@
 
 				$rezultat = mysqli_query($polaczenie,$sql);
 				?>
-				<div id="piechartt" style="width: 100%; height: 150px; ">
+				<div id="piechartt" style="width: 100%; height: 135px; ">
 				
 				<script type='text/javascript'>
 					  google.charts.load('current', {'packages':['corechart']});
@@ -383,6 +387,7 @@
 
 						var options = {
 						  legend: 'none',
+						  backgroundColor: '#070707',
 						  chartArea:{top:10,width:'100%',height:'85%'},
 						};
 
@@ -396,7 +401,9 @@
 				
 				
 				</div>
+				</div>
 			</a>
+			</div>
 			<div style="clear:both"></div>
 			<div class="parent3">
 			<div class="wplywyyywyplywy">
@@ -457,8 +464,10 @@
 		</div>
 		</div>
 		</div>
-		<div id="parent">
-		<div class="wykres_duzy"><a href="stan_portfela.php">Stan portfela (ostatnie 7 dni)</a>
+		<div class="parent">
+		<div class="wykress_duzy">
+		<a href="stan_portfela.php">
+		<div class="wykres_duzy"><span style="color:#838283; font-size: 18px;">Stan portfela</span> (ostatnie 7 dni)
 		<?php
 			require_once("connect.php");
 
@@ -493,7 +502,7 @@
 				$standnia[$j] = $stan_konta - $wydatkidnia[$j+1];
 			}
 		?>
-			<div id="chart_div" style="width: 100%; height: 250px; text-align: center; margin-left:auto; margin-right: auto;">
+			<div id="chart_div" style="width: 100%; height: 245px; text-align: center; margin-left:auto; margin-right: auto;">
 				<script type="text/javascript">
 					  google.charts.load('current', {'packages':['corechart']});
 					  google.charts.setOnLoadCallback(drawChart);
@@ -520,9 +529,11 @@
 							legend: 'none',
 							chartArea:{top:30,width:'75%',height:'70%'},
 						  vAxis: {minValue: 0},
-						  backgroundColor: '#141415',
-						  
-						};
+						  backgroundColor: '#070707',
+						  colors:['229CD1'],
+						  hAxis: {textStyle: {color: '#F2F2F2'} },
+						  vAxis: {textStyle: {color: '#F2F2F2'},gridlines:{count: -1},format: '# ' },
+						}
 
 						var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
 						chart.draw(data, options);
@@ -530,8 +541,11 @@
 				</script>
 			</div>
 		</div>
+		</div>
+		</a>
+		<div class="wykress_duzy">
+		<div class="wykres_duzy"><span style="color:#838283; font-size: 18px;">Wydatki</span> (ostatnie pół roku)
 		
-		<div class="wykres_duzy">Wydatki (ostatnie pół roku)
 				<?php
 				for($i=0; $i<6; $i++)
 				{
@@ -570,6 +584,7 @@
 					
 				}
 				?>
+				<div id="columnchart_material" style="width: 90%; height: 75%; margin-top: 20px; margin-left: auto; margin-right: auto;  ">
 				 <script type="text/javascript">
 					  google.charts.load('current', {'packages':['bar']});
 					  google.charts.setOnLoadCallback(drawChart);
@@ -587,20 +602,25 @@
 						]);
 
 						var options = {
+							
 						  legend: { position: "none" },
-						  colors:['green','red'],
-						  animation: {"startup": true}
-						  
+						  colors:['#07CD00','FF0011'],
+						  chartArea:{backgroundColor: '#070707'},
+						  backgroundColor: '#070707',
+						  hAxis: {textStyle: {color: '#F2F2F2', fontSize: 10} },
+						  vAxis: {textStyle: {color: '#F2F2F2', fontSize: 10},gridlines:{count: -1},format: '# ' },
 						};
 
 						var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
-						chart.draw(data, options);
+						chart.draw(data, google.charts.Bar.convertOptions(options));
 					  }
 			</script>
-			<div id="columnchart_material" style="width: 300px; height: 230px;"></div>
+			</div>
+		</div>
 		</div>
 		<div style= "clear:both"></div>
+		
 		</div>
 
 		

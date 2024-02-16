@@ -276,10 +276,10 @@
 							while ($row = $rezultat -> fetch_assoc())
 							{
 								$kategoria = $row['kategoria'];
-								$cena = $row['cena']; if($cena>0)$cena = '<span style="color:green">'.'+'.$cena.'</span>'; else $cena = '<span style="color:red">'.$cena.'</span>';
+								$cena = $row['cena']; if($cena>0)$cenaaaaaaaaaa = '<span style="color:green">'.'+'.$cena.'</span>'; else $cenaaaaaaaaaa = '<span style="color:red">'.$cena.'</span>';
 								$data = $row['data'];
 								//echo "<table border = '1'><tr><td>5</td></tr><table>";
-								echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed; margin-left: auto; margin-right: auto;'><td>".$numer_transakcji."</td><td>".$kategoria."</td><td>".$cena."</td><td>".$data."</td></tr></table>";
+								echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed; margin-left: auto; margin-right: auto;'><td>".$numer_transakcji."</td><td>".$kategoria."</td><td>".$cenaaaaaaaaaa."</td><td>".$data."</td></tr></table>";
 								$numer_transakcji++; 
 								}
 					}
@@ -300,13 +300,13 @@
 							while ($row = $rezultat -> fetch_assoc())
 							{
 								$kategoria = $row['kategoria'];
-								$cena = $row['cena']; if($cena>0)$cena = '<span style="color:green">'.'+'.$cena.'</span>'; else $cena = '<span style="color:red">'.$cena.'</span>';
+								$cena = $row['cena']; if($cena>0)$cenaaaaaaaaaa = '<span style="color:green">'.'+'.$cena.'</span>'; else $cenaaaaaaaaaa = '<span style="color:red">'.$cena.'</span>';
 								$_SESSION['cena'] = $cena;
 								$data = $row['data'];
 								$id_jedynej_transakcji = $row['id_transakcji'];
 								
 								//echo "<table border = '1'><tr><td>5</td></tr><table>";
-								echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed; margin-left: auto; margin-right: auto;'><td>".$numer_transakcji."</td><td>".$kategoria."</td><td>".$cena."</td><td>".$data."</td>
+								echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed; margin-left: auto; margin-right: auto;'><td>".$numer_transakcji."</td><td>".$kategoria."</td><td>".$cenaaaaaaaaaa."</td><td>".$data."</td>
 								
 								<form action = 'delete.php' method = 'post'>
 									<input type = 'hidden' name = 'id' value = '$id' >

@@ -40,6 +40,7 @@ a.rejestraja:hover
 {
 	width: 100%;
 	background-image: url("img/tlo.jpg");
+	min-height:700px;
 }
 #container
 {
@@ -61,6 +62,13 @@ a.rejestraja:hover
 	font-size: 40px;
 	border-bottom: 3px solid #047CF3;
 }
+.parent
+{
+	box-sizing: border-box;
+	width: 50%;
+	float:left;
+}
+
 .parent1
 {
 	border-sizing: border-box;
@@ -83,12 +91,26 @@ a.rejestraja:hover
 
 .wykres_duzy
 {
-	width: 25%;
-	background-color: white;
+	font-size: 18px;
+	border: 1px solid #838282;
+	color: #F2F2F2;
+	width: 100%;
+	background-color: #070707;
+	border-radius: 5px;
 	margin-bottom: 20px;
+	box-sizing: border-box;
 	float:left;
 	height: 270px;
 	text-align: center;
+}
+
+.wykress_duzy
+{
+	width: 50%;
+	box-sizing: border-box;
+	padding-left: 10px;
+	padding-right: 10px;
+	float: left;
 }
 
 #sortowanie
@@ -96,14 +118,21 @@ a.rejestraja:hover
 	color: #838283;
 	font-size: 15px;
 	background-color: #070707;
-	min-height: 470px;
+	height: 470px;
 	width: 20%;
 	float:left;
 }
+.filtring
+{
+	color: #F2F2F2;
+	min-height: 10px;
+	float: left;
+	width: 50%;
+}
 #okres
 {
-	margin-right: 30px;
 	text-align: right;
+	margin-right: 30px;
 }
 
 #login
@@ -174,9 +203,13 @@ input[class="sorting"]
 	outline: none;
 }
 
+
+
 input[class="filtruj"]
 {
-	width:200px;
+	min-width:200px;
+	margin-left: 10px;
+	margin-top: 10px;
 	background-color: #047CF3;
 	font-size: 20px;
 	color: white;
@@ -228,6 +261,26 @@ input[class="submitrej"]
 	cursor: pointer;
 	letter-spacing: 1px;
 	outline: none;
+}
+
+input[class="anuluj"]
+{
+	width:300px;
+	background-color: #F7041C;
+	color: #ECB2B8;
+	font-size: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	letter-spacing: 1px;
+	outline: none;
+}
+
+input[class="anuluj"]:hover
+{
+	background-color: #F95050;
 }
 
 
@@ -344,8 +397,12 @@ input[class="submitrej"]:hover
 
 .wykres
 {
-	background-color: red;
-	width:50%;
+	border-radius: 5px;
+	border: 1px solid #838282;
+	font-size: 18px;
+	color: #F2F2F2;
+	background-color: #070707;
+	width:100%;
 	height: 160px;
 	box-sizing: border-box;
 	text-align: center;
@@ -367,6 +424,15 @@ input[class="submitrej"]:hover
 }
 
 .wplywyyywyplywy
+{
+	box-sizing: border-box;
+	width: 50%;
+	float:left;
+	padding-left: 10px;
+	padding-right: 10px;
+	
+}
+.wplywyyyywyplywy
 {
 	box-sizing: border-box;
 	width: 50%;
@@ -449,8 +515,8 @@ tr:hover
 
 #kategorie_wydatkow
 {
+	margin-top: 90px;
 	text-align: center;
-	min-height: 400px;
 }
 
 #pole

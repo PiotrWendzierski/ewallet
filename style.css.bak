@@ -129,6 +129,8 @@ a.rejestraja:hover
 {
 	text-align: right;
 	margin-right: 30px;
+	margin-bottom: 10px;
+	z-index: 100;
 }
 
 #login
@@ -240,7 +242,7 @@ input[class="editt"]
 	border: none;
 	cursor: pointer;
 	background-color: #24AC24;
-	width:30%;
+	width:40%;
 	letter-spacing: 0.5px;
 	outline: none;
 	float: left;

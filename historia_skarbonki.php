@@ -169,14 +169,14 @@
 									<input type = 'hidden' name = 'id' value = '$id' >
 									<input type = 'hidden' name = 'cena' value = '$kwota_przeznaczona' >
 									<input type = 'hidden' name = 'data' value = '$data_transakcji' >
-									<td> <input type='submit' name='delete'  class='delete' value = 'Usuń'>  
+									<td> <input type='submit' name='delete'  class='delette' value = 'Usuń'>  
 								</form>
 								
 								<form id = 'idddd' action = 'editskarbonka.php' method = 'post'>
 									<input type = 'hidden' name = 'id' value = '$id' >
 									<input type = 'hidden' name = 'cena' value = '$kwota_przeznaczona' >
 									<input type = 'hidden' name = 'data' value = '$data_transakcji' >
-									 <input type='submit' name='delete'  class='edit' value = 'Edytuj'> </td>
+									 <input type='submit' name='delete'  class='editt' value = 'Edytuj'> </td>
 								</form>
 								</tr></table>";
 							$numer_transakcji++; 

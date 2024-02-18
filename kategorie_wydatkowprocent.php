@@ -89,7 +89,7 @@ $rezultat = mysqli_query($polaczenie,$sql);
 	</form>
 	</div>
 	<div id = "kategorie_wydatkow">
-	<div id="piechart" style="width: 70%; height: 500px; margin-left: auto; margin-right: auto; ">
+	<div id="piechart" style="width: 60%; height: 500px; margin-left: auto; margin-right: auto; ">
 <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);

@@ -164,7 +164,7 @@
 							$data_transakcji = $row['data_transakcji'];
 							$kwota_przeznaczona = $row['kwota_przeznaczona'];  if($kwota_przeznaczona>0)$kwota_przeznaczonaa = '<span style="color:green">'.'+'.$kwota_przeznaczona.'</span>'; else $kwota_przeznaczonaa = '<span style="color:red">'.$kwota_przeznaczona.'</span>';
 							//echo "<table border = '1'><tr><td>5</td></tr><table>";
-							echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed; margin-left:auto; margin-right: auto;'><td>".$numer_transakcji."</td><td>".$kwota_przeznaczona."</td><td>".$data_transakcji."</td>
+							echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed; margin-left:auto; margin-right: auto;'><td>".$numer_transakcji."</td><td>".$kwota_przeznaczonaa."</td><td>".$data_transakcji."</td>
 							<form action = 'deleteskarbonka.php' method = 'post'>
 									<input type = 'hidden' name = 'id' value = '$id' >
 									<input type = 'hidden' name = 'cena' value = '$kwota_przeznaczona' >
@@ -176,7 +176,7 @@
 									<input type = 'hidden' name = 'id' value = '$id' >
 									<input type = 'hidden' name = 'cena' value = '$kwota_przeznaczona' >
 									<input type = 'hidden' name = 'data' value = '$data_transakcji' >
-									 <input type='submit' name='delete'  class='edit' value = 'Edytuj'> </td>
+									 <input type='submit' name='delete'  class='editt' value = 'Edytuj'> </td>
 								</form>
 								</tr></table>";
 							$numer_transakcji++; 

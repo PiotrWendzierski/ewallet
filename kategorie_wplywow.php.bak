@@ -87,7 +87,7 @@ $rezultat = mysqli_query($polaczenie,$sql);
 			}
 			
 			?>
-			<input type="submit" class="filtruj" value="Filtruj"></input>
+			</br><input type="submit" class="filtruj" value="Filtruj"></input>
 	</form>
 	</div>
 	<div id="kategorie_wydatkow">

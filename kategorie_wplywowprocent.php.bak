@@ -71,7 +71,7 @@ $rezultat = mysqli_query($polaczenie,$sql);
 	</ol>
 	</div>
 	<div class="filtring">
-		<a href="kategorie_wplywow.php">POKAŻ WYKRES ILOŚCIOWY</a>
+		<a href="kategorie_wplywow.php"><input type='submit' class='filtruj' value = 'POKAŻ WYKRES ILOŚCIOWY' /></a>
 	</div>
 	<div class="filtring">
 	<form id = "okres" action="" method = "GET">

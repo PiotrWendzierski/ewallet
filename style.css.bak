@@ -30,11 +30,7 @@ a.rejestraja:hover
 	display:block;
 }
 
-#idddd
-{
-	padding-left: 30px;
-	float:left;
-}
+
 
 #tlo
 {
@@ -118,7 +114,7 @@ a.rejestraja:hover
 	color: #838283;
 	font-size: 15px;
 	background-color: #070707;
-	height: 470px;
+	min-height: 470px;
 	width: 20%;
 	float:left;
 }
@@ -230,10 +226,26 @@ input[class="edit"]
 	border: none;
 	cursor: pointer;
 	background-color: #24AC24;
-	width:70px;
+	width:40%;
 	letter-spacing: 0.5px;
 	outline: none;
 }
+
+input[class="editt"]
+{
+	color: #C0FFC4;
+	border-radius: 5px;
+	margin-left: 4px;
+	margin-right: 4px;
+	border: none;
+	cursor: pointer;
+	background-color: #24AC24;
+	width:30%;
+	letter-spacing: 0.5px;
+	outline: none;
+	float: left;
+}
+
 
 input[class="delete"]
 {
@@ -244,9 +256,25 @@ input[class="delete"]
 	border: none;
 	cursor: pointer;
 	background-color: #F7041C;
-	width:70px;
+	width:40%;
 	letter-spacing: 0.5px;
 	outline: none;
+	
+}
+
+input[class="delette"]
+{
+	color: #ECB2B8;
+	border-radius: 5px;
+	margin-right: 4px;
+	margin-left: 4px;
+	border: none;
+	cursor: pointer;
+	background-color: #F7041C;
+	width:40%;
+	letter-spacing: 0.5px;
+	outline: none;
+	float: left;
 }
 
 input[class="submitrej"]
@@ -531,7 +559,6 @@ ol
 	list-style: none;
 	font-size: 18px;
 	line-height: 200%;
-	display: inline-block;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 15px;
 }
@@ -539,8 +566,8 @@ ol
 ol > li
 {
 	float: left;
-	min-width: 200px;
-	height: 80px;
+	width: 16.6%;
+	height: 70px;
 	text-align: center;
 }
 
@@ -566,5 +593,5 @@ ol>li>ul>li
 		border-bottom: 1px solid #141415;
 		position: relative;
 		z-index: 100;
-		min-width: 200px;
+		width: 100%;
 }

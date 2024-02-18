@@ -147,7 +147,7 @@
 		<?php
 			if($ile_transakcji>0)
 		  {
-			 $teraz=gmmktime();
+			 $teraz=time();
 			 $dzienn = strtotime($data);
 			$sekund = abs($teraz-$dzienn);
 			$minut = (int)($sekund/60);

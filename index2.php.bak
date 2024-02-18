@@ -584,7 +584,7 @@
 					
 				}
 				?>
-				<div id="columnchart_material" style="width: 90%; height: 75%; margin-top: 22px; margin-left: auto; margin-right: auto;  ">
+				<div id="columnchart_material" style="width: 90%; height: 75%; margin-top: 20px; margin-left: auto; margin-right: auto;  ">
 				 <script type="text/javascript">
 					  google.charts.load('current', {'packages':['bar']});
 					  google.charts.setOnLoadCallback(drawChart);

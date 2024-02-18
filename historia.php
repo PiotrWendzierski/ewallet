@@ -308,20 +308,20 @@
 								//echo "<table border = '1'><tr><td>5</td></tr><table>";
 								echo "<table border='1' rules='all' frame='none' style='width:90%;table-layout:fixed; margin-left: auto; margin-right: auto;'><td>".$numer_transakcji."</td><td>".$kategoria."</td><td>".$cenaaaaaaaaaa."</td><td>".$data."</td>
 								
-								<form action = 'delete.php' method = 'post'>
+								<td><form action = 'delete.php' method = 'post'>
 									<input type = 'hidden' name = 'id' value = '$id' >
 									<input type = 'hidden' name = 'kategoria' value = '$kategoria' >
 									<input type = 'hidden' name = 'cena' value = '$cena' >
 									<input type = 'hidden' name = 'data' value = '$data' >
-									<td> <input type='submit' name='delete' class='delete' value = 'Usuń'>  
+									 <input type='submit' name='delete' class='delette' value = 'Usuń'>  
 								</form>
 								
-								<form id = 'idddd' action = 'updatedata.php' method = 'post'>
+								<form  action = 'updatedata.php' method = 'post'>
 									<input type = 'hidden' name = 'id' value = '$id' >
 									<input type = 'hidden' name = 'kategoria' value = '$kategoria' >
 									<input type = 'hidden' name = 'cena' value = '$cena' >
 									<input type = 'hidden' name = 'data' value = '$data' >
-									 <input type='submit' name='delete'  class='edit' value = 'Edytuj'> </td>
+									 <input type='submit' name='delete'  class='editt' value = 'Edytuj'> </td>
 								</form>
 								</tr></table>";
 								

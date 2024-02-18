@@ -258,6 +258,8 @@ if(!isset($_SESSION['stan_konta'])|| ($_SESSION['stan_konta'] ==false))
 							chartArea:{top:30,width:'80%',height:'70%'},
 						  vAxis: {minValue: 0},
 						  colors:['229CD1'],
+						  hAxis: {textStyle: {color: '#F2F2F2'} },
+						  vAxis: {textStyle: {color: '#F2F2F2'},gridlines:{count: -1},format: '# ' },
 						  backgroundColor: '#141415',
 						};
 

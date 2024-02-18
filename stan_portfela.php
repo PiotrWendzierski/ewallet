@@ -30,7 +30,7 @@ if(!isset($_SESSION['stan_konta'])|| ($_SESSION['stan_konta'] ==false))
 			$rezultat3 = mysqli_query($polaczenie, $sql3);
 			$row3 = $rezultat3->fetch_assoc();
 			$pierwsza_data = $row3['data'];
-			$teraz=gmmktime();		  
+			$teraz=time();		  
 			$dzienn = strtotime($pierwsza_data);
 			$sekund = abs($teraz-$dzienn);
 			$minut = (int)($sekund/60);

@@ -4,6 +4,7 @@
 * Najważniejsze funkcjonalności
 * Technologie
 * Jak uruchomić
+* Inpiracja
 ## Opis projektu
 ## Najważniejsze funkcjonalności
 ## Technologie
@@ -32,3 +33,6 @@
 <img src="https://github.com/PiotrWendzierski/ewallet/assets/114096435/200fc07d-7bf0-4215-8c6b-4e39131c4663"></img>
 * Wejść w przeglądarkę chrome/opera i wpisać „localhost/ewallet” i kliknąć enter.
  <img src="https://github.com/PiotrWendzierski/ewallet/assets/114096435/c4d52c63-c455-4293-a8aa-c539164f8fac"></img>
+
+ ## Inspiracja
+ Projekt po części inspirowany stroną internetową cointracking.info

@@ -1,19 +1,20 @@
-# eWallet - Twój elektroniczny portfel!
-## Spis treści
-* Opis projektu
-* Najważniejsze funkcjonalności
-* Technologie
-* Jak uruchomić
-* Inpiracja
-## Opis projektu
-## Najważniejsze funkcjonalności
-## Technologie
+# eWallet - Your electronic wallet
+## File contains:
+* project description
+* best features
+* tools
+* how to run
+* inpiration
+## Project description
+## Best features
+## Tools
 * PHP
 * MySQL, phpMyAdmin
 * JavaScript
 * HTML
 * CSS
 * GIT, GitHub
+* Docker, DockerHub
 
 ## Jak uruchomić
 * Pobrać XAMPP: https://www.apachefriends.org/pl/download.html
@@ -34,5 +35,5 @@
 * Wejść w przeglądarkę chrome/opera i wpisać „localhost/ewallet” i kliknąć enter.
  <img src="https://github.com/PiotrWendzierski/ewallet/assets/114096435/c4d52c63-c455-4293-a8aa-c539164f8fac"></img>
 
- ## Inspiracja
- Projekt po części inspirowany stroną internetową cointracking.info
+ ## Inspiration
+ The project was partly inspired by the cointracking.info website

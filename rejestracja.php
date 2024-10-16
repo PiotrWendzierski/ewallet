@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	
 	if(isset($_POST['email']))
   {
 		//Udana walidacja
@@ -53,21 +52,35 @@
 			$_SESSION['e_regulamin'] = '<span style="color:red">Zaznacz regulamin!</span></br>';
 		}
 		//captcha
-		$sekret = "6LddHz4jAAAAAIw8MXLqEb9u2t5zBZXV7ePURmYW";
-		$sprawdz= file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$sekret.'&response='.$_POST['g-recaptcha-response']);
+		
+		/*$sprawdz= file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$sekret.'&response='.$_POST['g-recaptcha-response']);
 		
 		$odpowiedz = json_decode($sprawdz);
-		
 		
 		
 		if($odpowiedz->success==false)
 		{
 			$wszystko_ok = false;
 			$_SESSION['e_boot'] = '<span style="color:red">Potwierdź, że nie jesteś robotem!</span></br>';
+		}*/
+		if(isset($_POST['g-recaptcha-response']))
+		{
+			$sekret = "6LddHz4jAAAAAIw8MXLqEb9u2t5zBZXV7ePURmYW";
+			$ip = $_SERVER['REMOTE_ADDR'];
+			$response = $_POST['g-recaptcha-response'];
+			$url = 'https://www.google.com/recaptcha/api/siteverify?secret=$sekret&response=$response';
+			$fire = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$sekret.'&response='.$_POST['g-recaptcha-response']);
+			$odpowiedz = json_decode($fire);
+			if($odpowiedz->success==false)
+			{
+				$wszystko_ok = false;
+				$_SESSION['e_boot'] = '<span style="color:red">Potwierdź, że nie jesteś robotem!</span></br>';
+			}
+			
 		}
 
 		require_once "connect.php";
-		mysqli_report(MYSQLI_REPORT_STRICT);
+		//mysqli_report(MYSQLI_REPORT_STRICT);
 		try
 		{
 			$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
@@ -194,6 +207,7 @@
 	</div>
 	</div>
 	<div id="footer">Wszelkie prawa zastrzeżone
+		
 	</div>
 	</div>
 	

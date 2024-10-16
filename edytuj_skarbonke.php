@@ -28,6 +28,37 @@
 			$e_potrzebna_ilosc= '</br>'.'<span style="color:red">Wprowadź kwotę większą niż zero!</span>'.'</br>';
 		}
 	}
+	require_once "connect.php";
+	try
+	{
+		$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
+		if($polaczenie->connect_errno!=0)
+		{
+			throw new Exception(mysqli_connect_errno());
+		}
+		else
+		{
+			if((isset($wszystko_ok))&& ($wszystko_ok == true))
+			{
+				$id = $_SESSION['id'];
+				$cel_oszczednosci = $_POST['cel_oszczednosci'];
+				$potrzebna_ilosc = $_POST['potrzebna_ilosc'];
+				if($polaczenie->query("UPDATE uzytkownicy SET cel_oszczednosci = '$cel_oszczednosci', potrzebna_ilosc = '$potrzebna_ilosc' WHERE id= '$id'"))
+				{
+					header('Location: index2.php');
+				}
+				else 
+				{
+					throw new Exception($polaczenie->error);
+				}
+			}
+			$polaczenie->close();
+		}
+	}
+	catch (Exception $e)
+	{
+		echo $e;
+	  }
 	
 ?>
 
@@ -66,8 +97,8 @@
 					<ul>
 						<li><a class="rejestraja" href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
 						<li><a class="rejestraja" href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (kwotowy)</a></li>
 						<li><a class="rejestraja" href="stan_portfela.php">Stan portfela</a></li>
 					</ul>
 		</li>
@@ -94,46 +125,10 @@
 				unset($e_potrzebna_ilosc);
 			}
 			?>
-			<input type='submit' class="submitrej" value='Zaczynamy'>
-			<a href = 'historia.php' ><input type='submit' class="anuluj" name = 'edit' value = 'ANULUJ'>  </a>
+			<input type='submit' class="submitrej" value='Zaczynamy'></br></br>
 		</form>
 		
-	<?php
-	
 
-	require_once "connect.php";
-		try
-		{
-			$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
-			if($polaczenie->connect_errno!=0)
-			{
-				throw new Exception(mysqli_connect_errno());
-			}
-			else
-			{
-				if((isset($wszystko_ok))&& ($wszystko_ok == true))
-				{
-					$id = $_SESSION['id'];
-					$cel_oszczednosci = $_POST['cel_oszczednosci'];
-					$potrzebna_ilosc = $_POST['potrzebna_ilosc'];
-					if($polaczenie->query("UPDATE uzytkownicy SET cel_oszczednosci = '$cel_oszczednosci', potrzebna_ilosc = '$potrzebna_ilosc' WHERE id= '$id'"))
-					{
-						header('Location: index2.php');
-					}
-					else 
-					{
-						throw new Exception($polaczenie->error);
-					}
-				}
-				$polaczenie->close();
-			}
-		}
-		catch (Exception $e)
-		{
-			echo $e;
-		  }
-	
-	?>
 	
 	</div></div>
 </div><div id="footer">Wszelkie prawa zastrzeżone</div>

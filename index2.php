@@ -52,8 +52,8 @@
 					<ul>
 						<li><a class="rejestraja" href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
 						<li><a class="rejestraja" href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (kwotowy)</a></li>
 						<li><a class="rejestraja" href="stan_portfela.php">Stan portfela</a></li>
 					</ul>
 		</li>
@@ -272,8 +272,18 @@
 				require_once("connect.php");
 
 				$miesiac = date('m'); $rok = date('Y');
+
+				function iledni($rok, $miesiac) {
+					if (checkdate($miesiac, 1, $rok)) {
+					  return date("t", mktime(0, 0, 0, $miesiac, 1, $rok));
+					}
+					return false;
+				  }
+				  
+				  
+				$ile_dni = iledni($rok, $miesiac);
 				$poczatek_miesiaca = $rok."-".$miesiac."-01";
-				$koniec_miesiaca = $rok."-".$miesiac."-31";
+				$koniec_miesiaca = $rok."-".$miesiac."-"."$ile_dni";
 				echo $miesiac.".".$rok;
 				$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
 
@@ -341,7 +351,7 @@
 
 				$miesiac = date('m'); $rok = date('Y');
 				$poczatek_miesiaca = $rok."-".$miesiac."-01";
-				$koniec_miesiaca = $rok."-".$miesiac."-31";
+				$koniec_miesiaca = $rok."-".$miesiac."-"."$ile_dni";
 				echo $miesiac.".".$rok;
 				$polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
 
@@ -415,6 +425,7 @@
 				 $rezultat = $polaczenie -> query ($sql);
 				 $ile_kategorii = $rezultat -> num_rows;
 				 $laczna_ilosc_wydanej_kasy= 0;
+				
 				 if($ile_kategorii !=0)
 				 {
 					 //tutaj liczymi ile jest wydanej kasy łącznie
@@ -437,11 +448,12 @@
 			<div class = "wplywyywyplywy"><span style="color:#838283; font-size: 18px;">Wpływy</span>
 			<?php
 				echo date('m-Y'); echo "</br>";
-				 $sql = "SELECT * FROM transakcje WHERE id = '$id' AND wplywwyplyw = 'wplyw' AND data BETWEEN '$poczatek_miesiaca' AND '$koniec_miesiaca'";
+				 $sql = "SELECT * FROM transakcje WHERE id = '$id' AND wplywwyplyw = 'wplyw' AND data BETWEEN '$poczatek_miesiaca' AND '$koniec_miesiaca' ";
 				 $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
 				 $rezultat = $polaczenie -> query ($sql);
 				 $ile_kategorii = $rezultat -> num_rows;
 				 $laczna_ilosc_wydanej_kasy= 0;
+				 
 				 if($ile_kategorii !=0)
 				 {
 					 //tutaj liczymi ile jest wydanej kasy łącznie

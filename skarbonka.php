@@ -9,7 +9,8 @@
 	if (isset($_POST['cel_oszczednosci']))
 	{
 			$wszystko_ok = true;
-			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'] ;
+			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
+			$_SESSION['potrzebna_ilosc'] = $_POST['potrzebna_ilosc'];
 			if($_POST['cel_oszczednosci'] == "")
 			{
 				$wszystko_ok = false;
@@ -20,14 +21,14 @@
 				$wszystko_ok = false;
 				$e_potrzebna_ilosc= '</br>'.'<span style="color:red">Wprowadź kwotę większą niż zero!</span>'.'</br>';
 			}
-			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
-			$_SESSION['potrzebna_ilosc'] = $_POST['potrzebna_ilosc'];
 	}
 	//sprawdzenie poprawności danych w przypadku, gdy cel jest już ustawiony i wpisujemy pierwszą i kolejną kwotę przeznaczoną na cel
 	if (isset($_POST['kwota_przeznaczona']))
 	{
 		$wszystko_ok = true;
 		$_SESSION['kwota_przeznaczona'] = $_POST['kwota_przeznaczona'];
+		$_SESSION['data_transakcji_skarbonki'] = $_POST['data_transakcji'];
+		
 		//gdy kowta przeznaczona jest wieksza niz kwota naszego portfela
 		if($_POST['kwota_przeznaczona'] > $_SESSION['stan_konta'])
 		{
@@ -40,6 +41,12 @@
 			$wszystko_ok = false;
 			$e_kwota_przeznaczona2 = '</br>'.'<span style="color:red">Kwota przeznaczona musi rózna od 0!</span>'.'</br>';
 		}
+		//gdy ktos chce odjac wiecej niz ma
+		if(($_SESSION['skarbonka']+$_POST['kwota_przeznaczona'])<0)
+		{
+			$wszystko_ok = false;
+			$e_kwota_przeznaczona2 = '</br>'.'<span style="color:red">Nie ma tyle pieniędzy w skarbonce!</span>'.'</br>';
+		}
 		//gdy nie wprowadono daty transakcji
 		if($_POST['data_transakcji'] =="")
 		{
@@ -47,8 +54,6 @@
 			$e_data_transakcji= '</br>'.'<span style="color:red">Wpisz datę transakcji!</span>'.'</br>';
 		}
 		//gdy data transakcji jest pozniejsza, niz dzisiejsza data 
-		$_SESSION['kwota_przeznaczona'] = $_POST['kwota_przeznaczona'];
-		$_SESSION['data_transakcji'] = $_POST['data_transakcji'];
 		$data = $_POST['data_transakcji'];
 		$dataczas = new DateTime();
 		$koniec = DateTime::createFromFormat('Y-m-d', $data);
@@ -76,6 +81,7 @@
 				$wiersz  = $rezultat->fetch_assoc();
 				$cel_oszczednosci = $wiersz['cel_oszczednosci'];
 				$skarbonka = $wiersz['skarbonka'];
+				$potrzebna_ilosc = $wiersz['potrzebna_ilosc'];
 			}
 			else 
 			{
@@ -88,7 +94,12 @@
 	{
 		echo $e;
 	}
+	if((isset($wszystko_ok)) && ($wszystko_ok == true))
+	{
+		$_SESSION['skarbonka'] = $skarbonka;
 		
+		header('Location: podsumowanie_skarbonki.php');
+	}
 
 ?>
 
@@ -128,8 +139,8 @@
 					<ul>
 						<li><a class="rejestraja" href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
 						<li><a class="rejestraja" href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (kwotowy)</a></li>
 						<li><a class="rejestraja" href="stan_portfela.php">Stan portfela</a></li>
 					</ul>
 		</li>
@@ -158,13 +169,7 @@
 			echo $e_potrzebna_ilosc;
 			unset($e_potrzebna_ilosc);
 		}
-		if((isset($wszystko_ok)) && ($wszystko_ok == true))
-		{
-			header('Location: podsumowanie_skarbonki.php');
-			$_SESSION['cel_oszczednosci'] = $_POST['cel_oszczednosci'];
-			$_SESSION['potrzebna_ilosc'] = $_POST['potrzebna_ilosc'];
-			$_SESSION['skarbonka'] = $skarbonka;
-		}
+		
 	}
 	else 
 	{
@@ -195,14 +200,7 @@
 			echo ($e_data_transakcji2);
 			unset($e_data_transakcji2);
 		}
-		if((isset($wszystko_ok)) && ($wszystko_ok == true))
-		{
-			$_SESSION['skarbonka'] = $skarbonka;
-			$_SESSION['kwota_przeznaczona'] = $_POST['kwota_przeznaczona'] ;
-			$_SESSION['data_transakcji_skarbonki'] = $_POST['data_transakcji'];
-			$_SESSION['stan_konta'] = $_SESSION['stan_konta'] - $_SESSION['kwota_przeznaczona'] ;
-			header('Location: podsumowanie_skarbonki.php');
-		}
+
 	 }
 	?>
 	</div></div>

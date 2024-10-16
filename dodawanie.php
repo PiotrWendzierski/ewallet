@@ -17,6 +17,7 @@
 			$e_kategoria = '</br>'.'<span style="color:red">Wprowadź kategorię!</span>'.'</br>';
 		}
 		$cena = $_POST['cena'];
+		if($cena == "") $cena =0;
 		$_SESSION['zmianaa'] = $cena;
 		//czy cena jest pusta lub rowna zero
 		if(($cena == "")|| ($cena == 0))
@@ -25,7 +26,7 @@
 			$e_cena= '</br>'.'<span style="color:red">Wprowadź cenę (cena nie może być równa  zeru)!</span>'.'</br>';
 		}
 		//czy cena jest nizsza lub równa stanowi konta
-		if ((($_SESSION['stan_konta'] + $cena)<0)||($cena == ""))
+		if (($_SESSION['stan_konta'] + $cena)<0)
 		{
 			$wszystko_ok = false;
 			$e_cena2= '</br>'.'<span style="color:red">Cena nie może być większa niz obecny stan konta!</span>'.'</br>';
@@ -159,8 +160,8 @@
 					<ul>
 						<li><a class="rejestraja" href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
 						<li><a class="rejestraja" href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (kwotowy)</a></li>
 						<li><a class="rejestraja" href="stan_portfela.php">Stan portfela</a></li>
 					</ul>
 		</li>
@@ -168,6 +169,7 @@
 	</ol>
 	</div>
 	</br></br>
+	<div id="z" style="min-height:600px;">
 	<div id="formularz" >
 		<form method="post"  >
 		</br>
@@ -209,7 +211,7 @@
 </br>
 	</div>
 	
-</div><div id="footer">Wszelkie prawa zastrzeżone</div>
+</div></div><div id="footer">Wszelkie prawa zastrzeżone</div>
 </body>
 
 </html>

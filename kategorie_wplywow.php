@@ -10,7 +10,6 @@ if(!isset($_SESSION['stan_konta'])|| ($_SESSION['stan_konta'] ==false))
 	header('Location: index.php');
 	exit();
 }
-
 require_once("connect.php");
 $od = "0000-01-01"; if(isset($_GET['od']))$od = $_GET['od'];
 $do =  "6000-01-01"; if(isset($_GET['do']))$do = $_GET['do']; 
@@ -23,7 +22,36 @@ $polaczenie = new mysqli($host, $db_user, $db_password, $db_name);
  $sql = "SELECT * FROM kategorie WHERE id = '$id' AND wplywwyplyw = 'wplyw' ";
 
 $rezultat = mysqli_query($polaczenie,$sql);
+$rezultatt = mysqli_query($polaczenie,$sql);
 
+$ile_kategorii = $rezultat -> num_rows; 
+
+if($ile_kategorii == 0)
+{
+	header('Location: brak_danych.php');
+	exit();
+}
+else
+{
+	$ii =0;
+	while($roww = $rezultatt -> fetch_assoc())
+	{
+		$kategoriaa = $roww['kategoria'];
+		$sqll5 = "SELECT * FROM transakcje WHERE id ='$id' AND wplywwyplyw = 'wplyw' AND kategoria = '$kategoriaa' AND data BETWEEN '$od'
+		AND '$do'";
+		$rezultatt2 = $polaczenie ->query($sqll5);	
+		while($roww2 = $rezultatt2->fetch_assoc())
+		{
+			$ii++;
+		}		
+	}	
+	if($ii == 0)
+	{
+		header("Location: brak.php");
+		exit();
+	}
+	
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -63,8 +91,8 @@ $rezultat = mysqli_query($polaczenie,$sql);
 					<ul>
 						<li><a class="rejestraja" href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
 						<li><a class="rejestraja" href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (kwotowy)</a></li>
 						<li><a class="rejestraja" href="stan_portfela.php">Stan portfela</a></li>
 					</ul>
 		</li>
@@ -102,6 +130,7 @@ $rezultat = mysqli_query($polaczenie,$sql);
           ['Task', 'Hours per Day'],
 		 <?php
 			$ile_kategorii = $rezultat -> num_rows; 
+			
 			if($ile_kategorii >0)
 			{
 				$i = 0;
@@ -112,18 +141,18 @@ $rezultat = mysqli_query($polaczenie,$sql);
 					 AND '$do'";
 					 $rezultat2 = $polaczenie ->query($sql5);
 					 $laczna_ilosc_transakcji = 0;
+					 
 					 while($row2 = $rezultat2->fetch_assoc())
 					{
 						$i++;
 						$laczna_ilosc_transakcji=$laczna_ilosc_transakcji+1;
 					 }
 					 echo "['".$row['kategoria']."', ".$laczna_ilosc_transakcji."],";
-					 
+					
 				 }
 				 if($i == 0)
 				 { 
 					 setcookie('i', 0);
-					 header('Location: kategorie_wplywow.php');
 				 }
 			}
 			else

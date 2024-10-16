@@ -11,7 +11,7 @@
 		header('Location: historia.php');
 		exit();
 	}
-$connection = mysqli_connect("localhost", "root", "");
+$connection = mysqli_connect("db", "php_docker", "password");
 $db = mysqli_select_db($connection, "ewallet");
 
 if(isset($_POST['delete']))
@@ -27,7 +27,6 @@ if(isset($_POST['delete']))
 	if($cena < 0) $zmiana = "wyplyw";
 	
 	$data =  $_POST['data'];
-	echo $cena;
 	
 	$query0 = "SELECT * FROM uzytkownicy WHERE id='$id_user' ";
 	$wiersz2 = mysqli_query($connection, $query0);
@@ -51,7 +50,6 @@ if(isset($_POST['delete']))
 	$query3 = "SELECT * FROM kategorie WHERE kategoria = '$kategoria' AND id = '$id_user' AND wplywwyplyw = '$zmiana'";
 	$wiersz = mysqli_query($connection, $query3);
 	$rezultat = mysqli_fetch_assoc($wiersz);
-	
 	
 	
 	$ilosc_transakcji_w_tej_kategorii = $rezultat['ilosc_transakcji'];

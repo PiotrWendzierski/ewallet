@@ -5,11 +5,7 @@ if(!isset($_SESSION['zalogowany']))
 	header('Location: login.php');
 	exit();
 }
-if($_COOKIE['i'] != 0)
-{
-	header('Location: login.php');
-	exit();
-}
+
 ?><!DOCTYPE HTML>
 <html lang="pl">
 <head>
@@ -48,28 +44,26 @@ if($_COOKIE['i'] != 0)
 					<ul>
 						<li><a class="rejestraja" href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
 						<li><a class="rejestraja" href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (kwotowy)</a></li>
 						<li><a class="rejestraja" href="stan_portfela.php">Stan portfela</a></li>
 					</ul>
 		</li>
 		<li><a class="rejestraja" href="wyloguj.php"><i class="icon-logout"></i>Wyloguj</a></li>
 	</ol>
-	</div>
-	<div id = "brak">
-	<div id="formularz">
-	<form action="index2.php" method = "POST">
+	</div> 
+	<div id="z" style="min-height:600px;">
+	<div id="formularz" >
+	<form action="index2.php" method = "POST" >
 			<?php
-			if((isset($_COOKIE['i'])) && ($_COOKIE['i'] == 0))
-			{
-				setcookie('i', 1);
-				echo '</br>'.'<span style="color:red; font-size: 19px;" >Brak wydatków w tym okresie!</span>'.'</br>';
-			}
-			
+				echo '</br>'.'<span style="color:red; font-size: 19px;" >Brak transakcji w tym okresie!</span>'.'</br>';
 			?>
 			<input type="submit" class="filtruj" value="Wróć"></input>
 	</form>
 	</div>
+	</div>
+</div>
+	<div id="footer">Wszelkie prawa zastrzeżone
 	</div>
 </body>
 

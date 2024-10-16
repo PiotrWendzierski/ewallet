@@ -1,6 +1,6 @@
 <?php
-	$host = "localhost";
-	$db_user = "root";
-	$db_password = "";
+	$host = "db";
+	$db_user = "php_docker";
+	$db_password = "password";
 	$db_name = "ewallet";
 ?>

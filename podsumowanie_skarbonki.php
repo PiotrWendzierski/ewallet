@@ -43,28 +43,28 @@
 	
 	<div id="meni">		
 	<ol>
-		<li><a class="rejestraja" href="index2.php"><i class="icon-home"></i>Ekran główny</a></li>
-		<li><a class="rejestraja" href="dodawanie.php"><i class="icon-plus-circled"></i>Nowa transakcja</a></li>
-		<li><a class="rejestraja" href="historia.php"><i class="icon-history"></i>Historia portfela</a></li>
-		<li><a class="rejestraja" href="#"><i class="icon-bank"></i>Skarbonka</a>
+		<li><a class="rejestraja"><i class="icon-home"></i>Ekran główny</a></li>
+		<li><a class="rejestraja"><i class="icon-plus-circled"></i>Nowa transakcja</a></li>
+		<li><a class="rejestraja"><i class="icon-history"></i>Historia portfela</a></li>
+		<li><a class="rejestraja"><i class="icon-bank"></i>Skarbonka</a>
 					<ul>
-						<li><a class="rejestraja" href="skarbonka.php">Dodaj transakcję</a></li>
-						<li><a class="rejestraja" href="historia_skarbonki.php">Historia skarbonki</a></li>
+						<li><a class="rejestraja" >Dodaj transakcję</a></li>
+						<li><a class="rejestraja" >Historia skarbonki</a></li>
 					</ul>
 				</li>
 				<li><a class="rejestraja" href="#"><i class="icon-chart-bar"></i>Wykresy</a>
 					<ul>
-						<li><a class="rejestraja" href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
-						<li><a class="rejestraja" href="stan_portfela.php">Stan portfela</a></li>
+						<li><a class="rejestraja" >Kategorie wydatków (ilościowy)</a></li>
+						<li><a class="rejestraja" >Kategorie wydatków (kwotowy)</a></li>
+						<li><a class="rejestraja" >Kategorie przychodów (ilościowy)</a></li>
+						<li><a class="rejestraja" >Kategorie przychodów (kwotowy)</a></li>
+						<li><a class="rejestraja" >Stan portfela</a></li>
 					</ul>
 		</li>
 		<li><a class="rejestraja" href="wyloguj.php"><i class="icon-logout"></i>Wyloguj</a></li>
 	</ol>
 	</div>
-	
+	<div id="z" style="min-height:600px;">
 	<div id="formularz">
 		</br>Podsumowanie:</br></br>
 		<?php
@@ -106,6 +106,7 @@
 							}
 							else echo "Nie dodano nic";
 							$stan_konta = $_SESSION['stan_konta'];
+							$stan_konta = $stan_konta-$kwota_przeznaczona;
 							$b = "UPDATE uzytkownicy SET stan_konta = '$stan_konta' WHERE id='$id'";
 							if($polaczenie->query($b))
 							{
@@ -134,11 +135,6 @@
 				  echo '<a href="skarbonka.php"></br><input type="submit" class="submitrej" value="Dodaj cel zbieraniny"></a>';
 			  }
 			  
-			  else if($skarbonka != 0)
-			  {
-				  header('Location: index2.php');
-			  }
-			  
 			 else if (($skarbonka == 0)&& !(isset($kwota_przeznaczona)))//tutaj coś dopisać aby po dodanie transakcji skarbonki pojawiał robił sie ten else ponizej!!!!
 			 {
 				 echo "Cel zbieraniny: ".$cel_oszczednosci."</br></br>";
@@ -148,11 +144,19 @@
 			 }
 			 else 
 			 {
-				 echo "Fajnie! Dodajesz do swojej skarbonki: ".$kwota_przeznaczona."</br></br>";
+				if($kwota_przeznaczona<0)
+				{
+					echo "Stan skarbonki zmniejszył się o: ".$kwota_przeznaczona."</br></br>";
+				}
+				else
+				{
+					echo "Fajnie! Dodajesz do swojej skarbonki: ".$kwota_przeznaczona."</br></br>";
+				}
 				 echo '<a href="index2.php"><input type="submit" class="submitrej" value="Wróć na stronę główną"></a>';			 
 			 }
 		?>
 		</br><br>
-	</div>
+	</div></div><div id="footer">Wszelkie prawa zastrzeżone
+
 </div>
 </body>

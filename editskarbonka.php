@@ -7,9 +7,9 @@
 	}
 	
 	$id = $_SESSION['id'];
-	
-	$connection = mysqli_connect("localhost", "root", "");
-	$db = mysqli_select_db($connection, "ewallet");
+	require_once "connect.php";
+	$polaczenie = new mysqli ($host, $db_user, $db_password, $db_name);
+	$db = mysqli_select_db($polaczenie, "ewallet");
 	
 	if(isset($_POST['delete']))
 	{
@@ -36,7 +36,7 @@
 		$nowa_kwota_przeznaczona = $_POST['kwota_przeznaczona'];
 		$nowa_data = $_POST['data_transakcji'];
 		$query1 = "SELECT * FROM uzytkownicy WHERE id='$id' ";
-		$wiersz1 = mysqli_query($connection, $query1);
+		$wiersz1 = mysqli_query($polaczenie, $query1);
 		$rezultat1 = mysqli_fetch_assoc($wiersz1);
 		
 		$stan_konta = $rezultat1 ['stan_konta'];
@@ -83,10 +83,10 @@
 			$stan_konta = $stan_konta_przed_edytowaniem - $nowa_kwota_przeznaczona;
 			//zmiana stanu konta uzytkownika;
 			$query2 = "UPDATE uzytkownicy SET stan_konta = '$stan_konta' WHERE id = '$id'";
-			$query_run11 = mysqli_query($connection, $query2);
+			$query_run11 = mysqli_query($polaczenie, $query2);
 			//zmiana w transakcjach skarbonki, odczytanie jednej jedynej transakcji którą chcemy edtować ( zdobycie id tej transakcji)
 			$query10 = "SELECT * FROM transakcji_skarbonki WHERE id='$id' AND data_transakcji = '$stara_data' AND kwota_przeznaczona = '$stara_kwota_przeznaczona'";
-			$wiersz10 = mysqli_query($connection, $query10);
+			$wiersz10 = mysqli_query($polaczenie, $query10);
 			$rezultat10 = mysqli_fetch_assoc($wiersz10);
 			
 			$id_jedynej_transakcji = $rezultat10 ['id_transakcji'];
@@ -95,12 +95,12 @@
 			
 			$query3 = "UPDATE transakcji_skarbonki SET data_transakcji = '$nowa_data', kwota_przeznaczona = '$nowa_kwota_przeznaczona' WHERE 
 			id_transakcji = '$id_jedynej_transakcji'";
-			$query_run22 = mysqli_query($connection, $query3);
+			$query_run22 = mysqli_query($polaczenie, $query3);
 			
 			//edytowanie obecnego stanu skarbonki
 			$stan_skarbonki = $stan_skarbonki - $stara_kwota_przeznaczona + $nowa_kwota_przeznaczona;
 			$query4 = "UPDATE uzytkownicy SET skarbonka = '$stan_skarbonki' WHERE id = '$id'";
-			$query_run33 = mysqli_query($connection, $query4);
+			$query_run33 = mysqli_query($polaczenie, $query4);
 			
 			
 			if($query_run11)
@@ -157,8 +157,8 @@
 					<ul>
 						<li><a class="rejestraja" href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
 						<li><a class="rejestraja" href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (kwotowy)</a></li>
 						<li><a class="rejestraja" href="stan_portfela.php">Stan portfela</a></li>
 					</ul>
 		</li>

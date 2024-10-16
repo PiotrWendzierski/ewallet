@@ -23,6 +23,38 @@ $id = $_SESSION['id'];
  $sql = "SELECT * FROM transakcje WHERE id = '$id' AND wplywwyplyw = 'wyplyw' ";
 
 $rezultat = mysqli_query($polaczenie,$sql);
+$rezultatt = mysqli_query($polaczenie,$sql);
+
+$ile_kategorii = $rezultat -> num_rows; 
+
+if($ile_kategorii == 0)
+{
+	header('Location: brak_danych.php');
+	exit();
+}
+else
+{
+	$ii = 0;
+	while($roww = $rezultatt -> fetch_assoc())
+	{
+		$kategoriaaa = $roww['kategoria'];
+		$sqll5 = "SELECT * FROM transakcje WHERE id ='$id' AND wplywwyplyw = 'wyplyw' AND kategoria = '$kategoriaaa' AND data BETWEEN '$od'
+		AND '$do'";
+		$rezultatt2 = $polaczenie ->query($sqll5);
+		
+		while($roww2 = $rezultatt2->fetch_assoc())
+		{
+			$ii++;
+		}
+	}	
+	if($ii == 0)
+	{
+		header("Location: brak.php");
+		exit();
+	}
+
+}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -61,8 +93,8 @@ $rezultat = mysqli_query($polaczenie,$sql);
 					<ul>
 						<li><a class="rejestraja" href="kategorie_wydatkow.php">Kategorie wydatków (ilościowy)</a></li>
 						<li><a class="rejestraja" href="kategorie_wydatkowprocent.php">Kategorie wydatków (kwotowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (ilościowy)</a></li>
-						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (kwotowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywow.php">Kategorie przychodów (ilościowy)</a></li>
+						<li><a class="rejestraja" href="kategorie_wplywowprocent.php">Kategorie przychodów (kwotowy)</a></li>
 						<li><a class="rejestraja" href="stan_portfela.php">Stan portfela</a></li>
 					</ul>
 		</li>

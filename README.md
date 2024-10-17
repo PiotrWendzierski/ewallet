@@ -15,7 +15,10 @@
 * CSS
 * GIT, GitHub
 * Docker, DockerHub
-
+## Running as Docker Container
+```
+docker-compose up
+```
 ## Jak uruchomić
 * Pobrać XAMPP: https://www.apachefriends.org/pl/download.html
 * Zainstalować XAMPP wg instrukcji https://www.youtube.com/watch?v=SoKCB41tKW4&t=31s&ab_channel=GuideLoop. Oglądać do 1:15.
